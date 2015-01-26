@@ -587,16 +587,18 @@ itemApp.controller('testController', function($scope, $location, $rootScope, $lo
 		var refId = $scope.selected.id;
 		var data = $scope.productTag;
 		data['refId'] = refId;
-		console.log('addProductTag', data);
-		// itService.azureService.add('ProductTag', data, {
-			// success: function(results) {
-				// if ($scope.tags == null || $scope.tags == undefined) $scope.tags = [];
-				// $scope.tags.push(results.result);
-			// }, error: function(err) {
-				// console.log(err);
-				// itService.viewService.showError(err);
-			// }
-		// });
+		data['whoMade'] = $localStorage.user.nickName;
+		data['whoMadeId'] = $localStorage.user.id;
+		
+		itService.azureService.add('ProductTag', data, {
+			success: function(results) {
+				if ($scope.tags == null || $scope.tags == undefined) $scope.tags = [];
+				$scope.tags.push(results.result);
+			}, error: function(err) {
+				console.log(err);
+				itService.viewService.showError(err);
+			}
+		});
 	};
 	
 	$scope.makeUserImage = function(id) {
