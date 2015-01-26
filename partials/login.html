@@ -1,0 +1,43 @@
+<div class="container-fluid" ng-controller="loginController as loginCtrl">
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6">
+			<div class="jumbotron">
+				<div align="center">
+					<h1>New opertunity</h1>
+					<p>
+						Simple, Fancy, Powerful tool
+						<br/>
+						IT:EM
+					</p>
+					<!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p> -->
+				</div>
+
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form class="form-horizontal" ng-submit="login()" autocomplete="on" id="myForm" name="login-form">
+						<div class="form-group">
+							<div class="col-md-12">
+								<input type="text" class="form-control" id="user_id" placeholder="ID" ng-model="user.id" autocomplete="on" name="user_id">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<input type="password" class="form-control" id="user_password" placeholder="Password" ng-model="user.password" name="user_password">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<button class="btn btn-primary btn-lg btn-block" class="btn btn-default" type="submit">
+									Sign In
+								</button>
+							</div>
+						</div>
+						<div class="form-group"><div align="right" class="col-md-offset-4 col-md-8"><button class="btn btn-info" ng-click="signUp()">Sign Up</button></div></div>
+						<div class="alert alert-danger" role="alert" ng-show="alerMessageValue">Opps, not correct id or password!</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

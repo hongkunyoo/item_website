@@ -1,0 +1,107 @@
+/*.at-repeat-wave-in.ng-enter, .at-repeat-wave-out.ng-leave {
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 600ms;
+    -moz-transition-duration: 600ms;
+    -o-transition-duration: 600ms;
+    transition-duration: 600ms;
+    -webkit-transition-timing-function: cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    -moz-transition-timing-function: cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    -o-transition-timing-function: cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    transition-timing-function: cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+.at-repeat-wave-in.ng-enter, .at-repeat-wave-out.ng-leave {
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 600ms;
+    -moz-transition-duration: 600ms;
+    -o-transition-duration: 600ms;
+    transition-duration: 600ms;
+    -webkit-transition-timing-function: cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    -moz-transition-timing-function: cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    -o-transition-timing-function: cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    transition-timing-function: cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+.at-repeat-wave-out.ng-leave {
+    opacity: 1;
+}
+
+.at-repeat-wave-in.ng-enter {
+    -webkit-transform: translateX(-70%);
+    -moz-transform: translateX(-70%);
+    -ms-transform: translateX(-70%);
+    -o-transform: translateX(-70%);
+    transform: translateX(-70%);
+    opacity: 0;
+}
+
+.at-repeat-wave-out.ng-leave-active {
+    -webkit-transform: translateX(-70%);
+    -moz-transform: translateX(-70%);
+    -ms-transform: translateX(-70%);
+    -o-transform: translateX(-70%);
+    transform: translateX(-70%);
+    opacity: 0;
+}
+
+.at-repeat-wave-in.ng-enter-active {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+}*/
+
+
+
+.animate-enter, 
+.animate-leave
+{ 
+  -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  position: relative;
+  display: block;
+} 
+ 
+.animate-enter.animate-enter-active, 
+.animate-leave {
+  opacity: 1;
+  top: 0;
+  height: 30px;
+}
+ 
+.animate-leave.animate-leave-active,
+.animate-enter {
+  opacity: 0;
+  top: -50px;
+  height: 0px;
+}
+
+
+
+
+.ng-enter {
+	transition:0.75;
+	opacity: 0;
+	
+}
+.ng-enter.active {
+	opacity: 1;
+}
+.ng-leave {
+	transition:0.75;
+	opacity: 1;
+}
+.ng-leave-active {
+	opacity: 0;
+}

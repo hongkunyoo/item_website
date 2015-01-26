@@ -1,0 +1,70 @@
+/*image css*/
+
+.voffset  { margin-top: 2px; }
+.voffset1 { margin-top: 5px; }
+.voffset2 { margin-top: 10px; }
+.voffset3 { margin-top: 15px; }
+.voffset4 { margin-top: 30px; }
+.voffset5 { margin-top: 40px; }
+.voffset6 { margin-top: 60px; }
+.voffset7 { margin-top: 80px; }
+.voffset8 { margin-top: 100px; }
+.voffset9 { margin-top: 150px; }
+
+
+.item_profile {
+	height: 50px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.item_profile_small {
+	height: 45px;
+    width: auto;
+    margin-right: 4px;
+}
+
+
+.clickable {
+	cursor:pointer;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+.progress-modal-dialog {
+  padding-top: 10%;
+}
+
+.full-block {
+	/*left: 0;
+	position: absolute;
+	float:left;
+	top: expression(window.scrollTop);*/
+	
+	height: 100%;
+	z-index: 900;
+	background-color: #000;
+	opacity: 0.2;
+	filter: alpha(opacity=40);
+	text-align: center;
+	display: none;
+	position: absolute;
+	top: 0px; /* Header Height */
+	bottom: 20px; /* Footer Height */
+	width: 100%;
+}
+
+
