@@ -55,8 +55,18 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/users/:user_id',
             templateUrl: 'partials/users.html'   
         })
+        .state('list.users.myitem', {
+            url: '/myitem',
+            templateUrl: 'partials/myitem.html'   
+        })
+        .state('list.users.ititem', {
+            url: '/ititem',
+            templateUrl: 'partials/ititem.html'   
+        })
         .state('list.settings', {
-            url: '/users/:user_id',
-            templateUrl: 'partials/users.html'   
-        });
+            url: '/settings',
+            templateUrl: 'partials/settings.html'   
+        })
+        
+        ;
 });

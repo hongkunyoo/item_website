@@ -126,6 +126,12 @@ ItImageUtil.prototype = function(){
 		    var dataURL = canvas.toDataURL();	
 			var parsed = parseString(dataURL);		
 			return b64toBlob(parsed.base64, parsed.type);
+		}, makeUserImage: function(id){
+			return "https://athere.blob.core.windows.net/item-user-profile/" + id;
+		}, makeItemImage: function(id) {
+			return "https://athere.blob.core.windows.net/item-image-container/" + id;
+		}, makePrettyTime: function(datetime) {
+			return new ItDateTime(datetime).toPrettyDateTime();
 		},
 		MAX_SIZE: MAX_SIZE,
 		THUMB_NAIL_SIZE: THUMB_NAIL_SIZE

@@ -21,6 +21,9 @@ input:required:valid {
  	color: blue;
 }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
 
 .row-centered {
     text-align:center;

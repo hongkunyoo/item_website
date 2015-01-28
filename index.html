@@ -37,7 +37,7 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 	</head>
-	<body ng-controller="indexController" style="overflow-y: hidden;">
+	<body ng-controller="indexController">
 		<!-- NavBar -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
@@ -71,7 +71,7 @@
 							Find
 						</button>
 					</form> -->
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right" ng-show="isLogin">
 						<li>
 							<a class="clickable" ng-click="logout()">Logout</a>
 						</li>

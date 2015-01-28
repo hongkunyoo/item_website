@@ -1,15 +1,18 @@
-var url = "https://it-emtest.azure-mobile.net/";
-var key = "yHCLhyMsjiaLSbcMKeUdUOoZkbYXfK52";
+// var url = "https://it-emtest.azure-mobile.net/";
+// var key = "yHCLhyMsjiaLSbcMKeUdUOoZkbYXfK52";
+
+var url = "https://it-em.azure-mobile.net/";
+var key = "TnmDvNkgfghvrcXjoQhRjEdcyFCEzd99";
 
 var mobileClient = new WindowsAzure.MobileServiceClient(url, key);
 
-itemApp.factory("itService", function(azureService, viewService, imageService, asyncChainer, eventService,azureBlob) {
+itemApp.factory("itService", function(azureService, viewService, imageService, asyncChainer, azureBlob) {
 	return {
 		azureService: azureService,
 		viewService: viewService,
 		imageService: imageService,
 		asyncChainer: asyncChainer,
-		eventService: eventService,
+		// eventService: eventService,
 		azureBlob: azureBlob
 	};
 });
@@ -188,6 +191,23 @@ itemApp.factory("azureService", function($rootScope) {
 				if (callback.error != undefined)
 					callback.error(err);
 			});
+		}, getUser: function(id, callback) {
+			mobileClient.getTable('ItUser')
+				.where({id: id})
+				.read()
+			.done(function(results){
+				if (results.length == 1) {
+					if (callback.success != undefined)
+						$rootScope.$apply(function(){callback.success(results[0]);});	
+				} else {
+					if (callback.error != undefined)
+						callback.error(results);
+				}
+				
+			}, function(err){
+				if (callback.error != undefined)
+					callback.error(err);
+			});
 		}
 	};
 });
@@ -216,27 +236,27 @@ itemApp.factory("viewService", function($rootScope) {
 	};
 });
 
-itemApp.factory("eventService", function() {
-	return {
-		isCalledFuncs : {},
-		waitingFuncs : {},
-		init : function(func) {
-			if (this.isCalledFuncs[func] == undefined) {
-				this.isCalledFuncs[func] = true;
-				func();
-			}
-		},
-		applyAndWait : function(func) {
-			if (this.waitingFuncs[func] == undefined || this.waitingFuncs[func] == false) {
-				this.waitingFuncs[func] = true;
-				func(func);
-			}
-		},
-		notify : function(func) {
-			this.waitingFuncs[func] = false;
-		}
-	};
-}); 
+// itemApp.factory("eventService", function() {
+	// return {
+		// isCalledFuncs : {},
+		// waitingFuncs : {},
+		// init : function(func) {
+			// if (this.isCalledFuncs[func] == undefined) {
+				// this.isCalledFuncs[func] = true;
+				// func();
+			// }
+		// },
+		// applyAndWait : function(func) {
+			// if (this.waitingFuncs[func] == undefined || this.waitingFuncs[func] == false) {
+				// this.waitingFuncs[func] = true;
+				// func(func);
+			// }
+		// },
+		// notify : function(func) {
+			// this.waitingFuncs[func] = false;
+		// }
+	// };
+// }); 
 
 itemApp.factory("imageService", function() {
 	return new ItImageUtil();

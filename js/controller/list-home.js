@@ -1,42 +1,49 @@
 itemApp.controller('homeController', function($rootScope, $scope, $location, $localStorage, $filter, $state, itService) {
+	// instance variables
+	$scope.page = 0;
+	$scope.addMoreLock = true;
+	
 	
 	$scope.addMore = function() {
-    	itService.eventService.applyAndWait(function(_this){
-	        itService.azureService.listItem(itService.azureService.page, $localStorage.user.id, {
-				success: function(results) {
-					itService.eventService.notify(_this);
-					console.log('addMore page : ', itService.azureService.page, " count : ",results.length);
-					if (results.length == 0) return;
+		if (!$scope.addMoreLock) return;
+		
+		$scope.addMoreLock = false;
+        itService.azureService.listItem($scope.page, $localStorage.user.id, {
+			success: function(results) {
+				console.log('addMore page : ', $scope.page, " count : ",results.length);
+				if (results.length == 0) return;
+				
+				if ($scope.items == null || $scope.items == undefined) $scope.items = [];
+				$.merge($scope.items, (results.map(function(item){
+					item['uploaderImg']	= itService.imageService.makeUserImage(item.whoMadeId);
+					item['imageUrl']	= itService.imageService.makeItemImage(item.id);
+					item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
+					if (item.prevLikeId == null) {
+						item.likeImage = "img/general_it_btn.png";
+					} else {
+						item.likeImage = "img/general_it_highlight_btn.png";
+					}
+					return item;
+				})));
 					
-					if ($scope.items == null || $scope.items == undefined) $scope.items = [];
-					$.merge($scope.items, (results.map(function(item){
-						item['uploaderImg']	= $scope.makeUserImage(item.whoMadeId);
-						item['imageUrl']	= $scope.makeContentImage(item.id);
-						item['uploadTime'] = $scope.makePrettyTime(item.rawCreateDateTime);
-						
-						if (item.prevLikeId == null) {
-							item.likeImage = "img/general_it_btn.png";
-							// item.likeImage = "img/general_it_highlight_btn.png";
-						} else {
-							item.likeImage = "img/general_it_highlight_btn.png";
-						}
-						return item;
-					})));
-					
-					itService.azureService.page++;
-				}, error: function(err) {
-					console.log(err);
-					itService.viewService.showError(err);
-				}
-			});
-    	});
+				$scope.page++;
+				$scope.addMoreLock = true;
+			}, error: function(err) {
+				console.log(err);
+				itService.viewService.showError(err);
+			}
+		});
     };
     $scope.addMore();
 
 	$scope.showReply = function(item) {
 		itService.azureService.list('Reply', item.id, {
 			success: function(results) {
-				item.replys = results;
+				item.replys = results.map(function(reply){
+					reply.userImg = itService.imageService.makeUserImage(reply.whoMadeId);
+					reply.dateTime = itService.imageService.makePrettyTime(reply.rawCreateDateTime);
+					return reply;
+				});
 				item.replyShowValue = true;		
 			}, error: function(err) {
 				console.log(err);
@@ -117,15 +124,15 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $lo
     	}
     };
     
-    $scope.test = function(e) {
-    	console.log('here', e);
-    };
-    
     $scope.gotoWhomade = function(whoMadeId) {
-    	$location.path("/user_profile/"+whoMadeId);
+    	$location.path("/list/users/"+whoMadeId);
     };
     
-    $scope.productTagOpts = [
+    
+	
+	
+	
+	$scope.productTagOpts = [
 	    {val : 0, kor: "아우터"},
 	    {val : 1, kor: "셔츠"},
 	    {val : 2, kor: "니트"},
@@ -156,9 +163,6 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $lo
     	return !enable;
     };
 	 
-
-    
-	
 	$scope.addProductTag = function(item){
 		
 		var refId = $scope.selected.id;
@@ -203,15 +207,5 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $lo
 		if (e.keyCode==13) {
 			$scope.addProductTag(item);
 		}
-	};
-		
-	$scope.makeUserImage = function(id) {
-		return "https://athere.blob.core.windows.net/item-user-profile/" + id;	
-	};
-	$scope.makeContentImage = function(id) {
-		return "https://athere.blob.core.windows.net/item-image-container/" + id;
-	};
-	$scope.makePrettyTime = function(datetime) {
-		return new ItDateTime(datetime).toPrettyDateTime();
 	};
 }); 

@@ -54,14 +54,14 @@
 					<li class="list-group-item" ng-repeat="reply in item.replys">
 						<div class="media">
 							<div class="media-left">
-								<a href="#" ng-click="gotoWhomade(reply.whoMadeId)"> <img class="media-object item_profile_small img-rounded" ng-src="{{reply.userImg}}"> </a>
+								<a href="#" ng-click="gotoWhomade(reply.whoMadeId)"> <img class="media-object item_profile_small img-rounded" ng-src="{{makeUserImage(reply.whoMadeId)}}"> </a>
 							</div>
 							<div class="media-body">
 								<div class="media-heading">
 									<span class="media-left"><a class="clickable" ng-click="gotoWhomade(reply.whoMadeId)">{{reply.whoMade}}</a></span>
 
 									<p class="media-right text-muted">
-										<small>{{reply.dateTime}}</small>
+										<small>{{makePrettyTime(reply.rawCreateDateTime)}}</small>
 									</p>
 
 									<!-- <h5><a class="clickable" ng-click="gotoWhomade(reply.whoMadeId)">{{reply.whoMade}}</a> <small>{{makePrettyTime(reply.rawCreateDateTime)}}</small></h5> -->

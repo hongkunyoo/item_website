@@ -92,20 +92,28 @@ itemApp.controller('signupController', function($scope, $location, $controller, 
 	};
 	
 	$scope.signup = function() {
-		if (!($scope.inviteKeyValue && $scope.userIdValue && $scope.pwd)) {
-			itService.viewService.showError('Invalid', "Checkout your ID, password, Invite key");
-			return;
-		}
-		if ($scope.nickName == undefined) {
-			itService.viewService.showError('UserName', "UserName Required");
-			return;
-		}
-		if ($scope.image == undefined) {
-			itService.viewService.showError('Profile', "Upload your profile");
-			return;
-		}
+		// if (!($scope.inviteKeyValue && $scope.userIdValue && $scope.pwd)) {
+			// itService.viewService.showError('Invalid', "Checkout your ID, password, Invite key");
+			// return;
+		// }
+		// if ($scope.nickName == undefined) {
+			// itService.viewService.showError('UserName', "UserName Required");
+			// return;
+		// }
+		// if ($scope.image == undefined) {
+			// itService.viewService.showError('Profile', "Upload your profile");
+			// return;
+		// }
 		
+		if ($scope.webPage == null) $scope.webPage = "";
+		var regx = new RegExp("(http|https):\/\/.*");
+		var isValid = regx.test($scope.webPage);
+		if (!isValid) {
+			$scope.webPage = "http://" + $scope.webPage;
+		} 
 		
+		console.log($scope.webPage);
+		// return;
 		var payload = {
 			user : {
 				userId : $scope.userId,
