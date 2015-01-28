@@ -127,7 +127,9 @@ itemApp.controller('testController', function($scope, $location, $rootScope, $lo
 	};
 	
 	
-}).controller('indexController', function($rootScope, $location, $rootScope, $localStorage) {
+});
+
+itemApp.controller('indexController', function($rootScope, $location, $rootScope, $localStorage) {
 	
 	$rootScope.logout = function(){
 		$localStorage.$reset("session");
@@ -185,7 +187,7 @@ itemApp.controller('testController', function($scope, $location, $rootScope, $lo
 		$location.path("/signup");
 	};
 	
-}).controller('signupController', function($scope, $location, $controller, $rootScope, $routeParams, itService) {
+}).controller('signupController', function($scope, $location, $controller, $rootScope, $stateParams, itService) {
 	var _canvas = document.getElementById("myCanvas");
 	var base_image = new Image();
 	// $scope.image = base_image;
@@ -260,7 +262,7 @@ itemApp.controller('testController', function($scope, $location, $rootScope, $lo
 		
 	};
 	
-	var inviteKey = $routeParams.inviteKey;
+	var inviteKey = $stateParams.inviteKey;
 	if (inviteKey != undefined) {
 		$scope.inviteKey = inviteKey;
 		$scope.blur('inviteKey');
@@ -415,7 +417,7 @@ itemApp.controller('testController', function($scope, $location, $rootScope, $lo
 			}
 		});
 	};
-}).controller('listController', function($rootScope, $scope, $location, $localStorage, itService) {
+}).controller('listController', function($rootScope, $scope, $location, $localStorage, $filter, $state, itService) {
 	
 	if ($localStorage.session == undefined) {
 		$location.path("/");
@@ -435,7 +437,15 @@ itemApp.controller('testController', function($scope, $location, $rootScope, $lo
 			itService.viewService.showError(err);
 		}			
 	});
+	
+	
+	$scope.home = function() {
 		
+	};
+	console.log($state.current);
+	
+	$scope.list_active = $state.current.name;
+	$state.go('list.home');
 	
 	$scope.addMore = function() {
     	itService.eventService.applyAndWait(function(_this){
@@ -523,7 +533,6 @@ itemApp.controller('testController', function($scope, $location, $rootScope, $lo
     
     $scope.likeIt = function(item) {
     	var prevLikeId = item.prevLikeId;
-    	console.log(prevLikeId);
     	if (prevLikeId == null) {
     		var data = {
 	    		refId: item.id,
@@ -564,28 +573,45 @@ itemApp.controller('testController', function($scope, $location, $rootScope, $lo
     };
     
     $scope.productTagOpts = [
-	    {val :'Outer', kor: "아우터"},
-	    {val :'Shirts', kor: "셔츠"},
-	    {val :'Neet', kor: "니트"},
-	    {val :'ManToMan', kor: "맨투맨"},
-	    {val :'Hood', kor: "후드"},
-	    {val :'T_Shirts', kor: "티셔츠"},
-	    {val :'Pants', kor: "팬츠"},
-	    {val :'OnePiece', kor: "원피스"},
-	    {val :'Skirt', kor: "스커트"},
-	    {val :'Shoes', kor: "신발"},
-	    {val :'Socks', kor: "양말"},
-	    {val :'Bag', kor: "가방"},
-	    {val :'Accessory', kor: "악세사리"},
-	    {val :'Cap', kor: "모자"},
-	    {val :'Items', kor: "아이템"}
+	    {val : 0, kor: "아우터"},
+	    {val : 1, kor: "셔츠"},
+	    {val : 2, kor: "니트"},
+	    {val : 3, kor: "맨투맨"},
+	    {val : 4, kor: "후드"},
+	    {val : 5, kor: "티셔츠"},
+	    {val : 6, kor: "팬츠"},
+	    {val : 7, kor: "원피스"},
+	    {val : 8, kor: "스커트"},
+	    {val : 9, kor: "신발"},
+	    {val : 10, kor: "양말"},
+	    {val : 11, kor: "가방"},
+	    {val : 12, kor: "악세사리"},
+	    {val : 13, kor: "모자"},
+	    {val : 14, kor: "아이템"}
     ];
+    
+    $scope.priceChange = function(){
+    	if ($scope.productTag.price == undefined) return;
+    	var toNum = $scope.productTag.price.split(",").join("");
+    	$scope.productTag.price = $filter('number')(toNum);
+    };
+    
+    $scope.validProductTag = function() {
+    	var enable = ($scope.productTagForm.category.$dirty && $scope.productTagForm.shopName.$dirty && $scope.productTagForm.webPage.$dirty && $scope.productTagForm.price.$dirty);
+    	enable &= !$scope.productTagForm.shopName.$error.required && !$scope.productTagForm.webPage.$error.url && !$scope.productTagForm.webPage.$error.required && !$scope.productTagForm.price.$error.required;
+    	
+    	return !enable;
+    };
+	 
+
     
 	
 	$scope.addProductTag = function(item){
 		
 		var refId = $scope.selected.id;
 		var data = $scope.productTag;
+		
+		data['price'] = parseFloat($scope.productTag.price.split(",").join(""));
 		data['refId'] = refId;
 		data['whoMade'] = $localStorage.user.nickName;
 		data['whoMadeId'] = $localStorage.user.id;
@@ -594,6 +620,7 @@ itemApp.controller('testController', function($scope, $location, $rootScope, $lo
 			success: function(results) {
 				if ($scope.tags == null || $scope.tags == undefined) $scope.tags = [];
 				$scope.tags.push(results.result);
+				$scope.productTag = {};
 			}, error: function(err) {
 				console.log(err);
 				itService.viewService.showError(err);
@@ -601,6 +628,30 @@ itemApp.controller('testController', function($scope, $location, $rootScope, $lo
 		});
 	};
 	
+	$scope.deleteTag = function(tag){
+		
+		itService.azureService.del('ProductTag', tag, {
+			success: function(results) {
+				if ($scope.tags == null || $scope.tags == undefined) $scope.tags = [];
+				$scope.tags = $filter('filter')($scope.tags, {id: "!"+tag.id});
+			}, error: function(err) {
+				console.log(err);
+				itService.viewService.showError(err);
+			}
+		});
+	};
+	
+	$scope.isMineTag = function(tag){
+		// return tag.whoMadeId == $localStorage.user.id;
+		return true;
+	};
+	
+	$scope.enterProductTag=function(item, e){
+		if (e.keyCode==13) {
+			$scope.addProductTag(item);
+		}
+	};
+		
 	$scope.makeUserImage = function(id) {
 		return "https://athere.blob.core.windows.net/item-user-profile/" + id;	
 	};

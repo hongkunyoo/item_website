@@ -151,7 +151,6 @@ itemApp.factory("azureService", function($rootScope) {
 					callback.error(err);
 			});
 		}, del: function(tableName, data, callback) {
-			console.log(tableName);
 			 mobileClient.invokeApi("aim_delete", {
 				method : "post",
 				body: {

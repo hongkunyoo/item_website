@@ -1,7 +1,7 @@
 <div class="container" ng-controller="listController">
 	<div class="row">
-		<div class="col-md-4">
-			<div class="affix col-md-3">
+		<div class="col-md-3">
+			<div class="affix col-md-2">
 			<div class="input-group" style="padding-bottom:10px;">
 				<!-- <input type="text" class="form-control" placeholder="Hash Tag" ng-model="search">
 				<span class="glyphicon glyphicon-search form-control-feedback"></span> -->
@@ -17,107 +17,24 @@
             </div> -->
             
 			<ul class="nav nav-pills nav-stacked">
-				<li role="presentation" class="active">
-					<a class="clickable">Home</a>
+				<li role="presentation" ng-class="{active: list_active=='list.home'}">
+					<a ui-sref=".home" class="clickable" ui-sref-active="active">Home</a>
 				</li>
 				<li role="presentation">
-					<a ng-click="test()" class="clickable">My Items</a>
+					<a ui-sref=".users" class="clickable" ui-sref-active="active">Users</a>
 				</li>
 				<li role="presentation">
-					<a ng-click="test()" class="clickable">It Items</a>
-				</li>
-				<li role="presentation">
-					<a ng-click="test()" class="clickable">Settings</a>
+					<a ui-sref=".settings" class="clickable" ui-sref-active="active">Settings</a>
 				</li>
 			</ul>
 			</div>
 		</div>
-		<div class="col-md-6" id="mytest">
-			<div infinite-scroll="addMore()" infinite-scroll-distance="3" infinite-scroll-immediate-check=false>
-			<div  ng-repeat="item in items | filter:search">
-			<div class="panel panel-default">
-				<div class="container-fluid">
-					<div class="card-title">
-						<a class="pull-left clickable" ng-click="gotoWhomade(item.whoMadeId)"><img ng-src={{item.uploaderImg}} class="item_profile img-rounded"/></a>
-						<div>
-							<h4><a class="clickable" ng-click="gotoWhomade(item.whoMadeId)">{{item.whoMade}}</a></h4>
-						</div>
-						<div>
-							{{item.uploadTime}}
-						</div>
-					</div>
-				</div>
-				<div class="card panel-body">
-					<div class="card-image" align="center">
-						<a ng-click="showDetails(item)"><img class="img-responsive clickable img-rounded" ng-src="{{item.imageUrl}}"/></a>
-					</div>
-					<div class="card-content">
-						<p>
-							{{item.content}}
-						</p>
-					</div>
-
-					<!-- <img src="img/general_it_btn.png" class='btn btn-sm'/> -->
-					<div class="col-md-3">
-						<a data-toggle="modal" data-target="#_myModal" class="clickable" ng-click="likeIt(item)">
-						  <img ng-src="{{item.likeImage}}" class="img-responsive">
-						</a>	
-					</div>
-					
-					<div class="col-md-3">
-						<!-- <a target="new_blank" ng-click="showReply(item)" class="clickable"><span class="glyphicon glyphicon-ok">{{item.likeItCount}}</span></a>
-						<a target="new_blank" ng-click="showReply(item)" class="clickable"><span class="glyphicon glyphicon-comment">{{item.replyCount}}</span></a> -->
-						<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_it_ic.png" class='clickable' width=21 height=28/><span>{{item.likeItCount}}</span></a>
-						<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_comment_ic.png" class='clickable' width=21 height=28/><span>{{item.replyCount}}</span></a>
-						<!-- <a target="new_blank" ng-click="showReply(item)" class="clickable"><span class="glyphicon glyphicon-comment">{{item.replyCount}}</span></a> -->
-					</div>
-					
-					<div class="row">
-						<span class="label label-default">Default</span>
-						<span class="label label-warning">Default</span>
-						<span class="label label-primary">Default</span>
-					</div>
-				</div>
-				
-				<div class="panel-footer" ng-show="item.replyShowValue">
-					<!-- <div class="container"> -->
-						<!-- <div class="row"> -->
-						<!-- <div class="col-md-5"> -->
-						<div class="input-group fill">
-							<input type="text" class="form-control" placeholder="Add comments" aria-describedby="basic-addon2" ng-model="item.replyContent" ng-keyup="addReply(item, $event.keyCode==13)">
-							<span class="input-group-addon clickable" ng-click="addReply(item, $event.keyCode==0)">Add</span>
-						</div>
-						<ul class="list-group voffset3">
-							<li class="list-group-item" ng-repeat="reply in item.replys">
-								<div class="media">
-									<div class="media-left">
-										<a href="#" ng-click="gotoWhomade(reply.whoMadeId)"> <img class="media-object item_profile_small img-rounded" ng-src="{{makeUserImage(reply.whoMadeId)}}"> </a>
-									</div>
-									<div class="media-body">
-										<div class="media-heading">
-											<span class="media-left"><a class="clickable" ng-click="gotoWhomade(reply.whoMadeId)">{{reply.whoMade}}</a></span>
-											
-											<p class="media-right text-muted"><small>{{makePrettyTime(reply.rawCreateDateTime)}}</small></p>
-											
-											<!-- <h5><a class="clickable" ng-click="gotoWhomade(reply.whoMadeId)">{{reply.whoMade}}</a> <small>{{makePrettyTime(reply.rawCreateDateTime)}}</small></h5> -->
-											
-										</div>
-										<div class="media-left">{{reply.content}}</div>
-									</div>
-									
-								</div>
-							</li>
-						</ul>
-						<!-- </div> -->
-						<!-- </div> -->
-					<!-- </div> -->
-				</div>
-			</div>
-			</div>
+		<div class="col-md-6">
+			<div ui-view>
+			
 			</div>
 		</div>
 	</div>
-	
 	
 	
 	<!-- ###################################################################### -->
@@ -139,19 +56,20 @@
 						<img ng-src="{{selected.imageUrl}}" alt="teste" class="img-thumbnail">
 					</div> -->
 					
-					<div class="col-md-12">
-						<div class="container">
+					<div class="col-md-12 col-centered">
+						<div class="_container">
 							<div class="row">
 						        <!-- panel preview -->
-						        <div class="col-sm-5">
+						        <div class="col-sm-12 col-centered">
 						            <h4>Add Tag</h4>
 						            <div class="panel panel-default">
 						                <div class="panel-body form-horizontal payment-form">
+						                	<form name="productTagForm" novalidate>
 						                    <div class="form-group">
 						                        <label for="concept" class="col-sm-3 control-label">Category</label>
 						                        <div class="col-sm-9">
 						                            <!-- <input type="text" class="form-control" id="concept" name="concept"> -->
-						                            <select class="form-control" ng-model="productTag.category">
+						                            <select class="form-control" ng-model="productTag.category" name="category">
 						                                <option ng-repeat="productTagOpt in productTagOpts" value={{productTagOpt.val}}>{{productTagOpt.kor}}</option>
 						                            </select>
 						                        </div>
@@ -159,38 +77,38 @@
 						                    <div class="form-group">
 						                        <label for="description" class="col-sm-3 control-label">쇼핑몰명</label>
 						                        <div class="col-sm-9">
-						                            <input type="text" class="form-control" id="description" name="description" ng-model="productTag.shopName">
+						                            <input type="text" class="form-control" id="shopName" name="shopName" ng-model="productTag.shopName" required>
 						                        </div>
 						                    </div> 
 						                    <div class="form-group">
 						                        <label for="amount" class="col-sm-3 control-label">Web Page</label>
 						                        <div class="col-sm-9">
-						                            <input type="text" class="form-control" id="amount" name="amount" ng-model="productTag.webPage">
+						                            <input type="url" class="form-control" id="webPage" name="webPage" ng-model="productTag.webPage" required>
 						                        </div>
 						                    </div>
 						                    <div class="form-group">
 						                        <label for="status" class="col-sm-3 control-label">Price</label>
 						                        <div class="col-sm-9">
 						                        	<div class="input-group input-group-lg">
-													  <span class="input-group-addon" id="sizing-addon1">$</span>
-													  <input type="text" class="form-control" ng-model="productTag.price">
+													  <span class="input-group-addon" id="sizing-addon1">₩</span>
+													  <input type="text" class="form-control" ng-model="productTag.price" name="price" id="addProductPrice" required _pattern="[0-9,]*" style="color:blue;" ng-change="priceChange()" ng-keypress="enterProductTag(item, $event)" />
 													</div>
-						                            
 						                        </div>
-						                    </div> 
+						                    </div>
 						                    <div class="form-group">
 						                        <div class="col-sm-12 text-right">
-						                            <button type="button" class="btn btn-default preview-add-button" ng-click="addProductTag(selected)">
+						                            <button type="button" class="btn btn-default preview-add-button" ng-click="addProductTag(selected)" ng-disabled="validProductTag()">
 						                                <span class="glyphicon glyphicon-plus"></span> Add
 						                            </button>
 						                        </div>
 						                    </div>
+						                    </form>
 						                </div>
 						            </div>            
 						        </div>
 						    </div>
 						    <div class="row"> 
-						        <div class="col-sm-5">
+						        <div class="col-sm-12">
 						            <h4>List</h4>
 						            <div class="row">
 						                <div class="col-xs-12">
@@ -202,14 +120,18 @@
 						                                    <th>Name</th>
 						                                    <th>Web</th>
 						                                    <th>Price</th>
+						                                    <th style="text-align: center;">Delete</th>
 						                                </tr>
 						                            </thead>
 						                            <tbody>
 						                            	<tr ng-repeat="tag in tags">
-						                            		<td>{{tag.category}}</td>
+						                            		<td>{{productTagOpts[tag.category].kor}}</td>
 						                            		<td>{{tag.shopName}}</td>
 						                            		<td><a href="{{tag.webPage}}" target="_blank">{{tag.webPage}}</a></td>
-						                            		<td>{{tag.price}}</td>
+						                            		<td>{{tag.price | number }}</td>
+						                            		<td align="center"><span class="glyphicon glyphicon-remove has-feedback text-danger clickable" ng-click="deleteTag(tag)" ng-show="isMineTag(tag)"></span></td>
+						                            		
+						                            		
 						                            	</tr>
 						                            </tbody> <!-- preview content goes here-->
 						                        </table>

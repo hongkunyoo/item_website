@@ -1,0 +1,81 @@
+<div infinite-scroll="addMore()" infinite-scroll-distance="3" infinite-scroll-immediate-check=false ng-controller="homeController">
+	<div  ng-repeat="item in items | filter:search">
+		<div class="panel panel-default">
+			<div class="container-fluid">
+				<div class="card-title">
+					<a class="pull-left clickable" ng-click="gotoWhomade(item.whoMadeId)"><img ng-src={{item.uploaderImg}} class="item_profile img-rounded"/></a>
+					<div>
+						<h4><a class="clickable" ng-click="gotoWhomade(item.whoMadeId)">{{item.whoMade}}</a></h4>
+					</div>
+					<div>
+						{{item.uploadTime}}
+					</div>
+				</div>
+			</div>
+			<div class="card panel-body">
+				<div class="card-image" align="center">
+					<a ng-click="showDetails(item)"><img class="img-responsive clickable img-rounded" ng-src="{{item.imageUrl}}"/></a>
+				</div>
+				<div class="card-content">
+					<p>
+						{{item.content}}
+					</p>
+				</div>
+
+				<!-- <img src="img/general_it_btn.png" class='btn btn-sm'/> -->
+				<div class="col-md-3">
+					<a data-toggle="modal" data-target="#_myModal" class="clickable" ng-click="likeIt(item)"> <img ng-src="{{item.likeImage}}" class="img-responsive"> </a>
+				</div>
+
+				<div class="col-md-3">
+					<!-- <a target="new_blank" ng-click="showReply(item)" class="clickable"><span class="glyphicon glyphicon-ok">{{item.likeItCount}}</span></a>
+					<a target="new_blank" ng-click="showReply(item)" class="clickable"><span class="glyphicon glyphicon-comment">{{item.replyCount}}</span></a> -->
+					<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_it_ic.png" class='clickable' width=21 height=28/><span>{{item.likeItCount}}</span></a>
+					<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_comment_ic.png" class='clickable' width=21 height=28/><span>{{item.replyCount}}</span></a>
+					<!-- <a target="new_blank" ng-click="showReply(item)" class="clickable"><span class="glyphicon glyphicon-comment">{{item.replyCount}}</span></a> -->
+				</div>
+
+				<div class="row">
+					<span class="label label-default">Default</span>
+					<span class="label label-warning">Default</span>
+					<span class="label label-primary">Default</span>
+				</div>
+			</div>
+
+			<div class="panel-footer" ng-show="item.replyShowValue">
+				<!-- <div class="container"> -->
+				<!-- <div class="row"> -->
+				<!-- <div class="col-md-5"> -->
+				<div class="input-group fill">
+					<input type="text" class="form-control" placeholder="Add comments" aria-describedby="basic-addon2" ng-model="item.replyContent" ng-keyup="addReply(item, $event.keyCode==13)">
+					<span class="input-group-addon clickable" ng-click="addReply(item, $event.keyCode==0)">Add</span>
+				</div>
+				<ul class="list-group voffset3">
+					<li class="list-group-item" ng-repeat="reply in item.replys">
+						<div class="media">
+							<div class="media-left">
+								<a href="#" ng-click="gotoWhomade(reply.whoMadeId)"> <img class="media-object item_profile_small img-rounded" ng-src="{{makeUserImage(reply.whoMadeId)}}"> </a>
+							</div>
+							<div class="media-body">
+								<div class="media-heading">
+									<span class="media-left"><a class="clickable" ng-click="gotoWhomade(reply.whoMadeId)">{{reply.whoMade}}</a></span>
+
+									<p class="media-right text-muted">
+										<small>{{makePrettyTime(reply.rawCreateDateTime)}}</small>
+									</p>
+
+									<!-- <h5><a class="clickable" ng-click="gotoWhomade(reply.whoMadeId)">{{reply.whoMade}}</a> <small>{{makePrettyTime(reply.rawCreateDateTime)}}</small></h5> -->
+
+								</div>
+								<div class="media-left">
+									{{reply.content}}
+								</div>
+							</div>
+
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

@@ -12,6 +12,30 @@
 .voffset9 { margin-top: 150px; }
 
 
+input:required:invalid, input:focus:invalid {
+  -moz-box-shadow: none;
+  color: red;
+}
+
+input:required:valid {
+ 	color: blue;
+}
+
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+
+
 .item_profile {
 	height: 50px;
     width: auto;
