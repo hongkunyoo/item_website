@@ -71,7 +71,17 @@
 							Find
 						</button>
 					</form> -->
-					<ul class="nav navbar-nav navbar-right" ng-show="isLogin">
+					<ul class="nav navbar-nav navbar-right" ng-show__="isLogin">
+						<li>
+							<form name="myform" ng-model="ngMyForm">
+							<label class="radio-inline">
+								<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked="" ng-click="real()">
+								it:em </label>
+							<label class="radio-inline">
+								<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" ng-click="test()">
+								it:em-test </label>
+								</form>
+						</li>						
 						<li>
 							<a class="clickable" ng-click="logout()">Logout</a>
 						</li>

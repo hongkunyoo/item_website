@@ -1,10 +1,3 @@
-// var url = "https://it-emtest.azure-mobile.net/";
-// var key = "yHCLhyMsjiaLSbcMKeUdUOoZkbYXfK52";
-
-var url = "https://it-em.azure-mobile.net/";
-var key = "TnmDvNkgfghvrcXjoQhRjEdcyFCEzd99";
-
-var mobileClient = new WindowsAzure.MobileServiceClient(url, key);
 
 itemApp.factory("itService", function(azureService, viewService, imageService, asyncChainer, azureBlob) {
 	return {
@@ -18,8 +11,34 @@ itemApp.factory("itService", function(azureService, viewService, imageService, a
 });
 
 itemApp.factory("azureService", function($rootScope) {
+	
+	var real_url = "https://it-em.azure-mobile.net/";
+	var real_key = "TnmDvNkgfghvrcXjoQhRjEdcyFCEzd99";
+	
+	var test_url = "https://it-em-test.azure-mobile.net/";
+	var test_key = "jidjLSdrpbivsOXwsQStSSHGIKxhKa66";
+	
+	var realClient = new WindowsAzure.MobileServiceClient(real_url, real_key);
+	
+	var testClient = new WindowsAzure.MobileServiceClient(test_url, test_key);
+	
+	var mobileClient = realClient;
+	
+	
 	return {
-		page : 0,
+		SERVER : {
+			REAL: 0,
+			TEST: 1
+		},
+		switchServer: function(type) {
+			if (type == this.SERVER.REAL) {
+				mobileClient = realClient;
+			} else if (type == this.SERVER.TEST) {
+				mobileClient = testClient;
+			} else {
+				console.log(type);
+			}
+		},
 		signin : function(userInfo, callback) {
 			mobileClient.invokeApi("signin", {
 				body : {
