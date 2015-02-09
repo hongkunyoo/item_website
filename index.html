@@ -66,7 +66,7 @@
 			
 	function onLogin() {
 		FB.login(function(response) {
-			console.log('in login : ' + response);
+			console.log('in login : ' + JSON.stringify(response));
 		  if (response.status === 'connected') {
 		    // Logged into your app and Facebook.
 		  } else if (response.status === 'not_authorized') {
