@@ -6,6 +6,11 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 		return;
 	}
 	
+	FB.getLoginStatus(function(response) {
+		// statusChangeCallback(response);
+		console.log("in list : ",JSON.stringify(response));
+	});
+	
 	itService.azureService.sessionHelper('open', $localStorage.session, {
 		success: function(result) {
 			if (!result) {
