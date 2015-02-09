@@ -121,7 +121,7 @@ itemApp.controller('signupController', function($scope, $location, $controller, 
 				nickName : $scope.nickName,
 				webPage : ($scope.webPage==null) ? "" : $scope.webPage,
 				selfIntro: ($scope.selfIntro==null) ? "" : $scope.selfIntro,
-				platform : "web",
+				platform : "WEB",
 				email : $scope.userId,
 			},
 			invite: {
