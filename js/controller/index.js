@@ -14,7 +14,7 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 		itService.azureService.switchServer(itService.azureService.SERVER.TEST);
 	};
 	
-	
+	console.log('in index controller');
 	window.fbAsyncInit = function() {
 		FB.init({
 			appId : '734298746647918',

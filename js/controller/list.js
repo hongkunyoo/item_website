@@ -1,10 +1,10 @@
 itemApp.controller('listController', function($rootScope, $scope, $location, $localStorage, $filter, $state, itService, $stateParams) {
 	
-	if ($localStorage.session == undefined) {
-		$location.path("/");
-		$rootScope.isLogin = false;
-		return;
-	}
+	// if ($localStorage.session == undefined) {
+		// $location.path("/");
+		// $rootScope.isLogin = false;
+		// return;
+	// }
 	
 	FB.getLoginStatus(function(response) {
 		// statusChangeCallback(response);
