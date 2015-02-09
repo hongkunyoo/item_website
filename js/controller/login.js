@@ -48,14 +48,26 @@ itemApp.controller('loginController', function($scope, $location, $localStorage,
 	// $scope.signUp = function() {
 		// $location.path("/signup");
 	// };
+	
 	function logstat() {
-		FB.getLoginStatus(function(response) {
-		    // statusChangeCallback(response);
-		    console.log(JSON.stringify(response));
-		});	
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '734298746647918',
+				cookie : true, // enable cookies to allow the server to access
+				// the session
+				xfbml : true, // parse social plugins on this page
+				version : 'v2.1' // use version 2.1
+			});
+			FB.getLoginStatus(function(response) {
+				// statusChangeCallback(response);
+				console.log(JSON.stringify(response));
+			});
+		};
 	}
 	
-	$timeout(logstat,3000);
+	logstat();
+	
+	// $timeout(logstat,3000);
 	
 	
 	$scope.onLogin = function() {
