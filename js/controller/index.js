@@ -13,6 +13,7 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 		// $localStorage.$reset("session");
 		// $rootScope.isLogin = false;
 		// $location.path("/");	
+		console.log('in logout func');
 		FB.logout(function(response) {
 	        // Person is now logged out
 	        $rootScope.$apply(function(){
@@ -31,10 +32,15 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 	};
 	
 	$scope.loginPage = function() {
-		$location.path("/list");
+		$location.path("/list/home");
 	};
 	
 	$scope.logoutPage = function() {
 		$location.path("/");
 	};
+	
+	// if ($scope.isLogin()) {
+		// $location.path("/list/home");
+		// $location.replace();
+	// }
 });

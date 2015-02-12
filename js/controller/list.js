@@ -23,9 +23,9 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 			// itService.viewService.showError(err);
 		// }			
 	// });
-	$scope.list_active = $state.current.name;
-	$state.go('list.home');
-	$scope.user = itService.prefHelper.get("ItUser");
-	$rootScope.isLogin = true;
+	// $scope.list_active = $state.current.name;
+	// $state.go('list.home');
+	// $scope.user = itService.prefHelper.get("ItUser");
+	// $rootScope.isLogin = true;
 	
 }); 

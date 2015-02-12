@@ -1,18 +1,15 @@
 <div infinite-scroll="addMore()" infinite-scroll-distance="3" infinite-scroll-immediate-check=false ng-controller="homeController" align="center" id="block_container" style="position: relative;">
 	<div ng-repeat="item in items" class="block">
 		<div class="panel panel-default">
-			<div class="container-fluid">
-				<div class="card-title" style="margin-bottom: 30px;">
-					<a class="pull-left clickable" ng-click="gotoWhomade(item.whoMadeId)"><img ng-src={{item.uploaderImg}} class="item_profile img-circle"/></a>
-					<div>
-						<h4><a class="clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)">{{item.whoMade}}</a></h4>
-					</div>
-				</div>
+			<div class="card-title">
+				<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)">
+					<img ng-src={{item.uploaderImg}} class="item_profile img-circle"/>
+					{{item.whoMade}}
+				</a>
+				<div style="clear:both;"></div>
 			</div>
-			<div _class="card panel-body">
-				<!-- <div class="card-image" align="center"> -->
-					<a ng-click="showDetails(item)"><img class="img-responsive clickable _img-rounded" ng-src="{{item.imageUrl}}"/></a>
-				<!-- </div> -->
+			<div>
+				<a ng-click="showDetails(item)"><img class="img-responsive clickable _img-rounded" ng-src="{{item.imageUrl}}"/></a>
 				<div class="card-content">
 					<p>
 						{{item.content}}
@@ -58,21 +55,9 @@
 				</ul>
 			</div>
 		</div>
-	</div>
-		<!-- <div id="wrapper">
-			<div id="columns">
-				<div ng-repeat="item in items" class="pin">
-					<img class="img-responsive clickable img-rounded" ng-src="{{item.imageUrl}}"/>
-					<p>
-						{{item.content}}
-					</p>
-				</div>
-			</div>
-		</div> -->
 		
-	
-	
-	
+	</div>
+		
 	
 	
 	<!-- ###################################################################### -->

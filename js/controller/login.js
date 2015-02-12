@@ -45,11 +45,11 @@ itemApp.controller('loginController', function($scope, $location, $rootScope, it
 		// });
 	// };
 // 	
-	// $scope.signUp = function() {
-		// $location.path("/signup");
-	// };
-	
-	// $timeout(logstat,3000);
+
+	if ($scope.isLogin()) {
+		$location.path("/list/home");
+		$location.replace();
+	}
 	
 	$scope.onFacebookLogin = function() {
 		FB.login(function(response) {
