@@ -37,47 +37,47 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 	</head>
-	<body ng-controller="indexController" style="background: url('img/splash_bg.png'); display: compact; background-size: cover;">
+	<body ng-controller="indexController">
 		<script>
-			// ( function(d, s, id) {
-					// var js,
-					    // fjs = d.getElementsByTagName(s)[0];
-					// if (d.getElementById(id))
-						// return;
-					// js = d.createElement(s);
-					// js.id = id;
-					// js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=734298746647918&version=v2.0";
-					// fjs.parentNode.insertBefore(js, fjs);
-				// }(document, 'script', 'facebook-jssdk'));
-
-				( function(d, s, id) {
-					var js,
-					    fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id))
-						return;
-					js = d.createElement(s);
-					js.id = id;
-					js.src = "//connect.facebook.net/ko_KR/sdk.js";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
-				
-				window.fbAsyncInit = function() {
-					FB.init({
-						appId : '734298746647918',
-						cookie : true, // enable cookies to allow the server to access
-						// the session
-						xfbml : true, // parse social plugins on this page
-						version : 'v2.1' // use version 2.1
-					});
-					FB.getLoginStatus(function(response) {
-						// statusChangeCallback(response);
-						console.log(JSON.stringify(response));
-					});
-				};
+			( function(d, s, id) {
+				var js,
+				    fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id))
+					return;
+				js = d.createElement(s);
+				js.id = id;
+				// js.src = "//connect.facebook.net/ko_KR/sdk.js";
+				js.src = "//connect.facebook.net/ko_KR/all.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+			
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId : '734298746647918',
+					cookie : true, // enable cookies to allow the server to access
+					level  : "debug",
+					// the session
+					xfbml : true, // parse social plugins on this page
+					version : 'v2.1' // use version 2.1
+				});
+				// FB.getLoginStatus(function(response) {
+					// // statusChangeCallback(response);
+					// if (response.status == "connected") {
+						// // go to list page (login)
+						// // document.location = "#/list";
+						// // loginPage();
+						// console.log(response.authResponse.userID);
+					// } else {
+						// // go to login page (logout)
+						// logoutPage();
+						// console.log(JSON.stringify(response));	
+					// }
+				// });
+			};
 				
 		</script>
 		<!-- NavBar -->
-		<nav class="navbar navbar-custom navbar-fixed-top">
+		<nav class="navbar navbar-custom navbar-fixed-top" ng-show="isLogin()">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
@@ -91,11 +91,11 @@
 				</div>
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav visible-xs">
+					<ul class="nav navbar-nav visible-xs visible-sm">
 						<li>
 							<a class="clickable" ng-click="logout()">
 								<img class="img-circle img-responsive pull-left" src="https://graph.facebook.com/mark8625/picture?type=large" width="30" height="30"/>
-								<p>HongkunYoo</p>
+								<p class="pull-right">HongkunYoo</p>
 							</a>
 						</li>
 						<li>
@@ -113,8 +113,16 @@
 			</div>
 		</nav>
 		
-		<section ui-view style="padding-top:80px;">
+		<!-- <header>
+	        <div class="container" style="padding-top: 100px;">
+	            <div class="row">
+	            </div>
+	        </div>
+	    </header> -->
 
+		
+		<section ui-view style="padding-top:60px;" ng-class="isLoginClass()">
+			
 		</section>
 		<div class="modal" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm progress-modal-dialog">
@@ -160,15 +168,13 @@
 		
 		<!-- Windows Azure Mobile Service -->
 		<script src='http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.2.min.js'></script>
-		<!-- <script src="js/helper.js"></script> -->
 		
-		<script src="js/it_image_util.js"></script>
-		<script src="js/async_chainer.js"></script>
+		<script src="js/blocksit.js"></script>
+		
 		<script src="js/base64.js"></script>
 		<script src="js/jquery.number.js"></script>
 		<script src="js/cropper.js"></script>
 		<script src="js/array_base64.js"></script>
-		<script src="js/azure-blob-upload.js"></script>
 		<script src="js/index.js"></script>
 		<script src="js/app.js"></script>
 		
@@ -182,7 +188,16 @@
 		<script src="js/controller/list-users.js"></script>
 		<script src="js/controller/list-settings.js"></script>
 		
-		<script src="js/service.js"></script>
+		<!-- Services -->
+		<script src="js/service/service.js"></script>
+		<script src="js/service/azure_service.js"></script>
+		<script src="js/service/async_chainer.js"></script>
+		<script src="js/service/it_image_service.js"></script>
+		<script src="js/service/aim_helper.js"></script>
+		<script src="js/service/azure-blob-upload.js"></script>
+		<script src="js/service/blob_storage_helper.js"></script>
+		<script src="js/service/user_helper.js"></script>
+		<script src="js/service/object_pref_helper.js"></script>
 		
 	</body>
 </html>

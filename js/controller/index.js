@@ -1,9 +1,25 @@
-itemApp.controller('indexController', function($rootScope, $location, $rootScope, $localStorage, $scope, itService) {
+itemApp.controller('indexController', function($rootScope, $location, $rootScope, $scope, itService) {
+	
+	$scope.isLogin = function() {
+		return itService.prefHelper.get("ItUser") != undefined;
+	};
+	
+	$scope.isLoginClass = function() {
+		if ($scope.isLogin()) return "main-bg";
+		else return "splash-bg";
+	};
 	
 	$rootScope.logout = function(){
-		$localStorage.$reset("session");
-		$rootScope.isLogin = false;
-		$location.path("/");	
+		// $localStorage.$reset("session");
+		// $rootScope.isLogin = false;
+		// $location.path("/");	
+		FB.logout(function(response) {
+	        // Person is now logged out
+	        $rootScope.$apply(function(){
+	        	itService.prefHelper.remove("ItUser");
+	        	$location.path("/");	
+	        });
+	    });
 	};
 	
 	$scope.real = function(){
@@ -14,5 +30,11 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 		itService.azureService.switchServer(itService.azureService.SERVER.TEST);
 	};
 	
+	$scope.loginPage = function() {
+		$location.path("/list");
+	};
 	
+	$scope.logoutPage = function() {
+		$location.path("/");
+	};
 });

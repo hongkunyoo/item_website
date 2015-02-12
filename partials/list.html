@@ -1,37 +1,46 @@
-<div class="container" ng-controller="listController">
+<div class="container" ng-controller="listController" __style="background-color: #263238;">
 	<div class="row">
-		<div class="col-md-3 hidden-xs">
+		<div class="col-md-3 hidden-xs hidden-sm">
 			<div class="affix col-md-2">
-			<div class="input-group" style="padding-bottom:10px;">
-				<!-- <input type="text" class="form-control" placeholder="Hash Tag" ng-model="search">
-				<span class="glyphicon glyphicon-search form-control-feedback"></span> -->
-			</div>
-			<!-- <div style="padding-bottom:50px;">
-			<form action="" class="search-form">
-                <div class="form-group has-feedback">
-            		<label for="search" class="sr-only">Search</label>
-            		<input type="text" class="form-control" name="search" id="search" placeholder="search" ng-model="search">
-              		<span class="glyphicon glyphicon-search form-control-feedback"></span>
-            	</div>
-            </form>
-            </div> -->
-            
-			<ul class="nav nav-pills nav-stacked">
-				<li role="presentation" ng-class="{active: list_active=='list.home'}">
-					<a ui-sref=".home" class="clickable" ui-sref-active="active">Home</a>
-				</li>
-				<li role="presentation">
-					<a ui-sref=".users({user_id:user.id})" class="clickable" ui-sref-active="active">Users</a>
-				</li>
-				<li role="presentation">
-					<a ui-sref=".settings" class="clickable" ui-sref-active="active">Settings</a>
-				</li>
-			</ul>
+				<div class="input-group" style="padding-bottom:10px;">
+					<!-- <input type="text" class="form-control" placeholder="Hash Tag" ng-model="search">
+					<span class="glyphicon glyphicon-search form-control-feedback"></span> -->
+				</div>
+				<!-- <div style="padding-bottom:50px;">
+				<form action="" class="search-form">
+	                <div class="form-group has-feedback">
+	            		<label for="search" class="sr-only">Search</label>
+	            		<input type="text" class="form-control" name="search" id="search" placeholder="search" ng-model="search">
+	              		<span class="glyphicon glyphicon-search form-control-feedback"></span>
+	            	</div>
+	            </form>
+	            </div> -->
+	            
+				<ul class="nav nav-pills nav-stacked">
+					<li role="presentation" ng-class="{active: list_active=='list.home'}">
+						<a ui-sref=".home" class="clickable" ui-sref-active="active">Home</a>
+					</li>
+					<li role="presentation">
+						<a ui-sref=".users({user_id:user.id})" class="clickable" ui-sref-active="active">Users</a>
+					</li>
+					<li role="presentation">
+						<a ui-sref=".settings" class="clickable" ui-sref-active="active">Settings</a>
+					</li>
+				</ul>
 			</div>
 		</div>
-		<div class="col-md-6">
-			<div ui-view>
+		<div class="col-md-9" align="center">
+			<div ui-view align="center">
 			
+			</div>
+			
+			<div class="add_btn">
+				<!-- <button type="image">
+				<img class="img-responsive" src="img/feed_upload_btn.png"/>
+				</button> -->
+				<!-- <input type="button" class="img_button"> -->
+				<input type="image" src="img/feed_upload_btn.png"/>
+				
 			</div>
 		</div>
 	</div>

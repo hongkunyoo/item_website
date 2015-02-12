@@ -1,15 +1,3 @@
-
-itemApp.factory("itService", function(azureService, viewService, imageService, asyncChainer, azureBlob) {
-	return {
-		azureService: azureService,
-		viewService: viewService,
-		imageService: imageService,
-		asyncChainer: asyncChainer,
-		// eventService: eventService,
-		azureBlob: azureBlob
-	};
-});
-
 itemApp.factory("azureService", function($rootScope) {
 	
 	var real_url = "https://it-em.azure-mobile.net/";
@@ -26,6 +14,10 @@ itemApp.factory("azureService", function($rootScope) {
 	
 	
 	return {
+		
+		getMobileClient: function() {
+			return mobileClient;
+		},
 		SERVER : {
 			REAL: 0,
 			TEST: 1
@@ -135,12 +127,14 @@ itemApp.factory("azureService", function($rootScope) {
 				},
 				method : "post"
 			}).done(function(results) {
-				if (callback.success != undefined)
-					$rootScope.$apply(function(){callback.success(results.result);});
-					
+				if (callback.success != undefined) {
+					// $rootScope.$apply(function(){callback.success(results.result);});
+					callback.success(results.result);
+				}
 			}, function(err) {
-				if (callback.error != undefined)
+				if (callback.error != undefined) {
 					callback.error(err);
+				}
 			});
 		},
 		list : function(tableName, refId, callback) {
@@ -229,59 +223,4 @@ itemApp.factory("azureService", function($rootScope) {
 			});
 		}
 	};
-});
-
-itemApp.factory("viewService", function($rootScope) {
-	return {
-		showProgress : function() {
-			$('#waiting-overlay').show();
-			
-		}, hideProgress : function() {
-			$('#waiting-overlay').hide();
-		}, showError: function(title, msg) {
-			if (msg == undefined) {
-				msg = title;
-				title = "Error Message";
-			}
-			$rootScope.errTitle = title;
-			$rootScope.errContent = msg;
-			$('#progressModal').modal('show');
-			console.log(title, msg);			
-		}, blockingError: function(msg) {
-			$('#error-overlay').show();
-			$rootScope.errorMessage = msg;
-			console.log(msg);
-		}
-	};
-});
-
-// itemApp.factory("eventService", function() {
-	// return {
-		// isCalledFuncs : {},
-		// waitingFuncs : {},
-		// init : function(func) {
-			// if (this.isCalledFuncs[func] == undefined) {
-				// this.isCalledFuncs[func] = true;
-				// func();
-			// }
-		// },
-		// applyAndWait : function(func) {
-			// if (this.waitingFuncs[func] == undefined || this.waitingFuncs[func] == false) {
-				// this.waitingFuncs[func] = true;
-				// func(func);
-			// }
-		// },
-		// notify : function(func) {
-			// this.waitingFuncs[func] = false;
-		// }
-	// };
-// }); 
-
-itemApp.factory("imageService", function() {
-	return new ItImageUtil();
-});
-
-
-itemApp.factory("asyncChainer", function() {
-	return new AsyncChainer();
 });

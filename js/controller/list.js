@@ -6,27 +6,26 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 		// return;
 	// }
 	
-	FB.getLoginStatus(function(response) {
-		// statusChangeCallback(response);
-		console.log("in list : ",JSON.stringify(response));
-	});
-	
-	itService.azureService.sessionHelper('open', $localStorage.session, {
-		success: function(result) {
-			if (!result) {
-				console.log('session failed');
-				$localStorage.$reset("session");
-				$location.path("/");				
-			} else {
-				$scope.list_active = $state.current.name;
-				$state.go('list.home');
-				$scope.user = $localStorage.user;
-				$rootScope.isLogin = true;				
-			}
-		}, error: function(err) {
-			console.log(err);
-			itService.viewService.showError(err);
-		}			
-	});
+	// itService.azureService.sessionHelper('open', $localStorage.session, {
+		// success: function(result) {
+			// if (!result) {
+				// console.log('session failed');
+				// $localStorage.$reset("session");
+				// $location.path("/");				
+			// } else {
+				// $scope.list_active = $state.current.name;
+				// $state.go('list.home');
+				// $scope.user = $localStorage.user;
+				// $rootScope.isLogin = true;				
+			// }
+		// }, error: function(err) {
+			// console.log(err);
+			// itService.viewService.showError(err);
+		// }			
+	// });
+	$scope.list_active = $state.current.name;
+	$state.go('list.home');
+	$scope.user = itService.prefHelper.get("ItUser");
+	$rootScope.isLogin = true;
 	
 }); 

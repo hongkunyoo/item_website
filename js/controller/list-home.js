@@ -1,4 +1,4 @@
-itemApp.controller('homeController', function($rootScope, $scope, $location, $localStorage, $filter, $state, itService) {
+itemApp.controller('homeController', function($rootScope, $scope, $location, $filter, $state, itService) {
 	// instance variables
 	$scope.page = 0;
 	$scope.addMoreLock = true;
@@ -6,15 +6,15 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $lo
 	
 	$scope.addMore = function() {
 		if (!$scope.addMoreLock) return;
-		
+		var user = itService.prefHelper.get('ItUser');
 		$scope.addMoreLock = false;
-        itService.azureService.listItem($scope.page, $localStorage.user.id, {
+        itService.azureService.listItem($scope.page, user.id, {
 			success: function(results) {
 				console.log('addMore page : ', $scope.page, " count : ",results.length);
 				if (results.length == 0) return;
 				
 				if ($scope.items == null || $scope.items == undefined) $scope.items = [];
-				$.merge($scope.items, (results.map(function(item){
+				var newItems = (results.map(function(item){
 					item['uploaderImg']	= itService.imageService.makeUserImage(item.whoMadeId);
 					item['imageUrl']	= itService.imageService.makeItemImage(item.id);
 					item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
@@ -24,8 +24,29 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $lo
 						item.likeImage = "img/general_it_highlight_btn.png";
 					}
 					return item;
-				})));
-					
+				}));
+				
+				$scope.$apply(function(){
+					$.merge($scope.items, newItems);
+				});
+				console.log($scope.items);
+				console.log();
+				var windowWidth = $(window).width();
+				var numOfCol = 2;
+				if (windowWidth < 760) {
+					numOfCol = 2;
+				} else if (windowWidth < 960) {
+					numOfCol = 3;
+				} else {
+					numOfCol = 4;
+				}
+				
+				$("#block_container").BlocksIt({
+			      numOfCol: numOfCol,
+			      offsetX: 4,
+			      offsetY: 1,
+			      blockElement: '.block'
+			   });
 				$scope.page++;
 				$scope.addMoreLock = true;
 			}, error: function(err) {
@@ -35,6 +56,11 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $lo
 		});
     };
     $scope.addMore();
+    
+    // $scope.$watch('items', function(newValue, oldValue) {
+    	// console.log("in watch");
+    	// console.log(newValue, oldValue);
+	// });
 
 	$scope.showReply = function(item) {
 		itService.azureService.list('Reply', item.id, {
