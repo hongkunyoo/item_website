@@ -196,8 +196,13 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $fi
 		
 		data['price'] = parseFloat($scope.productTag.price.split(",").join(""));
 		data['refId'] = refId;
-		data['whoMade'] = itService.$localStorage.user.nickName;
-		data['whoMadeId'] = itService.$localStorage.user.id;
+		// data['whoMade'] = itService.$localStorage.user.nickName;
+		// data['whoMadeId'] = itService.$localStorage.user.id;
+		
+		var user = itService.prefHelper.get("ItUser");
+		
+		data['whoMade'] = user.nickName;
+		data['whoMadeId'] = user.id;
 		
 		itService.azureService.add('ProductTag', data, {
 			success: function(results) {
