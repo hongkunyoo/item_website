@@ -98,16 +98,28 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $fi
     	if (!entered) return;
     	var content = item.replyContent;
     	if (content == "") return;
+    	var myUser = itService.prefHelper.get("ItUser");
     	var data = {
     		content: content,
     		refId: item.id,
-    		whoMade: $localStorage.user.nickName,
-    		whoMadeId: $localStorage.user.id
+    		whoMade: myUser.nickName,
+    		whoMadeId: myUser.id
     	};
     	
     	
     	item.replyContent = "";
-    	itService.azureService.add('Reply', data, {
+    	var noti = {
+			whoMade : myUser.nickName,
+			whoMadeId : myUser.id,
+			refId : item.id,
+			refWhoMade : item.whoMade,
+			refWhoMadeId : item.whoMadeId,
+			content : content,
+			type : "Reply",
+			imageWidth : item.imageWidth,
+			imageHeight : item.imageHeight,
+		};
+    	itService.azureService.add('Reply', data, noti, {
 			success: function(results) {
 				if (item.replys == null || item.replys == undefined) item.replys = [];
 				item.replys.push(results.result);
@@ -120,12 +132,24 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $fi
     $scope.likeIt = function(item) {
     	var prevLikeId = item.prevLikeId;
     	if (prevLikeId == null) {
+    		var myUser = itService.prefHelper.get("ItUser");
     		var data = {
 	    		refId: item.id,
-	    		whoMade: $localStorage.user.nickName,
-	    		whoMadeId: $localStorage.user.id
+	    		whoMade: myUser.nickName,
+	    		whoMadeId: myUser.id
 	    	};
-    		itService.azureService.add('LikeIt', data, {
+	    	var noti = {
+				whoMade : myUser.nickName,
+				whoMadeId : myUser.id,
+				refId : item.id,
+				refWhoMade : item.whoMade,
+				refWhoMadeId : item.whoMadeId,
+				content : "",
+				type : "LikeIt",
+				imageWidth : item.imageWidth,
+				imageHeight : item.imageHeight,
+			};
+    		itService.azureService.add('LikeIt', data, noti, {
 				success: function(result) {
 					item.prevLikeId = result.result.id;
 					item.likeItCount++;
@@ -196,15 +220,26 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $fi
 		
 		data['price'] = parseFloat($scope.productTag.price.split(",").join(""));
 		data['refId'] = refId;
-		// data['whoMade'] = itService.$localStorage.user.nickName;
-		// data['whoMadeId'] = itService.$localStorage.user.id;
 		
-		var user = itService.prefHelper.get("ItUser");
+		var myUser = itService.prefHelper.get("ItUser");
 		
-		data['whoMade'] = user.nickName;
-		data['whoMadeId'] = user.id;
+		data['whoMade'] = myUser.nickName;
+		data['whoMadeId'] = myUser.id;
 		
-		itService.azureService.add('ProductTag', data, {
+		
+    	var noti = {
+			whoMade : myUser.nickName,
+			whoMadeId : myUser.id,
+			refId : item.id,
+			refWhoMade : item.whoMade,
+			refWhoMadeId : item.whoMadeId,
+			content : "",
+			type : "ProductTag",
+			imageWidth : item.imageWidth,
+			imageHeight : item.imageHeight,
+		};
+		
+		itService.azureService.add('ProductTag', data, noti, {
 			success: function(results) {
 				if ($scope.tags == null || $scope.tags == undefined) $scope.tags = [];
 				$scope.tags.push(results.result);
