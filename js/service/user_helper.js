@@ -6,7 +6,7 @@ itemApp.factory("userHelper", function($rootScope, azureService) {
 			mClient = _mClient;
 			table = mClient.getTable('ItUser');
 		}, signin: function(user, device, callback) {
-			mobileClient.invokeApi("signin", {
+			mClient.invokeApi("signin", {
 				body : {
 					user: user,
 					device: device
