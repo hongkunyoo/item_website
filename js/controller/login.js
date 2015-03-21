@@ -103,6 +103,14 @@ itemApp.controller('loginController', function($scope, $location, $rootScope, it
 						// }
 					// }
 				// });
+				
+				var device = {
+					whoMadeId : "",
+					mobileId: "",
+					registrationId: "",
+					mobileOs: "WEB"
+				};
+				
 				itService.userHelper.signin(user, device, {
 					success: function(result) {
 						itService.prefHelper.put({"ItUser" : result.user});
