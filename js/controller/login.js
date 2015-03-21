@@ -105,7 +105,6 @@ itemApp.controller('loginController', function($scope, $location, $rootScope, it
 				// });
 				
 				var device = {
-					whoMadeId : user.itUserId,
 					mobileId: "",
 					registrationId: "",
 					mobileOs: "WEB"
@@ -113,7 +112,7 @@ itemApp.controller('loginController', function($scope, $location, $rootScope, it
 				
 				itService.userHelper.signin(user, device, {
 					success: function(result) {
-						console.log(result);
+						result = result.result;
 						itService.prefHelper.put({"ItUser" : result.user});
 						itService.prefHelper.put({"ItDevice" : result.device});
 						asyncChainer.executeAsync(result.user.id);
