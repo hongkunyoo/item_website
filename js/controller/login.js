@@ -87,22 +87,31 @@ itemApp.controller('loginController', function($scope, $location, $rootScope, it
 			function() {
 				
 				// add User to Mobile Service server
-				itService.userHelper.add(user, {
+				// itService.userHelper.add(user, {
+					// success: function(result) {
+						// console.log('add user');
+						// itService.prefHelper.put({"ItUser" : result});
+						// asyncChainer.executeAsync(result.id);
+					// }, error: function(err) {
+						// if (err.message == "Forbidden") {
+							// var alreadyUser = JSON.parse(err.request.response);
+							// itService.prefHelper.put({"ItUser" : alreadyUser});
+							// gotoNextPage();
+						// } else {
+							// console.log(err);
+							// itService.viewService.showError(err);	
+						// }
+					// }
+				// });
+				itService.userHelper.signin(user, device, {
 					success: function(result) {
-						console.log('add user');
-						itService.prefHelper.put({"ItUser" : result});
-						asyncChainer.executeAsync(result.id);
+						itService.prefHelper.put({"ItUser" : result.user});
+						itService.prefHelper.put({"ItDevice" : result.device});
+						asyncChainer.executeAsync(result.user.id);
 					}, error: function(err) {
-						if (err.message == "Forbidden") {
-							var alreadyUser = JSON.parse(err.request.response);
-							itService.prefHelper.put({"ItUser" : alreadyUser});
-							gotoNextPage();
-						} else {
-							console.log(err);
-							itService.viewService.showError(err);	
-						}
-						
-					}
+						console.log(err);
+						itService.viewService.showError(err);
+					}					
 				});
 			}, function(id) {
 				// get Image From WebSite

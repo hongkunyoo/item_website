@@ -28,4 +28,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	// $scope.user = itService.prefHelper.get("ItUser");
 	// $rootScope.isLogin = true;
 	
+	// $scope.logout = function() {
+// 		
+	// };
 }); 

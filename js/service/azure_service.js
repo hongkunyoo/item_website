@@ -153,7 +153,6 @@ itemApp.factory("azureService", function($rootScope) {
 					callback.error(err);
 			});
 		}, add : function(tableName, data, noti, callback) {
-			console.log(data, noti);
 			mobileClient.invokeApi("aim_add", {
 				body : {
 					item : {
