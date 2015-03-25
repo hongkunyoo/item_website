@@ -67,6 +67,10 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/settings',
             templateUrl: 'partials/settings.html'   
         })
+        .state('list.add_products', {
+            url: '/addProducts',
+            templateUrl: 'partials/addProducts.html'   
+        })
         
         ;
 });
