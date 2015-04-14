@@ -152,11 +152,13 @@ itemApp.factory("azureService", function($rootScope) {
 				if (callback.error != undefined)
 					callback.error(err);
 			});
-		}, add : function(tableName, data, callback) {
+		}, add : function(tableName, data, noti, callback) {
 			mobileClient.invokeApi("aim_add", {
 				body : {
-					table : tableName,
-					data : data
+					item : {
+						table : tableName,
+						data : data	
+					}, noti : noti
 				},
 				method : "post"
 			}).done(function(results) {

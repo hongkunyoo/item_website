@@ -4,7 +4,23 @@ itemApp.factory("userHelper", function($rootScope, azureService) {
 	return {
 		setMobileClient: function(_mClient) {
 			mClient = _mClient;
-			table = mClient.getTable('ItUser'); 
+			table = mClient.getTable('ItUser');
+		}, signin: function(user, device, callback) {
+			mClient.invokeApi("signin", {
+				body : {
+					user: user,
+					device: device
+				},
+				method : "post"
+			}).done(function(results) {
+				if (callback.success != undefined) {
+					$rootScope.$apply(function(){callback.success(results);});
+				}
+			}, function(err) {
+				if (callback.error != undefined) {
+					callback.error(err);
+				}
+			});
 		}, add: function(user, callback) {
 			table.insert(
 		        user
