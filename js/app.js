@@ -51,6 +51,10 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/home',
             templateUrl: 'partials/home.html'
         })
+        .state('list.detail', {
+            url: '/detail',
+            templateUrl: 'partials/detail.html'
+        })
         .state('list.users', {
             url: '/users/:user_id',
             templateUrl: 'partials/users.html'   
