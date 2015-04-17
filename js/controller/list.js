@@ -8,8 +8,12 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	$scope.addMore = function() {
 		if (!$scope.addMoreLock) return;
 		var user = itService.prefHelper.get('ItUser');
+		var userId = "default";
+		if (user != null && user != undefined) {
+			userId = user.id;
+		}
 		$scope.addMoreLock = false;
-        itService.azureService.listItem($scope.page, user.id, {
+        itService.azureService.listItem($scope.page, userId, {
 			success: function(results) {
 				console.log('addMore page : ', $scope.page, " count : ",results.length);
 				if (results.length == 0) return;
@@ -30,8 +34,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 				$scope.$apply(function(){
 					$.merge($scope.items, newItems);
 				});
-				console.log($scope.items);
-				console.log();
+				
 				var windowWidth = $(window).width();
 				var numOfCol = 2;
 				if (windowWidth < 760) {
@@ -49,23 +52,38 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 			      blockElement: '.block'
 			   });
 			   
-			   
 			   // $('#block_container').pinterest_grid();
-			   console.log(numOfCol);
 			   $('#block_container').pinterest_grid(
 				   {
 						no_columns: numOfCol,
 						padding_x: 10,
 						padding_y: 10,
 						margin_bottom: 10,
-						single_column_breakpoint: 300
+						single_column_breakpoint: 100
 					}
 				);
+				// $('#block_container').wookmark(
+					// {
+						// align: 'center',
+						// autoResize: true,
+						// comparator: null,
+						// direction: undefined,
+						// ignoreInactiveItems: true,
+						// inactiveClass: 'wookmark-inactive',
+						// itemSelector: undefined,
+						// itemWidth: 0,
+						// fillEmptySpace: false,
+						// flexibleWidth: 0,
+						// offset: 4,
+						// outerOffset: 0,
+						// onLayoutChanged: undefined,
+						// placeholderClass: 'wookmark-placeholder',
+						// possibleFilters: [],
+						// resizeDelay: 50,
+						// verticalOffset: undefined
+					// }
+				// );
 
-
-			   
-			   
-			   
 			   
 				$scope.page++;
 				$scope.addMoreLock = true;
@@ -77,11 +95,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
     };
     $scope.addMore();
     
-    // $scope.$watch('items', function(newValue, oldValue) {
-    	// console.log("in watch");
-    	// console.log(newValue, oldValue);
-	// });
-
+    
 	$scope.showReply = function(item) {
 		itService.azureService.list('Reply', item.id, {
 			success: function(results) {
@@ -198,10 +212,11 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
     	$location.path("/list/users/"+whoMadeId);
     };
     
+
+
+
+
     
-	
-	
-	
 	$scope.productTagOpts = [
 	    {val : 0, kor: "아우터"},
 	    {val : 1, kor: "셔츠"},

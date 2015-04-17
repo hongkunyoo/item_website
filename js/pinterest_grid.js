@@ -152,6 +152,6 @@
                 new Plugin(this, options));
             }
         });
-    }
+    };
 
 })(jQuery, window, document);

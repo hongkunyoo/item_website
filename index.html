@@ -83,19 +83,6 @@
 					xfbml : true, // parse social plugins on this page
 					version : 'v2.1' // use version 2.1
 				});
-				// FB.getLoginStatus(function(response) {
-					// // statusChangeCallback(response);
-					// if (response.status == "connected") {
-						// // go to list page (login)
-						// // document.location = "#/list";
-						// // loginPage();
-						// console.log(response.authResponse.userID);
-					// } else {
-						// // go to login page (logout)
-						// logoutPage();
-						// console.log(JSON.stringify(response));	
-					// }
-				// });
 			};
 			
 		</script>
@@ -110,7 +97,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button> -->
-					<a class="navbar-brand" href="#">IT:EM</a>
+					<a class="navbar-brand" href="#/list">IT:EM</a>
 				</div>
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -136,15 +123,9 @@
 			</div>
 		</nav>
 		
-		<!-- <header>
-	        <div class="container" style="padding-top: 100px;">
-	            <div class="row">
-	            </div>
-	        </div>
-	    </header> -->
-
 		
-		<section ui-view style="padding-top:60px;" ng-class="isLoginClass()">
+		<!-- <section ui-view style="padding-top:60px;" ng-class="isLoginClass()"> -->
+		<section ui-view style="padding-top:60px; background-color: #263238;">
 			
 		</section>
 		<div class="modal" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -221,6 +202,8 @@
 		<script src="js/blocksit.js"></script>
 		
 		<script src="js/pinterest_grid.js"></script>
+		
+		<!-- <script src="js/wookmark.js"></script> -->
 
 		
 		<script src="js/base64.js"></script>

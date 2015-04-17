@@ -1,7 +1,8 @@
 itemApp.controller('indexController', function($rootScope, $location, $rootScope, $scope, itService) {
 	
 	$scope.isLogin = function() {
-		return itService.prefHelper.get("ItUser") != undefined;
+		// return itService.prefHelper.get("ItUser") != undefined;
+		return true;
 	};
 	
 	$scope.isLoginClass = function() {
@@ -9,7 +10,7 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 		else return "splash-bg";
 	};
 	
-	$('#loginDialog').modal();
+	// $('#loginDialog').modal();
 	
 	$rootScope.logout = function(){
 		// $localStorage.$reset("session");
@@ -41,8 +42,4 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 		$location.path("/");
 	};
 	
-	// if ($scope.isLogin()) {
-		// $location.path("/list/home");
-		// $location.replace();
-	// }
 });
