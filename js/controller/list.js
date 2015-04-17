@@ -44,14 +44,23 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 				} else {
 					numOfCol = 4;
 				}
-
+				if ($scope.page == 0) {
+				setTimeout(function(){
 				$("#block_container").BlocksIt({
 			      numOfCol: numOfCol,
 			      offsetX: 4,
 			      offsetY: 1,
 			      blockElement: '.block'
 			   });
-			   
+			 },200);
+			 } else {
+			 	$("#block_container").BlocksIt({
+			      numOfCol: numOfCol,
+			      offsetX: 4,
+			      offsetY: 1,
+			      blockElement: '.block'
+			   });
+			 }
 			   // $('#block_container').pinterest_grid();
 			   // if ($scope.page == 0) {
 			   	// $('#block_container').pinterest_grid(
