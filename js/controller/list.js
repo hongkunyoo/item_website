@@ -46,7 +46,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 				}
 
 				$("#block_container").BlocksIt({
-			      numOfCol: 4,
+			      numOfCol: numOfCol,
 			      offsetX: 4,
 			      offsetY: 1,
 			      blockElement: '.block'
