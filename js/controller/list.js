@@ -52,7 +52,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 			      offsetY: 1,
 			      blockElement: '.block'
 			   });
-			 },200);
+			 },300);
 			 } else {
 			 	$("#block_container").BlocksIt({
 			      numOfCol: numOfCol,
