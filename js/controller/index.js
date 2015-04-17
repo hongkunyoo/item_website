@@ -9,7 +9,7 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 		else return "splash-bg";
 	};
 	
-	// $('#loginDialog').modal();
+	$('#loginDialog').modal();
 	
 	$rootScope.logout = function(){
 		// $localStorage.$reset("session");

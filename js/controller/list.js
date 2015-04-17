@@ -51,14 +51,14 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 			   
 			   
 			   // $('#block_container').pinterest_grid();
-			   
+			   console.log(numOfCol);
 			   $('#block_container').pinterest_grid(
 				   {
-						no_columns: 4,
+						no_columns: numOfCol,
 						padding_x: 10,
 						padding_y: 10,
-						margin_bottom: 50,
-						single_column_breakpoint: 700
+						margin_bottom: 10,
+						single_column_breakpoint: 300
 					}
 				);
 
