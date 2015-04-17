@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/cropper.css">
 		<link rel="stylesheet" href="css/angularjs-transition.css">
-
+		
 		<!-- Bootcards CSS for desktop: -->
 		<!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.0.0/css/bootcards-desktop.min.css"> -->
 
@@ -29,6 +29,9 @@
 		<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-cookies.js"></script> -->
 		<script src="js/ng-infinite-scroll.js"></script>
 		<script src="js/ngStorage.min.js"></script>
+		
+		<!-- kakao login -->
+		 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 		
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -74,7 +77,7 @@
 					// }
 				// });
 			};
-				
+			
 		</script>
 		<!-- NavBar -->
 		<nav class="navbar navbar-custom navbar-fixed-top" ng-show="isLogin()">
@@ -144,6 +147,32 @@
 			</div>
 		</div>
 		
+		
+		<div class="modal fade" id="loginDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm modal-dialog-center">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">로그인 하기</h4>
+					</div>
+					<div class="modal-body" align="center">
+						<a class="button facebook-primary facebook" ng-click="onFacebookLogin()">Login with <b>Facebook</b></a>
+						
+						<a id="kakao-login-btn"></a>
+					</div>
+					<div class="modal-footer">
+						<div style="padding-right: 2vw; padding-left: 2vw">
+							<img class="img-responsive clickable" src="img/main_store_btn_hover.png"/>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 		<div id="waiting-overlay" class='full-block'>
 			<table height=100% width=100%>
 				<tr>
@@ -170,6 +199,9 @@
 		<script src='http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.2.min.js'></script>
 		
 		<script src="js/blocksit.js"></script>
+		
+		<script src="js/pinterest_grid.js"></script>
+
 		
 		<script src="js/base64.js"></script>
 		<script src="js/jquery.number.js"></script>
@@ -199,5 +231,25 @@
 		<script src="js/service/user_helper.js"></script>
 		<script src="js/service/object_pref_helper.js"></script>
 		
+		<script>
+			Kakao.init('6519161ab13812980744af521642e26a');
+				// 카카오 로그인 버튼을 생성합니다.
+				Kakao.Auth.createLoginButton({
+					container : '#kakao-login-btn'
+					, success : function(authObj) {
+						Kakao.API.request({
+							url : '/v1/user/me',
+							success : function(res) {
+								console.log(JSON.stringify(res));
+							},
+							fail : function(error) {
+								console.log(JSON.stringify(error))
+							}
+						});
+					}, fail : function(err) {
+						console.log(JSON.stringify(err))
+					}
+					});
+		</script>
 	</body>
 </html>
