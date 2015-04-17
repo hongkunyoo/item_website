@@ -19,20 +19,20 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 				if (results.length == 0) return;
 				
 				if ($scope.items == null || $scope.items == undefined) $scope.items = [];
-				var newItems = (results.map(function(item){
-					item['uploaderImg']	= itService.imageService.makeUserImage(item.whoMadeId);
-					item['imageUrl']	= itService.imageService.makeItemImage(item.id);
-					item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
-					if (item.prevLikeId == null) {
-						item.likeImage = "img/general_it_btn.png";
-					} else {
-						item.likeImage = "img/general_it_highlight_btn.png";
-					}
-					return item;
-				}));
+				// var newItems = (results.map(function(item){
+					// item['uploaderImg']	= itService.imageService.makeUserImage(item.whoMadeId);
+					// item['imageUrl']	= itService.imageService.makeItemImage(item.id);
+					// item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
+					// if (item.prevLikeId == null) {
+						// item.likeImage = "img/general_it_btn.png";
+					// } else {
+						// item.likeImage = "img/general_it_highlight_btn.png";
+					// }
+					// return item;
+				// }));
 				
 				$scope.$apply(function(){
-					$.merge($scope.items, newItems);
+					$.merge($scope.items, results);
 				});
 				
 				var windowWidth = $(window).width();
@@ -44,45 +44,28 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 				} else {
 					numOfCol = 4;
 				}
-				
+
 				$("#block_container").BlocksIt({
-			      numOfCol: numOfCol,
+			      numOfCol: 4,
 			      offsetX: 4,
 			      offsetY: 1,
 			      blockElement: '.block'
 			   });
 			   
 			   // $('#block_container').pinterest_grid();
-			   $('#block_container').pinterest_grid(
-				   {
-						no_columns: numOfCol,
-						padding_x: 10,
-						padding_y: 10,
-						margin_bottom: 10,
-						single_column_breakpoint: 100
-					}
-				);
-				// $('#block_container').wookmark(
-					// {
-						// align: 'center',
-						// autoResize: true,
-						// comparator: null,
-						// direction: undefined,
-						// ignoreInactiveItems: true,
-						// inactiveClass: 'wookmark-inactive',
-						// itemSelector: undefined,
-						// itemWidth: 0,
-						// fillEmptySpace: false,
-						// flexibleWidth: 0,
-						// offset: 4,
-						// outerOffset: 0,
-						// onLayoutChanged: undefined,
-						// placeholderClass: 'wookmark-placeholder',
-						// possibleFilters: [],
-						// resizeDelay: 50,
-						// verticalOffset: undefined
+			   // if ($scope.page == 0) {
+			   	// $('#block_container').pinterest_grid(
+				   // {
+						// no_columns: numOfCol,
+						// padding_x: 10,
+						// padding_y: 10,
+						// margin_bottom: 10,
+						// single_column_breakpoint: 100
 					// }
-				// );
+				// );	
+				// console.log('in if page =0');
+			   // }
+			   
 
 			   
 				$scope.page++;
@@ -94,6 +77,16 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 		});
     };
     $scope.addMore();
+    
+    // $scope.$watch('items', function(){
+    	// console.log('blockId');
+    	// $("#block_container").BlocksIt({
+	      // numOfCol: 4,
+	      // offsetX: 4,
+	      // offsetY: 1,
+	      // blockElement: '.block'
+	    // });
+    // }, true);
     
     
 	$scope.showReply = function(item) {
