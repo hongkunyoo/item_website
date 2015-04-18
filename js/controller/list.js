@@ -80,11 +80,19 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 		if ($scope.itemEmpty()) return;
 		var st = $(this).scrollTop();
 	    if (st > lastScrollTop){
-	       $(window).resize();
+	       doResize();
+	       // $(window).resize();
 	    } 
 		lastScrollTop = st;
 		
 	}); 
+	var resize_finish;
+	function doResize() {
+		clearTimeout(resize_finish);
+            resize_finish = setTimeout( function () {
+                $(window).resize();
+            }, 500);
+	}
 
     $scope.itemEmpty = function(){
     	return $scope.isEmpty;

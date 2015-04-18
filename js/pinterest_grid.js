@@ -138,6 +138,7 @@
     };
 
     Plugin.prototype.make_layout_change = function (_self) {
+    	console.log('make_change');
         if($(window).width() < _self.options.single_column_breakpoint) {
             _self.calculate(true);
         } else {
