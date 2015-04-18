@@ -1,0 +1,57 @@
+
+
+<div ng-repeat="item in items" class="block">
+	<div class="panel panel-default">
+		<div class="card-title">
+			<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)"> <img ng-src={{item.uploaderImg}} class="item_profile img-circle"/> {{item.whoMade}} </a>
+			<div style="clear:both;"></div>
+		</div>
+		<div>
+			<a ng-click="showDetails(item)"><img class="img-responsive clickable _img-rounded" ng-src="{{item.imageUrl}}"/></a>
+			<div class="card-content">
+				<p>
+					{{item.content}}
+				</p>
+			</div>
+
+			<div class="col-md-3">
+				<a data-toggle="modal" data-target="#_myModal" class="clickable" ng-click="likeIt(item)"> <img ng-src="{{item.likeImage}}" class="img-responsive"> </a>
+			</div>
+
+			<div class="col-md-3">
+				<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_it_ic.png" class='clickable' width=21 height=28/><span>{{item.likeItCount}}</span></a>
+				<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_comment_ic.png" class='clickable' width=21 height=28/><span>{{item.replyCount}}</span></a>
+			</div>
+
+		</div>
+
+		<div class="panel-footer" ng-show="item.replyShowValue">
+			<div class="input-group fill">
+				<input type="text" class="form-control" placeholder="Add comments" aria-describedby="basic-addon2" ng-model="item.replyContent" ng-keyup="addReply(item, $event.keyCode==13)">
+				<span class="input-group-addon clickable" ng-click="addReply(item, $event.keyCode==0)">Add</span>
+			</div>
+			<ul class="list-group voffset3">
+				<li class="list-group-item" ng-repeat="reply in item.replys">
+					<div class="media">
+						<div class="media-left">
+							<a href="#" ng-click="gotoWhomade(reply.whoMadeId)"> <img class="media-object item_profile_small img-rounded" ng-src="{{reply.userImg}}"> </a>
+						</div>
+						<div class="media-body">
+							<div class="media-heading">
+								<span class="media-left"><a class="clickable" ng-click="gotoWhomade(reply.whoMadeId)">{{reply.whoMade}}</a></span>
+
+								<p class="media-right text-muted">
+									<small>{{reply.dateTime}}</small>
+								</p>
+							</div>
+							<div class="media-left">
+								{{reply.content}}
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</div>
