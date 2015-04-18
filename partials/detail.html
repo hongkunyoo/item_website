@@ -1,0 +1,94 @@
+<div class="container" ng-controller="detailController">
+	<div class="row">
+		<div class="container">
+	<div class="btn-group" role="group" aria-label="...">
+		<button type="button" class="btn btn-default">
+			1
+		</button>
+		<button type="button" class="btn btn-default">
+			2
+		</button>
+
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				Dropdown
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li>
+					<a href="#">Dropdown link</a>
+				</li>
+				<li>
+					<a href="#">Dropdown link</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 ">
+			<div class="panel panel-default">
+				<div class="container-fluid">
+					<div class="card-title">
+						<a href="#" class="pull-left"><img ng-src={{item.uploader_img}} class="item_profile img-rounded"/></a>
+						<div>
+							<h4><a href="#">{{item.uploader}}</a></h4>
+						</div>
+						<div>
+							{{item.upload_time}}
+						</div>
+					</div>
+				</div>
+				<div class="card panel-body">
+					<div class="card-image" align="center">
+						<a href="#/detail/{{item.id}}"><img class="img-responsive" ng-src="{{item.imageUrl}}"/></a>
+					</div>
+					<div class="card-content">
+						<p>
+							{{item.content}}
+						</p>
+					</div>
+
+					<div class="card-action">
+						<!-- <a href="#" target="new_blank">Likes</a> -->
+						<a target="new_blank" ng-click="showReply(item)">{{item.replyCount}} Comments</a>
+						<a target="new_blank" ng-click="showReply(item)">{{item.itCount}} IT</a>
+						<!-- <a href="#" target="new_blank">Link</a>
+						<a href="#" target="new_blank">Link</a>
+						<a href="#" target="new_blank">Link</a> -->
+					</div>
+				</div>
+
+				<div class="panel-footer" ng-show="item.replyShowValue">
+					<div class="input-group fill">
+						<input type="text" class="form-control" placeholder="Add comments" aria-describedby="basic-addon2">
+						<span class="input-group-addon">Add</span>
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item">
+							Cras justo odio
+						</li>
+						<li class="list-group-item">
+							Dapibus ac facilisis in
+						</li>
+						<li class="list-group-item">
+							Morbi leo risus
+						</li>
+						<li class="list-group-item">
+							Porta ac consectetur ac
+						</li>
+						<li class="list-group-item">
+							Vestibulum at eros
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class=" col-md-4">
+			<div class="well">
+				here is the tag panel
+			</div>
+		</div>
+	</div>
+</div>

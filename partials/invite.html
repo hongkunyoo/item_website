@@ -1,0 +1,36 @@
+<div align="center" ng-controller='inviteController'>
+	<div class="_jumbotron">
+		<h3>Creating New Invite Key</h3>
+		<hr/>
+	</div>
+	<div _class="container-fluid">
+
+		<div class="row">
+			<div class="col-md-offset-4 col-md-2">
+				<select class="form-control" ng-model="type" ng-init="type='SELLER'">
+					<option value="SELLER" selected="">SELLER</option>
+					<option value"PRO">PRO</option>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button class='btn btn-info' ng-click="createInvite()">
+					Create Key
+				</button>
+			</div>
+		</div>
+		<hr/>
+
+		<div class='row'>
+			<div class="col-md-offset-4 col-md-4 well">
+				<h4>Invite Key</h4>
+				{{screen}}
+			</div>
+		</div>
+		<div class='row'>
+			<div class="col-md-offset-4 col-md-4 well">
+				<h4>Invite Url</h4>
+				{{inviteUrl}}
+			</div>
+		</div>
+	</div>
+</div>

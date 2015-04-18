@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="itemApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+		<link rel="manifest" href="img/favicon/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+		
+		
+		<title>IT:EM</title>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+		
+		<!-- Cusom style sheets -->
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/cropper.css">
+		<link rel="stylesheet" href="css/angularjs-transition.css">
+		
+		<!-- awesome font -->
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		
+		<!-- Bootcards CSS for desktop: -->
+		<!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.0.0/css/bootcards-desktop.min.css"> -->
+
+		<!-- Angular JS -->
+		<!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script> -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
+		 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-animate.js"></script>
+		<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-cookies.js"></script> -->
+		<script src="js/ng-infinite-scroll.js"></script>
+		<script src="js/ngStorage.min.js"></script>
+		
+		<!-- kakao login -->
+		 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+		
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body ng-controller="indexController" style="background-color: #263238;">
+		<script>
+			( function(d, s, id) {
+				var js,
+				    fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id))
+					return;
+				js = d.createElement(s);
+				js.id = id;
+				// js.src = "//connect.facebook.net/ko_KR/sdk.js";
+				js.src = "//connect.facebook.net/ko_KR/all.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+			
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId : '734298746647918',
+					cookie : true, // enable cookies to allow the server to access
+					level  : "debug",
+					// the session
+					xfbml : true, // parse social plugins on this page
+					version : 'v2.1' // use version 2.1
+				});
+			};
+			
+		</script>
+		<!-- NavBar -->
+		<nav class="navbar navbar-custom navbar-fixed-top" ng-show="isLogin()">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<!-- <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="margin-left:10px;">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button> -->
+					<a class="navbar-brand" href="#/list">IT:EM</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav visible-xs visible-sm">
+						<li>
+							<a class="clickable" ng-click="logout()">
+								<img class="img-circle img-responsive pull-left" src="https://graph.facebook.com/mark8625/picture?type=large" width="30" height="30"/>
+								<p class="pull-right">HongkunYoo</p>
+							</a>
+						</li>
+						<li>
+							<a class="clickable" ng-click="logout()">Home</a>
+						</li>
+						<li>
+							<a class="clickable" ng-click="logout()">Profile</a>
+						</li>
+						<li>
+							<a class="clickable" ng-click="logout()">Logout</a>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		
+		<!-- <section ui-view style="padding-top:60px;" ng-class="isLoginClass()"> -->
+		<section ui-view style="padding-top:60px;">
+			
+		</section>
+		<div class="modal" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm progress-modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							<i class="text-danger fa fa-times">x</i>
+						</button>
+						<h6 class="modal-title" id="myModalLabel">
+							{{errTitle}}
+						</h6>
+					</div>
+					<div class="modal-body">
+						<div align="center">
+							<h3>{{errContent}}</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="modal fade" id="loginDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm modal-dialog-center">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">로그인 하기</h4>
+					</div>
+					<div class="modal-body" align="center">
+						<a class="button facebook-primary facebook" ng-click="onFacebookLogin()">Login with <b>Facebook</b></a>
+						
+						<a id="kakao-login-btn"></a>
+					</div>
+					<div class="modal-footer">
+						<div style="padding-right: 2vw; padding-left: 2vw">
+							<img class="img-responsive clickable" src="img/main_store_btn_hover.png"/>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div id="waiting-overlay" class='full-block'>
+			<table height=100% width=100%>
+				<tr>
+					<td align=center><img src="img/loading_small.gif"/></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div id="error-overlay" class='full-block'>
+			<table height=100% width=100%>
+				<tr>
+					<td align=center><h1>Error! : {{errorMessage}}</h1></td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		
+		<!-- Windows Azure Mobile Service -->
+		<script src='http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.2.min.js'></script>
+		
+		<!-- <script src="js/blocksit.js"></script> -->
+		
+		<script src="js/pinterest_grid.js"></script>
+
+		
+		<script src="js/base64.js"></script>
+		<script src="js/jquery.number.js"></script>
+		<script src="js/cropper.js"></script>
+		<script src="js/array_base64.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/app.js"></script>
+		
+		<!-- Angular Controllers -->
+		<script src="js/controller/index.js"></script>
+		<script src="js/controller/login.js"></script>
+		<script src="js/controller/signup.js"></script>
+		<script src="js/controller/invite.js"></script>
+		<script src="js/controller/list.js"></script>
+		<script src="js/controller/list-home.js"></script>
+		<script src="js/controller/list-users.js"></script>
+		<script src="js/controller/list-settings.js"></script>
+		<script src="js/controller/test.js"></script>
+		
+		<!-- Services -->
+		<script src="js/service/service.js"></script>
+		<script src="js/service/azure_service.js"></script>
+		<script src="js/service/async_chainer.js"></script>
+		<script src="js/service/it_image_service.js"></script>
+		<script src="js/service/aim_helper.js"></script>
+		<script src="js/service/azure-blob-upload.js"></script>
+		<script src="js/service/blob_storage_helper.js"></script>
+		<script src="js/service/user_helper.js"></script>
+		<script src="js/service/object_pref_helper.js"></script>
+		
+		<script>
+			Kakao.init('6519161ab13812980744af521642e26a');
+				// 카카오 로그인 버튼을 생성합니다.
+				Kakao.Auth.createLoginButton({
+					container : '#kakao-login-btn'
+					, success : function(authObj) {
+						Kakao.API.request({
+							url : '/v1/user/me',
+							success : function(res) {
+								console.log(JSON.stringify(res));
+							},
+							fail : function(error) {
+								console.log(JSON.stringify(error))
+							}
+						});
+					}, fail : function(err) {
+						console.log(JSON.stringify(err))
+					}
+					});
+		</script>
+	</body>
+</html>

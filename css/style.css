@@ -1,0 +1,312 @@
+/*image css*/
+
+.voffset  { margin-top: 2px; }
+.voffset1 { margin-top: 5px; }
+.voffset2 { margin-top: 10px; }
+.voffset3 { margin-top: 15px; }
+.voffset4 { margin-top: 30px; }
+.voffset5 { margin-top: 40px; }
+.voffset6 { margin-top: 60px; }
+.voffset7 { margin-top: 80px; }
+.voffset8 { margin-top: 100px; }
+.voffset9 { margin-top: 150px; }
+
+
+input:required:invalid, input:focus:invalid {
+  -moz-box-shadow: none;
+  color: red;
+}
+
+input:required:valid {
+ 	color: blue;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.panel {
+	margin-bottom: 6px;
+}
+
+.item_profile {
+	height: 40px;
+    width: auto;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.item_profile_small {
+	height: 45px;
+    width: auto;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.branch-color {
+	color: #263238;
+}
+
+
+.clickable {
+	cursor:pointer;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+.progress-modal-dialog {
+  padding-top: 10%;
+}
+
+.full-block {
+	/*left: 0;
+	position: absolute;
+	float:left;
+	top: expression(window.scrollTop);*/
+	
+	height: 100%;
+	z-index: 900;
+	background-color: #000;
+	opacity: 0.2;
+	filter: alpha(opacity=40);
+	text-align: center;
+	display: none;
+	position: absolute;
+	top: 0px; /* Header Height */
+	bottom: 20px; /* Footer Height */
+	width: 100%;
+}
+
+.add_btn {
+	position:fixed;
+	float:right;
+    bottom:20px;
+    right:5%;
+    /*margin-left:235px;*/
+    /*width:200px;*/
+   
+   
+}
+.add_btn input {
+	width: 80px;
+
+}
+/*.add_btn img {
+	width: 80px;
+
+} */
+
+
+/*facebook button style*/
+
+.button {
+	margin-bottom: 10px;
+	border-radius: 3px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.button.facebook:hover {
+	background-color: #3A4F82;
+}
+
+.button.facebook {
+	background-color: #4963A4;
+	background-image: url('../img/login-facebook@2x.png');
+}
+
+.button.facebook-primary {
+	color: white;
+	font-size: 16px;
+	line-height: 56px;
+	margin-bottom: 10px;
+	padding-left: 56px;
+	background-position: 14px 14px;
+	background-size: 28px 28px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	display: block;
+	text-decoration: none;
+	width: 224px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	-webkit-font-smoothing: antialiased;
+}
+
+/*background css*/
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+/*section {
+  height: 100%;
+  width: 100%;
+}*/
+
+.splash-bg {
+	background: url('../img/splash_bg.png');
+	display: compact; 
+	background-size: cover;
+}
+
+.main-bg {
+	background-color: #263238;
+}
+
+/*Default NavBar*/
+
+.navbar-custom {
+  background-color: #263238;
+  /*border-color: #192024;*/
+ border-color: #263238;
+ 
+}
+.navbar-custom .navbar-brand {
+  color: #e2e3e3;
+}
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus {
+  color: #c8caca;
+  background-color: transparent;
+}
+.navbar-custom .navbar-text {
+  color: #e2e3e3;
+}
+.navbar-custom .navbar-nav > li:last-child > a {
+  border-right: 1px solid #192024;
+}
+.navbar-custom .navbar-nav > li > a {
+  color: #e2e3e3;
+  border-left: 1px solid #192024;
+}
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus {
+  color: #ffab00;
+  background-color: transparent;
+}
+.navbar-custom .navbar-nav > .active > a,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus {
+  color: #ffab00;
+  background-color: #192024;
+}
+.navbar-custom .navbar-nav > .disabled > a,
+.navbar-custom .navbar-nav > .disabled > a:hover,
+.navbar-custom .navbar-nav > .disabled > a:focus {
+  color: #cccccc;
+  background-color: transparent;
+}
+.navbar-custom .navbar-toggle {
+  border-color: #dddddd;
+}
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+  background-color: #dddddd;
+}
+.navbar-custom .navbar-toggle .icon-bar {
+  background-color: #cccccc;
+}
+.navbar-custom .navbar-collapse,
+.navbar-custom .navbar-form {
+  border-color: #181f23;
+}
+.navbar-custom .navbar-nav > .dropdown > a:hover .caret,
+.navbar-custom .navbar-nav > .dropdown > a:focus .caret {
+  border-top-color: #ffab00;
+  border-bottom-color: #ffab00;
+}
+.navbar-custom .navbar-nav > .open > a,
+.navbar-custom .navbar-nav > .open > a:hover,
+.navbar-custom .navbar-nav > .open > a:focus {
+  background-color: #192024;
+  color: #ffab00;
+}
+.navbar-custom .navbar-nav > .open > a .caret,
+.navbar-custom .navbar-nav > .open > a:hover .caret,
+.navbar-custom .navbar-nav > .open > a:focus .caret {
+  border-top-color: #ffab00;
+  border-bottom-color: #ffab00;
+}
+.navbar-custom .navbar-nav > .dropdown > a .caret {
+  border-top-color: #e2e3e3;
+  border-bottom-color: #e2e3e3;
+}
+@media (max-width: 767) {
+  .navbar-custom .navbar-nav .open .dropdown-menu > li > a {
+    color: #e2e3e3;
+  }
+  .navbar-custom .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-custom .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffab00;
+    background-color: transparent;
+  }
+  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffab00;
+    background-color: #192024;
+  }
+  .navbar-custom .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-custom .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #cccccc;
+    background-color: transparent;
+  }
+}
+.navbar-custom .navbar-link {
+  color: #e2e3e3;
+}
+.navbar-custom .navbar-link:hover {
+  color: #ffab00;
+}
+
+
+/*card view css*/
+
+.card-title {
+	padding:8px;
+	font-size: 13px;
+	/*max-width: 20vw;*/
+}
+
+.card-content {
+	padding: 10px;
+}
+
+
+
+
+
+.modal-dialog-center { /* Edited classname 10/03/2014 */
+    margin-top: 20vh;
+}
