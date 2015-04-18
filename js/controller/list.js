@@ -3,7 +3,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	// instance variables
 	$scope.page = 0;
 	$scope.addMoreLock = true;
-	
+	$scope.isEmpty = false;
 	
 	$scope.addMore = function() {
 		if (!$scope.addMoreLock) return;
@@ -16,7 +16,12 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
         itService.azureService.listItem($scope.page, userId, {
 			success: function(results) {
 				console.log('addMore page : ', $scope.page, " count : ",results.length);
-				if (results.length == 0) return;
+				if (results.length == 0) {
+					$scope.$apply(function(){
+						$scope.isEmpty = true;	
+					});
+					return;
+				}
 				
 				if ($scope.items == null || $scope.items == undefined) $scope.items = [];
 				// var newItems = (results.map(function(item){
@@ -35,48 +40,16 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 					$.merge($scope.items, results);
 				});
 				
-				var windowWidth = $(window).width();
-				var numOfCol = 2;
-				if (windowWidth < 760) {
-					numOfCol = 2;
-				} else if (windowWidth < 960) {
-					numOfCol = 3;
-				} else {
-					numOfCol = 4;
-				}
-				if ($scope.page == 0) {
-				setTimeout(function(){
-				$("#block_container").BlocksIt({
-			      numOfCol: numOfCol,
-			      offsetX: 4,
-			      offsetY: 1,
-			      blockElement: '.block'
-			   });
-			 },300);
-			 } else {
-			 	$("#block_container").BlocksIt({
-			      numOfCol: numOfCol,
-			      offsetX: 4,
-			      offsetY: 1,
-			      blockElement: '.block'
-			   });
-			 }
+				
+			 	// $("#block_container").BlocksIt({
+			      // numOfCol: numOfCol,
+			      // offsetX: 4,
+			      // offsetY: 1,
+			      // blockElement: '.block'
+			   // });
 			   // $('#block_container').pinterest_grid();
-			   // if ($scope.page == 0) {
-			   	// $('#block_container').pinterest_grid(
-				   // {
-						// no_columns: numOfCol,
-						// padding_x: 10,
-						// padding_y: 10,
-						// margin_bottom: 10,
-						// single_column_breakpoint: 100
-					// }
-				// );	
-				// console.log('in if page =0');
-			   // }
 			   
-
-			   
+			    $(window).resize();
 				$scope.page++;
 				$scope.addMoreLock = true;
 			}, error: function(err) {
@@ -85,18 +58,37 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 			}
 		});
     };
+    $('#block_container').pinterest_grid(
+	   {
+			no_columns: itService.prefHelper.get("numOfCol"),
+			padding_x: 10,
+			padding_y: 10,
+			margin_bottom: 100,
+			single_column_breakpoint: 100
+		}
+	);
     $scope.addMore();
     
-    // $scope.$watch('items', function(){
-    	// console.log('blockId');
-    	// $("#block_container").BlocksIt({
-	      // numOfCol: 4,
-	      // offsetX: 4,
-	      // offsetY: 1,
-	      // blockElement: '.block'
-	    // });
-    // }, true);
     
+    $scope.$watch('items', function(){
+    	$(window).resize();
+    }, true);
+    
+    var lastScrollTop = 0;
+   
+	$(window).scroll(function() {
+		if ($scope.itemEmpty()) return;
+		var st = $(this).scrollTop();
+	    if (st > lastScrollTop){
+	       $(window).resize();
+	    } 
+		lastScrollTop = st;
+		
+	}); 
+
+    $scope.itemEmpty = function(){
+    	return $scope.isEmpty;
+    };
     
 	$scope.showReply = function(item) {
 		itService.azureService.list('Reply', item.id, {

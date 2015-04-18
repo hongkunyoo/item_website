@@ -39,7 +39,7 @@
     Plugin.prototype.init = function () {
         var self = this,
             resize_finish;
-
+		
         $(window).resize(function() {
             clearTimeout(resize_finish);
             resize_finish = setTimeout( function () {
@@ -118,7 +118,7 @@
         });
 
         this.tallest($container);
-        $(window).resize();
+        // $(window).resize();
     };
 
     Plugin.prototype.tallest = function (_container) {

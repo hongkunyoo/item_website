@@ -10,6 +10,17 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 		else return "splash-bg";
 	};
 	
+	var windowWidth = $(window).width();
+	var numOfCol = 2;
+	if (windowWidth < 760) {
+		numOfCol = 2;
+	} else if (windowWidth < 960) {
+		numOfCol = 3;
+	} else {
+		numOfCol = 4;
+	}
+	itService.prefHelper.put({ numOfCol : numOfCol});
+	
 	// $('#loginDialog').modal();
 	
 	$rootScope.logout = function(){

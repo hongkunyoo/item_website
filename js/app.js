@@ -47,6 +47,10 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/list',
             templateUrl: 'partials/list.html'
         })
+        .state('test', {
+            url: '/test',
+            templateUrl: 'partials/test.html'
+        })
         // .state('list.home', {
             // url: '/home',
             // templateUrl: 'partials/home.html'

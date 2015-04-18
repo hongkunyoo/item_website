@@ -35,8 +35,8 @@
 		</div>
 	</div> -->
 	
-	<div id="block_container" infinite-scroll="addMore()" infinite-scroll-distance="3" infinite-scroll-immediate-check=false align="center" style="position: relative;">
-		<div ng-repeat="item in items" class="block">
+	<div id="block_container" infinite-scroll="addMore()" infinite-scroll-distance="10" infinite-scroll-immediate-check=false align="center" style="position: relative; height:100vh">
+		<div ng-repeat="item in items" class="block" style="position: absolute;">
 			<div class="panel panel-default">
 				<div class="card-title">
 					<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)">
@@ -94,6 +94,17 @@
 			</div>
 			
 		</div>
+	</div>
+	<div align="center" ng-hide="itemEmpty()">
+		<span class="fa-stack fa-lg" style="font-size:30px;">
+			<i class="fa fa-circle fa-stack-2x" style="color:white;"></i> 
+			<i class="fa fa-spinner fa-pulse fa-stack-1x"></i>
+			<!-- <i class="fa fa-square-o fa-stack-2x"></i> --> 
+			<!-- <i class="fa fa-twitter fa-stack-1x"></i> --> 
+		</span>
+		<!-- <i class="fa fa-circle" style="font-size: 55px;">
+		<i style="font-size: 44px;" class="fa fa-spinner fa-pulse"></i>
+		</i> -->
 	</div>
 </div>
 
