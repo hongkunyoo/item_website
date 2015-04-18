@@ -1,4 +1,4 @@
-var itemApp = angular.module('itemApp', ['ngRoute', 'ngAnimate', 'infinite-scroll', 'ngStorage', 'azureBlobUpload', 'ui.router']); 
+var itemApp = angular.module('itemApp', ['ngRoute', 'ngAnimate', 'infinite-scroll', 'ngStorage', 'azureBlobUpload', 'ui.router', 'ngOnload']); 
 
 itemApp.config(function($stateProvider, $urlRouterProvider) {
 	// $routeProvider

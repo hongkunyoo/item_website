@@ -23,6 +23,7 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 	
 	// $('#loginDialog').modal();
 	
+	
 	$rootScope.logout = function(){
 		// $localStorage.$reset("session");
 		// $rootScope.isLogin = false;

@@ -5,6 +5,17 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	$scope.addMoreLock = true;
 	$scope.isEmpty = false;
 	
+	$('#block_container').pinterest_grid(
+	   {
+			no_columns: itService.prefHelper.get("numOfCol"),
+			padding_x: 10,
+			padding_y: 10,
+			margin_bottom: 100,
+			single_column_breakpoint: 100
+		}
+	);
+	
+	
 	$scope.addMore = function() {
 		if (!$scope.addMoreLock) return;
 		var user = itService.prefHelper.get('ItUser');
@@ -58,20 +69,16 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 			}
 		});
     };
-    $('#block_container').pinterest_grid(
-	   {
-			no_columns: itService.prefHelper.get("numOfCol"),
-			padding_x: 10,
-			padding_y: 10,
-			margin_bottom: 100,
-			single_column_breakpoint: 100
-		}
-	);
+    
     $scope.addMore();
     
+    $scope.onImgLoad = function(){
+    	doResize();
+    };
     
     $scope.$watch('items', function(){
     	$(window).resize();
+    	
     }, true);
     
     var lastScrollTop = 0;
@@ -81,7 +88,6 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 		var st = $(this).scrollTop();
 	    if (st > lastScrollTop){
 	       doResize();
-	       // $(window).resize();
 	    } 
 		lastScrollTop = st;
 		
@@ -89,14 +95,20 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	var resize_finish;
 	function doResize() {
 		clearTimeout(resize_finish);
-            resize_finish = setTimeout( function () {
-                $(window).resize();
-            }, 500);
+        resize_finish = setTimeout( function () {
+            $(window).resize();
+        }, 500);
 	}
 
     $scope.itemEmpty = function(){
     	return $scope.isEmpty;
     };
+    
+    
+    
+    
+    
+    
     
 	$scope.showReply = function(item) {
 		itService.azureService.list('Reply', item.id, {
