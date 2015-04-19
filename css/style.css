@@ -302,11 +302,3 @@ body {
 .card-content {
 	padding: 10px;
 }
-
-
-
-
-
-.modal-dialog-center { /* Edited classname 10/03/2014 */
-    margin-top: 20vh;
-}
