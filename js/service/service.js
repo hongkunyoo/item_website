@@ -34,7 +34,7 @@ itemApp.factory("viewService", function($rootScope) {
 			console.log(title, msg);			
 		}, blockingError: function(msg) {
 			$('#error-overlay').show();
-			$rootScope.errorMessage = msg;
+			$rootScope.errorMessage = JSON.stringify(msg);
 			console.log(msg);
 		}
 	};

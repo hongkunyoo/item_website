@@ -1,4 +1,4 @@
-var itemApp = angular.module('itemApp', ['ngRoute', 'ngAnimate', 'infinite-scroll', 'ngStorage', 'azureBlobUpload', 'ui.router']); 
+var itemApp = angular.module('itemApp', ['ngRoute', 'ngAnimate', 'infinite-scroll', 'ngStorage', 'azureBlobUpload', 'ui.router', 'ngOnload']); 
 
 itemApp.config(function($stateProvider, $urlRouterProvider) {
 	// $routeProvider
@@ -24,49 +24,57 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
 	// });
 	
 	$urlRouterProvider
-        .otherwise('/login');
+        .otherwise('/list');
 	
 	$stateProvider
-		.state('login', {
-            url: '/login',
-            templateUrl: 'partials/login.html'
-        })
-        .state('signup', {
-            url: '/signup',
-            templateUrl: 'partials/signup.html'
-        })
-        .state('signup-with-key', {
-            url: '/signup/:inviteKey',
-            templateUrl: 'partials/signup.html'
-        })
-        .state('invite', {
-            url: '/invite',
-            templateUrl: 'partials/invite.html'
-        })
+		// .state('login', {
+            // url: '/login',
+            // templateUrl: 'partials/login.html'
+        // })
+        // .state('signup', {
+            // url: '/signup',
+            // templateUrl: 'partials/signup.html'
+        // })
+        // .state('signup-with-key', {
+            // url: '/signup/:inviteKey',
+            // templateUrl: 'partials/signup.html'
+        // })
+        // .state('invite', {
+            // url: '/invite',
+            // templateUrl: 'partials/invite.html'
+        // })
         .state('list', {
             url: '/list',
             templateUrl: 'partials/list.html'
         })
-        .state('list.home', {
-            url: '/home',
-            templateUrl: 'partials/home.html'
+        .state('test', {
+            url: '/test',
+            templateUrl: 'partials/test.html'
         })
-        .state('list.users', {
-            url: '/users/:user_id',
-            templateUrl: 'partials/users.html'   
-        })
-        .state('list.users.myitem', {
-            url: '/myitem',
-            templateUrl: 'partials/myitem.html'   
-        })
-        .state('list.users.ititem', {
-            url: '/ititem',
-            templateUrl: 'partials/ititem.html'   
-        })
-        .state('list.settings', {
-            url: '/settings',
-            templateUrl: 'partials/settings.html'   
-        })
+        // .state('list.home', {
+            // url: '/home',
+            // templateUrl: 'partials/home.html'
+        // })
+        // .state('list.users', {
+            // url: '/users/:user_id',
+            // templateUrl: 'partials/users.html'   
+        // })
+        // .state('list.users.myitem', {
+            // url: '/myitem',
+            // templateUrl: 'partials/myitem.html'   
+        // })
+        // .state('list.users.ititem', {
+            // url: '/ititem',
+            // templateUrl: 'partials/ititem.html'   
+        // })
+        // .state('list.settings', {
+            // url: '/settings',
+            // templateUrl: 'partials/settings.html'   
+        // })
+        // .state('list.add_products', {
+            // url: '/addProducts',
+            // templateUrl: 'partials/addProducts.html'   
+        // })
         
         ;
 });
