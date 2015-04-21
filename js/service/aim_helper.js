@@ -2,6 +2,7 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 	var mClient = azureService.getMobileClient();
 
 	var AIM_ADD = "aim_add";
+	var AIM_ADD_ITEM = "aim_add_item";
 	var AIM_ADD_UNIQUE = "aim_add_unique";
 	var AIM_DELETE = "aim_delete";
 	var AIM_DELETE_ITEM = "aim_delete_item";
@@ -17,7 +18,7 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 			mClient = _mClient;
 		},
 		add : function(tableName, item, noti, callback) {
-			mClient.invokeApi("aim_add", {
+			mClient.invokeApi(AIM_ADD, {
 				body : {
 					item : {
 						table : tableName,
@@ -43,7 +44,7 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 			});
 		},
 		addItem : function(item, tagList, callback) {
-			mClient.invokeApi(AIM_ADD_UNIQUE, {
+			mClient.invokeApi(AIM_ADD_ITEM, {
 				body : {
 					item : {
 						data : item
@@ -92,7 +93,7 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 			});
 		},
 		del : function(tableName, item, callback) {
-			mClient.invokeApi("aim_delete", {
+			mClient.invokeApi(AIM_DELETE, {
 				body : {
 					table : tableName,
 					data : item
@@ -156,7 +157,7 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 			});
 		},
 		list : function(tableName, refId, callback) {
-			mClient.invokeApi("aim_list", {
+			mClient.invokeApi(AIM_LIST, {
 				body : {
 					table : tableName,
 					refId : refId

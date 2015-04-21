@@ -64,6 +64,19 @@ itemApp.controller('testController', function($rootScope, $scope, $location, $lo
 		// console.log(err);
 		// }
 		// });
+
+		var user = {
+			nickName : "test"
+		};
+
+		// itService.userHelper.add(user, {
+			// success : function(results) {
+				// console.log(results);
+			// },
+			// error : function(err) {
+				// console.log(err);
+			// }
+		// });
 	};
-	// $scope.test();
+	$scope.test();
 });
