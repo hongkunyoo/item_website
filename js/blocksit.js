@@ -85,12 +85,12 @@
 	}
 	//get block x and y position
 	var getBlockPostion = function(size) {
-
 		//if block width is not default 1
 		//extra algorithm check
 		if (size > 1) {
 			//prevent extra loop
 			var arrlimit = blockarr.length - size;
+
 			//define temp variable
 			var defined = false;
 			var tempHeight,
@@ -118,7 +118,8 @@
 				}
 			}
 			return [tempIndex, tempHeight[1]];
-		} else {//simple check for block with width 1
+		} else {
+			//simple check for block with width 1
 			tempHeight = getHeightArr(0, blockarr.length);
 			return [tempHeight[2], tempHeight[0]];
 		}
@@ -173,4 +174,4 @@
 
 		return this;
 	}
-})(jQuery); 
+})(jQuery);

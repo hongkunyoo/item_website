@@ -24,23 +24,6 @@ itemApp.factory("azureService", function($rootScope) {
 				mobileClient = testClient;
 			}
 		},
-		createInviteKey : function(type, callback) {
-			mobileClient.invokeApi("create_invite_key", {
-				body : {
-					"type" : type
-				},
-				method : "post"
-			}).done(function(results) {
-				if (callback.success != undefined)
-					// callback.success(results);
-					$rootScope.$apply(function() {
-						callback.success(results);
-					});
-			}, function(err) {
-				if (callback.error != undefined)
-					callback.error(err);
-			});
-		},
 		sessionHelper : function(action, session, callback) {
 			mobileClient.invokeApi("session_helper", {
 				body : {
@@ -49,14 +32,15 @@ itemApp.factory("azureService", function($rootScope) {
 				},
 				method : "post"
 			}).done(function(results) {
-				if (callback.success != undefined)
-					// callback.success(results.result);
+				if (callback.success != undefined) {
 					$rootScope.$apply(function() {
 						callback.success(results.result);
 					});
+				}
 			}, function(err) {
-				if (callback.error != undefined)
+				if (callback.error != undefined) {
 					callback.error(err);
+				}
 			});
 		},
 		getSasQuery : function(fileName, callback) {
@@ -67,13 +51,15 @@ itemApp.factory("azureService", function($rootScope) {
 					containerName : "item-user-profile"
 				}
 			}).done(function(results) {
-				if (callback.success != undefined)
+				if (callback.success != undefined) {
 					$rootScope.$apply(function() {
 						callback.success(results.result.sasQueryString);
 					});
+				}
 			}, function(err) {
-				if (callback.error != undefined)
+				if (callback.error != undefined) {
 					callback.error(err);
+				}
 			});
 		}
 	};

@@ -122,7 +122,7 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 			}).done(function(results) {
 				if (callback.success != undefined) {
 					$rootScope.$apply(function() {
-						callback.success(results,result);
+						callback.success(results.result);
 					});
 				}
 			}, function(err) {

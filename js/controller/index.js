@@ -1,15 +1,17 @@
 itemApp.controller('indexController', function($rootScope, $location, $rootScope, $scope, itService) {
-	
+
 	$scope.isLogin = function() {
 		// return itService.prefHelper.get("ItUser") != undefined;
 		return true;
 	};
-	
+
 	$scope.isLoginClass = function() {
-		if ($scope.isLogin()) return "main-bg";
-		else return "splash-bg";
+		if ($scope.isLogin())
+			return "main-bg";
+		else
+			return "splash-bg";
 	};
-	
+
 	var windowWidth = $(window).width();
 	var numOfCol = 2;
 	if (windowWidth < 760) {
@@ -19,39 +21,39 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 	} else {
 		numOfCol = 4;
 	}
-	itService.prefHelper.put({ numOfCol : numOfCol});
-	
+	itService.prefHelper.put({
+		numOfCol : numOfCol
+	});
+
 	// $('#loginDialog').modal();
-	
-	
-	$rootScope.logout = function(){
+
+	$rootScope.logout = function() {
 		// $localStorage.$reset("session");
 		// $rootScope.isLogin = false;
-		// $location.path("/");	
+		// $location.path("/");
 		FB.logout(function(response) {
-	        // Person is now logged out
-	        $rootScope.$apply(function(){
-	        	itService.prefHelper.remove("ItUser");
-	        	itService.prefHelper.remove("ItDevice");
-	        	$location.path("/");	
-	        });
-	    });
+			// Person is now logged out
+			$rootScope.$apply(function() {
+				itService.prefHelper.remove("ItUser");
+				itService.prefHelper.remove("ItDevice");
+				$location.path("/");
+			});
+		});
 	};
-	
-	$scope.real = function(){
+
+	$scope.real = function() {
 		itService.azureService.switchServer(itService.azureService.SERVER.REAL);
 	};
-	
-	$scope.test = function(){
+
+	$scope.test = function() {
 		itService.azureService.switchServer(itService.azureService.SERVER.TEST);
 	};
-	
+
 	$scope.loginPage = function() {
 		$location.path("/list/home");
 	};
-	
+
 	$scope.logoutPage = function() {
 		$location.path("/");
 	};
-	
-});
+}); 

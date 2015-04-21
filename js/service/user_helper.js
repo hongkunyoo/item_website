@@ -1,7 +1,8 @@
 itemApp.factory("userHelper", function($rootScope, azureService) {
 	var mClient = azureService.getMobileClient();
 	var table = mClient.getTable('ItUser');
-
+	
+	var SIGNIN = "signin";
 	var UPDATE_USER = "update_user";
 
 	return {
@@ -9,17 +10,17 @@ itemApp.factory("userHelper", function($rootScope, azureService) {
 			mClient = _mClient;
 			table = mClient.getTable('ItUser');
 		},
-		signin : function(user, device, callback) {
-			mClient.invokeApi("signin", {
+		signin : function(user, callback) {
+			mClient.invokeApi(SIGNIN, {
 				body : {
 					user : user,
-					device : device
+					device : null
 				},
 				method : "post"
-			}).done(function(results) {
+			}).done(function(signedinUser) {
 				if (callback.success != undefined) {
 					$rootScope.$apply(function() {
-						callback.success(results);
+						callback.success(signedinUser.result.user);
 					});
 				}
 			}, function(err) {
@@ -86,7 +87,7 @@ itemApp.factory("userHelper", function($rootScope, azureService) {
 			}).done(function(resutls) {
 				if (callback.success != undefined) {
 					$rootScope.$apply(function() {
-						callback.success(resutls);
+						callback.success(resutls.response);
 					});
 				}
 			}, function(err) {

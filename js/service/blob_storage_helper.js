@@ -1,4 +1,4 @@
-itemApp.factory("blobStorageHelper", function($rootScope, azureService, blobStorage) {
+itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlob) {
 	var USER_PROFILE = "item-user-profile";
 	var ITEM_IMAGE = "item-image-container";
 
@@ -22,7 +22,7 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, blobStor
 			return getHostUrl(ITEM_IMAGE) + id;
 		},
 		upload : function(container, id, sasQueryString, file, callback) {
-			blobStorage.upload({
+			azureBlob.upload({
 				baseUrl : "http://athere.blob.core.windows.net/" + container + "/" + id + "?",
 				sasToken : sasQueryString,
 				file : file,
@@ -33,13 +33,11 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, blobStor
 					if (callback.success != undefined) {
 						callback.success(e);
 					}
-					// $rootScope.$apply(function(){callback.success(e);});
 				},
 				error : function(err) {
 					if (callback.error != undefined) {
 						callback.error(err);
 					}
-					// $rootScope.$apply(function(){callback.error(err);});
 				}
 			});
 		}

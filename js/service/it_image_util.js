@@ -44,9 +44,9 @@ ItImageUtil.prototype = function() {
 		loadImgData : function(file, callback) {
 			//	Prevent any non-image file type from being read.
 			if (!file.type.match(/image.*/)) {
-				console.log("The dropped file is not an image: ", file.type);
 				return;
 			}
+			
 			//	Create our FileReader and run the results through the render function.
 			var _this = this;
 			var reader = new FileReader();
@@ -60,11 +60,9 @@ ItImageUtil.prototype = function() {
 			var image = new Image();
 			image.onload = function() {
 				// var origCanvas = document.createElement("canvas");
-
 				// var imgSize = reSize(size, image.width, image.height);
 				// image.width = imgSize.width;
 				// image.height = imgSize.height;
-
 				callback(image);
 			};
 			image.src = imgData;
@@ -93,15 +91,15 @@ ItImageUtil.prototype = function() {
 			var imgWidth = 0;
 			var imgHeight = 0;
 
-			// Set to Width
 			if (image.width < image.height) {
+				// Set to Width
 				x_offset = 0;
 				y_offset = (image.height - image.width) / 2;
 				cropWidth = cropHeight = image.width;
 				imgWidth = imgHeight = image.width;
 				canvas.width = canvas.height = image.width;
-				// Set to Height
 			} else {
+				// Set to Height
 				x_offset = (image.width - image.height) / 2;
 				y_offset = 0;
 				cropWidth = cropHeight = image.height;
@@ -187,5 +185,4 @@ ItImageUtil.prototype = function() {
 		});
 		return blob;
 	}
-
 }();

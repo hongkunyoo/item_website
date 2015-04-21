@@ -4,11 +4,12 @@
  * @version 1.0.1
  */
 (function() {
-	var blobStorageUpload = angular.module('blobStorageUpload', []);
-	blobStorageUpload.factory('blobStorage', ['$log', '$http', blobStorage]);
+	var azureBlobUpload = angular.module('azureBlobUpload', []);
+	azureBlobUpload.factory('azureBlob', ['$log', '$http', azureBlob]);
 
-	function blobStorage($log, $http) {
-		var DefaultBlockSize = 1024 * 32;	// Default to 32KB
+	function azureBlob($log, $http) {
+		var DefaultBlockSize = 1024 * 32;
+		// Default to 32KB
 
 		/* config: {
 		 baseUrl: // baseUrl for blob file uri (i.e. http://<accountName>.blob.core.windows.net/<container>/<blobname>),
@@ -59,7 +60,7 @@
 
 		var initializeState = function(config) {
 			var blockSize = DefaultBlockSize;
-			if (config.blockSize){
+			if (config.blockSize) {
 				blockSize = config.blockSize;
 			}
 
@@ -165,4 +166,4 @@
 			upload : upload,
 		};
 	};
-})(); 
+})();

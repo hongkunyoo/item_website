@@ -66,16 +66,29 @@ itemApp.controller('testController', function($rootScope, $scope, $location, $lo
 		// });
 
 		var user = {
-			nickName : "test"
+			itUserId : "20175962",
+			nickName : "test",
+			platform : "test_platform",
+			selfIntro : "self Intro"
 		};
+		var id = "D63FE66F-32DE-4ECA-B9D8-11365B6D3DD0";
 
-		// itService.userHelper.add(user, {
-			// success : function(results) {
-				// console.log(results);
-			// },
-			// error : function(err) {
-				// console.log(err);
-			// }
+		// itService.userHelper.updateUser(user, {
+		// success : function(results) {
+		// console.log(results);
+		// },
+		// error : function(err) {
+		// console.log(err);
+		// }
+		// });
+
+		// itService.userHelper.signin(user, {
+		// success : function(results) {
+		// console.log(results);
+		// },
+		// error : function(err) {
+		// console.log(err);
+		// }
 		// });
 	};
 	$scope.test();
