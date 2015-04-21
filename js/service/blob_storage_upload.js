@@ -4,10 +4,10 @@
  * @version 1.0.1
  */
 (function() {
-	var azureBlobUpload = angular.module('azureBlobUpload', []);
-	azureBlobUpload.factory('azureBlob', ['$log', '$http', azureBlob]);
+	var blobStorageUpload = angular.module('blobStorageUpload', []);
+	blobStorageUpload.factory('blobStorage', ['$log', '$http', blobStorage]);
 
-	function azureBlob($log, $http) {
+	function blobStorage($log, $http) {
 		var DefaultBlockSize = 1024 * 32;	// Default to 32KB
 
 		/* config: {

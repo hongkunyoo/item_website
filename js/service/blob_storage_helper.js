@@ -1,10 +1,10 @@
-itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlob) {
+itemApp.factory("blobStorageHelper", function($rootScope, azureService, blobStorage) {
 	var USER_PROFILE = "item-user-profile";
 	var ITEM_IMAGE = "item-image-container";
 
 	return {
 		getHostUrl : function(uri) {
-			if (uri == undefined){
+			if (uri == undefined) {
 				uri = "";
 			}
 			return "https://athere.blob.core.windows.net/" + uri;
@@ -22,7 +22,7 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlo
 			return getHostUrl(ITEM_IMAGE) + id;
 		},
 		upload : function(container, id, sasQueryString, file, callback) {
-			azureBlob.upload({
+			blobStorage.upload({
 				baseUrl : "http://athere.blob.core.windows.net/" + container + "/" + id + "?",
 				sasToken : sasQueryString,
 				file : file,
@@ -30,13 +30,13 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlo
 				progress : function(e) {
 				},
 				complete : function(e) {
-					if (callback.success != undefined){
+					if (callback.success != undefined) {
 						callback.success(e);
 					}
 					// $rootScope.$apply(function(){callback.success(e);});
 				},
 				error : function(err) {
-					if (callback.error != undefined){
+					if (callback.error != undefined) {
 						callback.error(err);
 					}
 					// $rootScope.$apply(function(){callback.error(err);});
@@ -44,4 +44,4 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlo
 			});
 		}
 	};
-}); 
+});

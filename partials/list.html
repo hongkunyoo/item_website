@@ -1,48 +1,45 @@
 <div class="container" ng-controller="listController">
 	<!-- <div class="row">
-		<div class="col-md-3 hidden-xs hidden-sm">
-			<div class="affix col-md-2">
-				<div class="input-group" style="padding-bottom:10px;"></div>
-	            
-				<ul class="nav nav-pills nav-stacked">
-					<li role="presentation" ng-class="{active: list_active=='list.home'}">
-						<a ui-sref=".home" class="clickable" ui-sref-active="active">Home</a>
-					</li>
-					<li role="presentation">
-						<a ui-sref=".users({user_id:user.id})" class="clickable" ui-sref-active="active">Users</a>
-					</li>
-					<li role="presentation">
-						<a ui-sref=".add_products" class="clickable" ui-sref-active="active">Add Products</a>
-					</li>
-					<li role="presentation">
-						<a ui-sref=".settings" class="clickable" ui-sref-active="active">Settings</a>
-					</li>
-					<li role="presentation">
-						<a ng-click="logout()" class="clickable" ui-sref-active="active">Logout</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-md-9" align="center">
-			<div class="row" align="center" style="padding:5px;">
-			<div ui-view align="center">
-			
-			</div>
-			</div>
-			<div class="add_btn">
-				<input type="image" src="img/feed_upload_btn.png"/>
-			</div>
-		</div>
+	<div class="col-md-3 hidden-xs hidden-sm">
+	<div class="affix col-md-2">
+	<div class="input-group" style="padding-bottom:10px;"></div>
+
+	<ul class="nav nav-pills nav-stacked">
+	<li role="presentation" ng-class="{active: list_active=='list.home'}">
+	<a ui-sref=".home" class="clickable" ui-sref-active="active">Home</a>
+	</li>
+	<li role="presentation">
+	<a ui-sref=".users({user_id:user.id})" class="clickable" ui-sref-active="active">Users</a>
+	</li>
+	<li role="presentation">
+	<a ui-sref=".add_products" class="clickable" ui-sref-active="active">Add Products</a>
+	</li>
+	<li role="presentation">
+	<a ui-sref=".settings" class="clickable" ui-sref-active="active">Settings</a>
+	</li>
+	<li role="presentation">
+	<a ng-click="logout()" class="clickable" ui-sref-active="active">Logout</a>
+	</li>
+	</ul>
+	</div>
+	</div>
+	<div class="col-md-9" align="center">
+	<div class="row" align="center" style="padding:5px;">
+	<div ui-view align="center">
+
+	</div>
+	</div>
+	<div class="add_btn">
+	<input type="image" src="img/feed_upload_btn.png"/>
+	</div>
+	</div>
 	</div> -->
-	
+
 	<div id="block_container" infinite-scroll="addMore()" infinite-scroll-distance="7" infinite-scroll-immediate-check=false align="center" style="position: relative; height:100vh">
 		<div ng-repeat="item in items" class="block" style="position: absolute;">
 			<div class="panel panel-default">
 				<div class="card-title">
-					<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)">
-						<img ng-src={{item.uploaderImg}} class="item_profile img-circle"/>
-						{{item.whoMade}}
-					</a>
+					<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)"> <img ng-src={{item.uploaderImg}} class="item_profile img-circle"/> {{item.whoMade}} </a>
 					<div style="clear:both;"></div>
 				</div>
 				<div>
@@ -52,18 +49,18 @@
 							{{item.content}}
 						</p>
 					</div>
-	
+
 					<div class="col-md-3">
 						<a data-toggle="modal" data-target="#_myModal" class="clickable" ng-click="likeIt(item)"> <img ng-src="{{item.likeImage}}" class="img-responsive"> </a>
 					</div>
-	
+
 					<div class="col-md-3">
 						<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_it_ic.png" class='clickable' width=21 height=28/><span>{{item.likeItCount}}</span></a>
 						<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_comment_ic.png" class='clickable' width=21 height=28/><span>{{item.replyCount}}</span></a>
 					</div>
-	
+
 				</div>
-	
+
 				<div class="panel-footer" ng-show="item.replyShowValue">
 					<div class="input-group fill">
 						<input type="text" class="form-control" placeholder="Add comments" aria-describedby="basic-addon2" ng-model="item.replyContent" ng-keyup="addReply(item, $event.keyCode==13)">
@@ -78,7 +75,7 @@
 								<div class="media-body">
 									<div class="media-heading">
 										<span class="media-left"><a class="clickable" ng-click="gotoWhomade(reply.whoMadeId)">{{reply.whoMade}}</a></span>
-	
+
 										<p class="media-right text-muted">
 											<small>{{reply.dateTime}}</small>
 										</p>
@@ -92,20 +89,13 @@
 					</ul>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 	<div align="center" ng-hide="itemEmpty()">
-		<span class="fa-stack fa-lg" style="font-size:30px;">
-			<i class="fa fa-circle fa-stack-2x" style="color:white;"></i> 
-			<i class="fa fa-spinner fa-pulse fa-stack-1x"></i>
-			<!-- <i class="fa fa-square-o fa-stack-2x"></i> --> 
-			<!-- <i class="fa fa-twitter fa-stack-1x"></i> --> 
-		</span>
+		<span class="fa-stack fa-lg" style="font-size:30px;"> <i class="fa fa-circle fa-stack-2x" style="color:white;"></i> <i class="fa fa-spinner fa-pulse fa-stack-1x"></i> <!-- <i class="fa fa-square-o fa-stack-2x"></i> --> <!-- <i class="fa fa-twitter fa-stack-1x"></i> --> </span>
 		<!-- <i class="fa fa-circle" style="font-size: 55px;">
 		<i style="font-size: 44px;" class="fa fa-spinner fa-pulse"></i>
 		</i> -->
 	</div>
 </div>
-
 

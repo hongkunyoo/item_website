@@ -7,7 +7,7 @@ itemApp.factory("azureService", function($rootScope) {
 
 	var realClient = new WindowsAzure.MobileServiceClient(real_url, real_key);
 	var testClient = new WindowsAzure.MobileServiceClient(test_url, test_key);
-	var mobileClient = realClient;
+	var mobileClient = testClient;
 
 	return {
 		getMobileClient : function() {

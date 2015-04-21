@@ -2,7 +2,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 
 	// instance variables
 	$scope.page = 0;
-	$scope.addMoreLock = true;
+	$scope.addMoreLock = false;
 	$scope.isEmpty = false;
 
 	$('#block_container').pinterest_grid({
@@ -14,19 +14,19 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	});
 
 	$scope.addMore = function() {
-		if (!$scope.addMoreLock) {
+		if ($scope.addMoreLock) {
 			return;
 		}
 
+		$scope.addMoreLock = true;
 		var user = itService.prefHelper.get('ItUser');
 		var userId = "default";
 		if (user != null && user != undefined) {
 			userId = user.id;
 		}
-		$scope.addMoreLock = false;
+
 		itService.aimHelper.listItem($scope.page, userId, {
 			success : function(results) {
-				console.log('addMore page : ', $scope.page, " count : ", results.length);
 				if (results.length == 0) {
 					$scope.$apply(function() {
 						$scope.isEmpty = true;
@@ -34,8 +34,10 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 					return;
 				}
 
-				if ($scope.items == null || $scope.items == undefined)
+				if ($scope.items == null || $scope.items == undefined){
 					$scope.items = [];
+				}
+					
 				// var newItems = (results.map(function(item){
 				// item['uploaderImg']	= itService.imageService.makeUserImage(item.whoMadeId);
 				// item['imageUrl']	= itService.imageService.makeItemImage(item.id);
@@ -62,7 +64,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 
 				$(window).resize();
 				$scope.page++;
-				$scope.addMoreLock = true;
+				$scope.addMoreLock = false;
 			},
 			error : function(err) {
 				console.log(err);

@@ -10,30 +10,58 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 	var AIM_LIST_ITEM = "aim_list_item";
 	var AIM_LIST_MY_ITEM = "aim_list_my_item";
 	var AIM_LIST_IT_ITEM = "aim_list_it_item";
+	var AIM_LIST_MY_NOTI = "aim_list_my_noti";
 
 	return {
 		setMobileClient : function(_mClient) {
 			mClient = _mClient;
 		},
 		add : function(tableName, item, noti, callback) {
-			mobileClient.invokeApi("aim_add", {
+			mClient.invokeApi("aim_add", {
 				body : {
 					item : {
 						table : tableName,
 						data : item
 					},
-					noti : noti
+					noti : {
+						data : noti
+					}
 				},
 				method : "post"
-			}).done(function(results) {
+			}).done(function(addedItem) {
 				if (callback.success != undefined) {
 					$rootScope.$apply(function() {
-						callback.success(results);
+						callback.success(addedItem.result);
 					});
 				}
 			}, function(err) {
 				if (callback.error != undefined) {
-					callback.error(err);
+					$rootScope.$apply(function() {
+						callback.error(err);
+					});
+				}
+			});
+		},
+		addItem : function(item, tagList, callback) {
+			mClient.invokeApi(AIM_ADD_UNIQUE, {
+				body : {
+					item : {
+						data : item
+					},
+					tagList : tagList
+				},
+				method : "post"
+			}).done(function(addedItem) {
+				if (callback.success != undefined) {
+					$rootScope.$apply(function() {
+						callback.success(addedItem.result);
+					});
+				}
+			}, function(err) {
+				if (callback.error != undefined) {
+					$rootScope.$apply(function() {
+						callback.error(err);
+					});
 				}
 			});
 		},
@@ -44,13 +72,15 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 						table : tableName,
 						data : item
 					},
-					noti : noti
+					noti : {
+						data : noti
+					}
 				},
 				method : "post"
-			}).done(function(results) {
+			}).done(function(addedItem) {
 				if (callback.success != undefined) {
 					$rootScope.$apply(function() {
-						callback.success(results);
+						callback.success(addedItem.result);
 					});
 				}
 			}, function(err) {
@@ -63,15 +93,15 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 		},
 		del : function(tableName, item, callback) {
 			mClient.invokeApi("aim_delete", {
-				method : "post",
 				body : {
 					table : tableName,
 					data : item
-				}
+				},
+				method : "post"
 			}).done(function(results) {
 				if (callback.success != undefined) {
 					$rootScope.$apply(function() {
-						callback.success(results);
+						callback.success(results.result);
 					});
 				}
 			}, function(err) {
@@ -91,7 +121,7 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 			}).done(function(results) {
 				if (callback.success != undefined) {
 					$rootScope.$apply(function() {
-						callback.success(results);
+						callback.success(results,result);
 					});
 				}
 			}, function(err) {
@@ -111,10 +141,10 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 					userId : userId
 				},
 				method : "post"
-			}).done(function(results) {
+			}).done(function(item) {
 				if (callback.success != undefined) {
 					$rootScope.$apply(function() {
-						callback.success(results);
+						callback.success(item.result);
 					});
 				}
 			}, function(err) {
@@ -132,11 +162,9 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 					refId : refId
 				},
 				method : "post"
-			}).done(function(results) {
+			}).done(function(items) {
 				if (callback.success != undefined) {
-					$rootScope.$apply(function() {
-						callback.success(results.result);
-					});
+					callback.success(items.result);
 				}
 			}, function(err) {
 				if (callback.error != undefined) {
@@ -153,12 +181,9 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 					userId : userId
 				},
 				method : "post"
-			}).done(function(results) {
+			}).done(function(items) {
 				if (callback.success != undefined) {
-					console.log(results);
-					$rootScope.$apply(function() {
-						callback.success(results.result);
-					});
+					callback.success(items.result);
 				}
 			}, function(err) {
 				if (callback.error != undefined) {
@@ -174,11 +199,9 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 					userId : userId
 				},
 				method : "post"
-			}).done(function(results) {
+			}).done(function(items) {
 				if (callback.success != undefined) {
-					$rootScope.$apply(function() {
-						callback.success(results);
-					});
+					callback.success(items.result);
 				}
 			}, function(err) {
 				if (callback.error != undefined) {
@@ -194,11 +217,28 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 					userId : userId
 				},
 				method : "post"
-			}).done(function(results) {
+			}).done(function(items) {
 				if (callback.success != undefined) {
+					callback.success(items.result);
+				}
+			}, function(err) {
+				if (callback.error != undefined) {
 					$rootScope.$apply(function() {
-						callback.success(results);
+						callback.error(err);
 					});
+				}
+			});
+		},
+		listMyNoti : function(page, userId, callback) {
+			mClient.invokeApi(AIM_LIST_MY_NOTI, {
+				body : {
+					page : page,
+					userId : userId
+				},
+				method : "post"
+			}).done(function(notis) {
+				if (callback.success != undefined) {
+					callback.success(notis.result);
 				}
 			}, function(err) {
 				if (callback.error != undefined) {

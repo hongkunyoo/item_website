@@ -2,15 +2,15 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $fi
 
 	// instance variables
 	$scope.page = 0;
-	$scope.addMoreLock = true;
+	$scope.addMoreLock = false;
 
 	$scope.addMore = function() {
-		if (!$scope.addMoreLock) {
+		if ($scope.addMoreLock) {
 			return;
 		}
 
 		var user = itService.prefHelper.get('ItUser');
-		$scope.addMoreLock = false;
+		$scope.addMoreLock = true;
 		itService.azureService.listItem($scope.page, user.id, {
 			success : function(results) {
 				if (results.length == 0) {
@@ -54,7 +54,7 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $fi
 					blockElement : '.block'
 				});
 				$scope.page++;
-				$scope.addMoreLock = true;
+				$scope.addMoreLock = false;
 			},
 			error : function(err) {
 				console.log(err);
