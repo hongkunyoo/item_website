@@ -65,6 +65,16 @@ itemApp.controller('testController', function($rootScope, $scope, $location, $lo
 		// }
 		// });
 
+		// itService.aimHelper.listLikeItem(0, "3EE75145-41AC-4B0B-84C7-4084FEA149B3", {
+		// success : function(items, count) {
+		// console.log(items);
+		// console.log(count);
+		// },
+		// error : function(err) {
+		// console.log(err);
+		// }
+		// });
+
 		var user = {
 			itUserId : "20175962",
 			nickName : "test",

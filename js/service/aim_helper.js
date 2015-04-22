@@ -10,7 +10,7 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 	var AIM_LIST = "aim_list";
 	var AIM_LIST_ITEM = "aim_list_item";
 	var AIM_LIST_MY_ITEM = "aim_list_my_item";
-	var AIM_LIST_IT_ITEM = "aim_list_it_item";
+	var AIM_LIST_LIKE_ITEM = "aim_list_like_item";
 	var AIM_LIST_MY_NOTI = "aim_list_my_noti";
 
 	return {
@@ -194,15 +194,17 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 				}
 			});
 		},
-		listMyItem : function(userId, callback) {
+		listMyItem : function(page, userId, callback) {
 			mClient.invokeApi(AIM_LIST_MY_ITEM, {
 				body : {
+					page : page,
 					userId : userId
 				},
 				method : "post"
-			}).done(function(items) {
+			}).done(function(myItems) {
 				if (callback.success != undefined) {
-					callback.success(items.result);
+					var result = myItems.result;
+					callback.success(result.items, result.count);
 				}
 			}, function(err) {
 				if (callback.error != undefined) {
@@ -212,15 +214,17 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 				}
 			});
 		},
-		listItItem : function(userId, callback) {
-			mClient.invokeApi(AIM_LIST_IT_ITEM, {
+		listLikeItem : function(page, userId, callback) {
+			mClient.invokeApi(AIM_LIST_LIKE_ITEM, {
 				body : {
+					page : page,
 					userId : userId
 				},
 				method : "post"
-			}).done(function(items) {
+			}).done(function(likeItems) {
 				if (callback.success != undefined) {
-					callback.success(items.result);
+					var result = likeItems.result;
+					callback.success(result.items, result.count);
 				}
 			}, function(err) {
 				if (callback.error != undefined) {
