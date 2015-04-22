@@ -40,9 +40,9 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 						item['imageUrl']	= itService.imageService.makeItemImage(item.id);
 						item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
 						if (item.prevLikeId == null) {
-							item.likeImage = "img/general_it_btn.png";
+							item.likeImage = "img/feed_card_like_ic_off.png";
 						} else {
-							item.likeImage = "img/general_it_highlight_btn.png";
+							item.likeImage = "img/feed_card_like_ic_on.png";
 						}
 						return item;
 					}));
