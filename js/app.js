@@ -26,7 +26,6 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/list');
 
 	$stateProvider
-<<<<<<< HEAD
 		// .state('login', {
             // url: '/login',
             // templateUrl: 'partials/login.html'
@@ -48,30 +47,10 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'partials/list.html'
         })
 
-        .state('list.home', {
-            url: '/home',
-            templateUrl: 'partials/home.html'
-        })
-        .state('list.detail', {
+        .state('detail', {
             url: '/detail',
             templateUrl: 'partials/detail.html'
         })
-        .state('list.users', {
-            url: '/users/:user_id',
-            templateUrl: 'partials/users.html'   
-        })
-        .state('list.users.myitem', {
-            url: '/myitem',
-            templateUrl: 'partials/myitem.html'   
-        })
-        .state('list.users.ititem', {
-            url: '/ititem',
-            templateUrl: 'partials/ititem.html'   
-        })
-        .state('list.settings', {
-            url: '/settings',
-            templateUrl: 'partials/settings.html'   
-
         // .state('list.home', {
             // url: '/home',
             // templateUrl: 'partials/home.html'
@@ -99,29 +78,3 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
         
         ;
 });
-=======
-	// .state('login', {
-	// url: '/login',
-	// templateUrl: 'partials/login.html'
-	// })
-	// .state('signup', {
-	// url: '/signup',
-	// templateUrl: 'partials/signup.html'
-	// })
-	// .state('signup-with-key', {
-	// url: '/signup/:inviteKey',
-	// templateUrl: 'partials/signup.html'
-	// })
-	// .state('invite', {
-	// url: '/invite',
-	// templateUrl: 'partials/invite.html'
-	// })
-	.state('list', {
-		url : '/list',
-		templateUrl : 'partials/list.html'
-	}).state('test', {
-		url : '/test',
-		templateUrl : 'partials/test.html'
-	});
-});
->>>>>>> c552ec7bd087f8a43cf35d53f98b1e5cee8f4e2a
