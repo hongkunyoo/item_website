@@ -19,20 +19,20 @@
  *      <iframe src="www.google.com" ng-onload="angularScopeCallback()"></iframe>
  */
 var elementOnloadDirective = function() {
-    return {
-        restrict: "A",
-        scope: {
-            callback: "&ngOnload"
-        },
-        link: function (scope, element, attrs) {
-            // hooking up the onload event - calling the callback on load event
-            element.on("load", function(){ scope.callback();});
-        }
-    };
+	return {
+		restrict : "A",
+		scope : {
+			callback : "&ngOnload"
+		},
+		link : function(scope, element, attrs) {
+			// hooking up the onload event - calling the callback on load event
+			element.on("load", function() {
+				scope.callback();
+			});
+		}
+	};
 };
-elementOnloadDirective.$inject = [ ];
+elementOnloadDirective.$inject = [];
 elementOnloadDirective.directiveName = "ngOnload";
 
-angular
-    .module("ngOnload", [])
-    .directive(elementOnloadDirective.directiveName, elementOnloadDirective);
+angular.module("ngOnload", []).directive(elementOnloadDirective.directiveName, elementOnloadDirective); 
