@@ -21,9 +21,7 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 	} else {
 		numOfCol = 4;
 	}
-	itService.prefHelper.put({
-		numOfCol : numOfCol
-	});
+	itService.prefHelper.put("numOfCol",numOfCol);
 
 	// $('#loginDialog').modal();
 
