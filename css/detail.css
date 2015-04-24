@@ -1,16 +1,3 @@
-html,
-body{
-	padding-top: 23px;
-	background-color: #263238;
-	height: 100%;
-}
-
-.row{
-	background-color: #263238;
-	padding-bottom: 30px;
-	padding-top: 10px;
-}
-
 
 .item-detail{
 	position: relative;
@@ -81,7 +68,6 @@ body{
 	font-size: 18px;
 	padding-left: 16px;
 }
-
 
 .img-center{
 	display: block;
