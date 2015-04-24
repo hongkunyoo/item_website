@@ -44,6 +44,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 						} else {
 							item.likeImage = "img/feed_card_like_ic_on.png";
 						}
+						// item.mainImageHeight
 						return item;
 					}));
 				

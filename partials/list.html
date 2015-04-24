@@ -4,7 +4,7 @@
 			<div class="panel panel-default">
 				
 				<div>
-					<a ng-click="showDetails(item)"><img class="imgDetail img-responsive clickable" ng-src="https://athere.blob.core.windows.net/item-image-container/{{item.id}}"/></a>
+					<a ng-click="showDetails(item)"><img ng-onload="onImgLoad()" class="imgDetail img-responsive clickable" ng-src="https://athere.blob.core.windows.net/item-image-container/{{item.id}}"/></a>
 						
 					<div class="container-fluid card-content">
 						<p class="text-left spacing-none">{{item.content}}</p>
