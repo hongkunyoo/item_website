@@ -33,24 +33,21 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 					});
 					return;
 				}
-
-				if ($scope.items == null || $scope.items == undefined){
-					$scope.items = [];
-				}
-					
-				// var newItems = (results.map(function(item){
-				// item['uploaderImg']	= itService.imageService.makeUserImage(item.whoMadeId);
-				// item['imageUrl']	= itService.imageService.makeItemImage(item.id);
-				// item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
-				// if (item.prevLikeId == null) {
-				// item.likeImage = "img/general_it_btn.png";
-				// } else {
-				// item.likeImage = "img/general_it_highlight_btn.png";
-				// }
-				// return item;
-				// }));
-
-				$scope.$apply(function() {
+				
+				if ($scope.items == null || $scope.items == undefined) $scope.items = [];
+					var newItems = (results.map(function(item){
+						item['uploaderImg']	= itService.imageService.makeUserImage(item.whoMadeId);
+						item['imageUrl']	= itService.imageService.makeItemImage(item.id);
+						item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
+						if (item.prevLikeId == null) {
+							item.likeImage = "img/feed_card_like_ic_off.png";
+						} else {
+							item.likeImage = "img/feed_card_like_ic_on.png";
+						}
+						return item;
+					}));
+				
+				$scope.$apply(function(){
 					$.merge($scope.items, results);
 				});
 
