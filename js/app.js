@@ -47,7 +47,7 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'partials/list.html'
         })
         .state('detail', {
-            url: '/detail',
+            url: '/detail/:itemId',
             templateUrl: 'partials/detail.html'
         })
         // .state('list.home', {

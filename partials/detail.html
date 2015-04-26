@@ -9,27 +9,25 @@
 	</nav>-->
 
 	<div class="item-thumbnail col-md-5 col-md-offset-2 col-xs-12">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+		<div id="itemCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#itemCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#itemCarousel" data-slide-to="1"></li>
+				<li data-target="#itemCarousel" data-slide-to="2"></li>
 			</ol>
 
 			<div class="carousel-inner" id="carousel_inner_id">
-				<div class="item active">
-					<img class="img-responsive img-center" src="https://usercontents-a.styleshare.kr/images/14081567/1280x-"/>
-				</div>
-				<div class="item">
-					<img class="img-responsive img-center" src="https://athere.blob.core.windows.net/item-image-container/BD760BCC-B91E-4948-B43C-0D7585900925"/>
-				</div>
-				<div class="item">
-					<img class="img-responsive img-center" src="https://usercontents-a.styleshare.kr/images/14081569/1280x-"/>
+				<div ng-repeat="itemImageUrl in itemImageUrls" class="item">
+					<img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />
 				</div>
 			</div>
 
-			<a class="left  carousel-control" data-target="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> </a>
-			<a class="right carousel-control" data-target="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </a>
+			<a class="left  carousel-control" data-target="#itemCarousel" role="button" data-slide="prev"> 
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> 
+			</a>
+			<a class="right carousel-control" data-target="#itemCarousel" role="button" data-slide="next"> 
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
+			</a>
 		</div>
 	</div>
 
@@ -37,16 +35,19 @@
 		<div class="row">
 			<div class="item-info col-md-12">
 				<p class="text-left">
-					냐하하하
+					냐하하하 상의#아디다스 하의#에이랜드 
 				</p>
 				<!--<p class="upload-font text-left">Uploaded on</p>-
 				{{uploaded-date}}-->
 			</div>
 
 			<div class="item-action col-md-12 col-xs-12">
-				<div class="like-action col-md-6 col-xs-6 text-left">
-					<img class="img-responsive" src="img/feed_card_like_ic_on.png">
-
+				<div class="like-action col-md-6 col-xs-6">
+					<div class="btn-disabled">
+						<a data-toggle="modal" data-target="#_myModal" class="clickable"> 
+							<img ng-src="img/feed_card_like_ic_off.png" class="img-responsive" src="img/feed_card_like_ic_off.png">
+						</a>
+					</div>
 				</div>
 				<div class="get-action col-md-6 col-xs-6 text-right">
 					<div id="label-btn-bg" class="btn-disabled clickable">
@@ -60,15 +61,36 @@
 				<div class="col-md-2 col-xs-2">
 					<img src="img/feed_comment_ic.png" class="clickable">
 				</div>
-				<div class="col-md-3 col-xs-3 comment-font">
-					<p>
-						댓글
-					</p>
+				<div class="col-md-10 col-xs-10 comment-font">
+					<p>댓글<a href="#"> (23) </a></p>
 				</div>
-				<div class="col-md-offset-7 col-xs-offset-7"></div>
-				<div class="comment-write">
-					<input type="text" class="form-control" placeholder="댓글 남기기">
+				<ul class="img-comment-list col-md-12 col-xs-12">
+                    <li>
+                        <div class="comment-img">
+                          <img src="https://sdl-stickershop.line.naver.jp/products/0/0/21/260/LINEStorePC/main.png">
+                        </div>
+                        <div class="comment-text">
+                            <strong><a href="">Nameko</a></strong>
+                            <p>오홍오홍홓ㅇ홍 이뻐요 신발이 마음에들어</p> <span class="date sub-text">on March 5th, 2014</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="comment-img">
+                          <img src="http://www.childmom.com/shop/data/0/toy_130820_04.jpg">
+                        </div>
+                        <div class="comment-text">
+                            <strong><a href="">몬스터 </a></strong>
+                            <p>여름에 입으면딱일듯 컄 </p> <span>on March 5th, 2014</span>
+                        </div>
+                    </li>
+                </ul>
+				
+				<div class="comment-write col-md-10 col-xs-10">
+					<input type="text" class="form-control" placeholder="댓글 남기기">	
 				</div>
+					<button class="col-md-2 col-xs-2 btn btn-default comment-btn">Add</button>
+						
+				
 			</div>
 
 			<div class="item-editor col-md-12 col-xs-12">
