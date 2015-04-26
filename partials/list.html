@@ -11,15 +11,15 @@
 						
 						<div class="row">
 							<div class="col-md-12 text-left">
-								<a target="new_blank" class="clickable"><span class="glyphicon glyphicon-heart" aria-hidden="true" style="color:#CFD8DC; padding-right: 2px;"></span><span class="count-text">{{item.likeItCount}} </span></a>
-								<a target="new_blank" class="clickable"><span class="glyphicon glyphicon-comment" aria-hidden="true" style="color:#CFD8DC; padding-left: 4px; padding-right: 2px;"></span><span class="count-text">{{item.replyCount}}</span></a>
+								<a target="new_blank" class="clickable"><span class="glyphicon glyphicon-heart count-glyphicon" aria-hidden="true"></span><span class="count-text">{{item.likeItCount}} </span></a>
+								<a target="new_blank" class="clickable"><span class="glyphicon glyphicon-comment count-glyphicon" aria-hidden="true" style="padding-left: 6px;"></span><span class="count-text">{{item.replyCount}}</span></a>
 							</div>
 						</div>
 						
 						<div class="row card-btn">
 							<div class="col-md-6 col-xs-4 text-left btn-like">
 								<div class="btn-disabled">
-									<a data-toggle="modal" data-target="#_myModal" class="clickable" ng-click="likeIt(item)"> <img ng-src="{{item.likeImage}}"/></a>
+									<a data-toggle="modal" data-target="#_myModal" class="clickable" ng-click="likeIt(item)"><span class="glyphicon glyphicon-heart like-glyphicon" aria-hidden="true"></span></a>
 								</div>
 							</div>
 							<div class="col-md-6 col-xs-8 text-right btn-get">

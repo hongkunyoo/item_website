@@ -58,3 +58,14 @@
 .btn-get {
 	padding-left: 0px;
 }
+
+.count-glyphicon {
+	color:#CFD8DC; 
+	padding-right: 3px; 
+	font-size:11px;
+}
+
+.like-glyphicon {
+	color: #e2e6e8;
+	font-size: 24px;
+}
