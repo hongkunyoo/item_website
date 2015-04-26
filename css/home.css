@@ -52,3 +52,7 @@
 .text-bold {
 	font-weight: bold;
 }
+
+.img-inlineblock {
+	display: inline-block;
+}
