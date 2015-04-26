@@ -1,94 +1,109 @@
-<div class="row" ng-controller="detailcontroller">
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="navbar-header">
-			  <div class="download-banner">
-			  	<img class="img-responsive" src="#"/>
-			  </div>
+<div class="container" ng-controller="detailController">
+<div class="row">
+	<!--	<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="navbar-header">
+	<div class="download-banner">
+	<img class="img-responsive" src="#"/>
+	</div>
+	</div>
+	</nav>-->
+
+	<div class="item-thumbnail col-md-5 col-md-offset-2 col-xs-12">
+		<div id="itemCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+			<ol class="carousel-indicators">
+				<li data-target="#itemCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#itemCarousel" data-slide-to="1"></li>
+				<li data-target="#itemCarousel" data-slide-to="2"></li>
+			</ol>
+
+			<div class="carousel-inner" id="carousel_inner_id">
+				<div class="item active">
+					<img class="img-responsive" src="https://usercontents-a.styleshare.kr/images/14081567/1280x-"/>
+				</div>
+				<div class="item">
+					<img class="img-responsive" src="https://athere.blob.core.windows.net/item-image-container/BD760BCC-B91E-4948-B43C-0D7585900925"/>
+				</div>
+				<div class="item">
+					<img class="img-responsive" src="data:image/jpeg;base64,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"/>
+				</div>
 			</div>
-		</nav>
 
-		<div class="item-thumbnail col-md-5 col-md-offset-2 col-xs-12">
-	
-			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-
-				
-				<ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
-				</ol>
-
-				
-				<div class="carousel-inner">
-					<div class="item active">
-						<img class="img-responsive img-center" src="#"/>
-					</div>
-					<div class="item">
-						<img class="img-responsive img-center" src="#"/>
-					</div>
-					<div class="item">
-						<img class="img-responsive img-center" src="#"/>
-					</div>
-				</div>
-
-				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
-			</div>
-		</div>
-		
-		<div class="item-detail col-md-3 col-xs-12">
-			<div class="row">
-				<div class="item-info col-md-12">
-					{{item-content}}
-					<p>Uploaded on</p>
-			  		{{uploaded-date}}
-				</div>
-	
-				
-				<div class="item-action col-md-12">
-					<div class="like-action img-left">
-				  		<img class="img-responsive" src="img/feed_card_like_ic_on_pressed.png">
-				  		{{like-action}}
-
-				  	</div>
-					<div class="get-action">
-				  		<img class="img-responsive img-right" src="img/feed_card_label_ic.png">
-				  		{{get-action}}
-				  	</div>
-				</div>
-
-				<div class="item-comment col-md-12">
-					<div class="col-md-2 col-xs-2">
-						<img class="img-responsive" src="img/detail_comment_ic.png"/>
-					</div>
-					<div class="col-md-3 col-xs-3 comment-font">
-						<p>댓글</p>
-					</div>
-					<div class="col-md-offset-7 col-xs-offset-7"></div>
-					<div class="comment-write">
-						<input type="text" class="form-control" placeholder="댓글 남기기">
-					</div>
-				</div>
-
-				<div class="item-editor col-md-12">
-						<p>Uploaded by</p>
-					
-					<div class="col-xs-2 editor-img">
-						<img class="img-responsive" src="{{editor-img}}"/>
-					</div>
-					<div class="col-xs-8 editor-name">
-						{{editor-name}}
-					</div>
-				</div>
-	
-			</div>
-		</div>
-		<div class="col-md-2">
+			<a class="left  carousel-control" data-target="#itemCarousel" role="button" data-slide="prev"> 
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> 
+			</a>
+			<a class="right carousel-control" data-target="#itemCarousel" role="button" data-slide="next"> 
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
+			</a>
 		</div>
 	</div>
+
+	<div class="item-detail col-md-3 col-xs-12">
+		<div class="row">
+			<div class="item-info col-md-12">
+				<p class="text-left">
+					냐하하하 상의#아디다스 하의#에이랜드 신발#잇템 
+				</p>
+				<!--<p class="upload-font text-left">Uploaded on</p>-
+				{{uploaded-date}}-->
+			</div>
+
+			<div class="item-action col-md-12 col-xs-12">
+				<div class="like-action col-md-6 col-xs-6">
+					<div class="btn-disabled">
+						<a data-toggle="modal" data-target="#_myModal" class="clickable"> 
+							<img ng-src="img/feed_card_like_ic_off.png" class="img-responsive" src="img/feed_card_like_ic_off.png">
+						</a>
+					</div>
+				</div>
+				<div class="get-action col-md-6 col-xs-6 text-right">
+					<div id="label-btn-bg" class="btn-disabled clickable">
+						<img src="img/feed_card_label_ic_disabled.png">
+						<span id="get-text">GET</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-comment col-md-12 col-xs-12">
+				<div class="col-md-2 col-xs-2">
+					<img src="img/feed_comment_ic.png" class="clickable">
+				</div>
+				<div class="col-md-10 col-xs-10 comment-font">
+					<p>댓글<a href="#"> (23) </a></p>
+				</div>
+				<ul class="img-comment-list col-md-12 col-xs-12">
+                    <li>
+                        <div class="comment-img">
+                          <img src="https://sdl-stickershop.line.naver.jp/products/0/0/21/260/LINEStorePC/main.png">
+                        </div>
+                        <div class="comment-text">
+                            <strong><a href="">Nameko</a></strong>
+                            <p>오홍오홍홓ㅇ홍 이뻐요 신발이 마음에들어</p> <span class="date sub-text">on March 5th, 2014</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="comment-img">
+                          <img src="http://www.childmom.com/shop/data/0/toy_130820_04.jpg">
+                        </div>
+                        <div class="comment-text">
+                            <strong><a href="">몬스터 </a></strong>
+                            <p>여름에 입으면딱일듯 컄 </p> <span>on March 5th, 2014</span>
+                        </div>
+                    </li>
+                </ul>
+				
+				<div class="comment-write col-md-10 col-xs-10">
+					<input type="text" class="form-control" placeholder="댓글 남기기">	
+				</div>
+					<button class="col-md-2 col-xs-2 btn btn-default comment-btn">Add</button>
+						
+				
+			</div>
+
+			<div class="item-editor col-md-12 col-xs-12">
+				<a class="pull-left clickable branch-color"> <img src ="img/default-user-image.png" class="item_profile img-circle"> <span id="nickname-text" class="text-bold ng-binding">Chaesoo</span> </a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2"></div>
+</div>
+</div>

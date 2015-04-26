@@ -23,7 +23,7 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
 	// redirectTo : '/login'
 	// });
 
-	$urlRouterProvider.otherwise('/list');
+	// $urlRouterProvider.otherwise('/list');
 
 	$stateProvider
 		// .state('login', {
