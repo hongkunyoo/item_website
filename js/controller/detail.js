@@ -1,12 +1,5 @@
 itemApp.controller('detailController', function($rootScope, $scope, $location, $filter, $state, $stateParams, itService) {
-	var item = {};
-	item.uploader = "hello";
-	$scope.item = item;
-	
-	
-	
 	var itemId = $stateParams.itemId;
-	$scope.itemImageUrls = [];
 	
 	itService.aimHelper.getItem({id : itemId}, "userId", {
 		success: function(result) {
@@ -20,7 +13,15 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 				}
 				imgUrls.push(url);	
 			}
-			$.merge($scope.itemImageUrls, imgUrls);
+			// $.merge($scope.item.itemImageUrls, imgUrls);
+			$scope.item = result;
+			result.replyList = result.replyList.map(function(reply){
+				reply.rawCreateDateTime = new ItDateTime(reply.rawCreateDateTime).toPrettyDateTime();
+				return reply;
+			});
+			$scope.item.itemImageUrls = imgUrls;
+			
+			
 			
 		}, error: function(err) {
 			console.log(err);
