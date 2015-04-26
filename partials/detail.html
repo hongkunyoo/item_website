@@ -1,6 +1,6 @@
 <div class="container" ng-controller="detailController">
 	<div class="row">
-		<div class="item-thumbnail col-md-5 col-md-offset-2 col-xs-12">
+		<div class="item-thumbnail col-md-5 col-md-offset-2 col-xs-12" style="margin-bottom: 10px;">
 			<div id="itemCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 				<ol class="carousel-indicators">
 					<li ng-repeat="itemImageUrl in item.itemImageUrls" data-target="#itemCarousel" data-slide-to="{{$index}}"></li>
@@ -45,7 +45,7 @@
 					</div>
 					<div class="col-md-10 col-xs-10 comment-font">
 						<p>
-							댓글<a href="#"> ({{item.replyCount}}) </a>
+							댓글<a href=""> ({{item.replyCount}}) </a>
 						</p>
 					</div>
 					<ul class="img-comment-list col-md-12 col-xs-12">
