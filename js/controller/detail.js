@@ -3,5 +3,5 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 	item.uploader = "hello";
 	$scope.item = item;
 
-	$("#carousel_inner_id").css("height", 500);	
+	// $("#carousel_inner_id").css("height", 500);	
 }); 
