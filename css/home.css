@@ -15,7 +15,6 @@
 #get-text {
 	color: #cfD8dc;
 	font-size: 13px;
-	letter-spacing: 1px;
 	padding-left: 5px;
 	line-height: 0px;
 }
@@ -51,4 +50,8 @@
 
 .text-bold {
 	font-weight: bold;
+}
+
+.img-inlineblock {
+	display: inline-block;
 }
