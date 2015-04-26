@@ -39,6 +39,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 					item['uploaderImg']	= itService.imageService.makeUserImage(item.whoMadeId);
 					item['imageUrl']	= itService.imageService.makeItemImage(item.id);
 					item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
+					item.isLoaded = false;
 					if (item.prevLikeId == null) {
 						item.likeImage = "img/feed_card_like_ic_off.png";
 					} else {
@@ -47,18 +48,9 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 					// item.mainImageHeight
 					return item;
 				}));
-				console.log(results[0]);
 				$scope.$apply(function(){
 					$.merge($scope.items, results);
 				});
-
-				// $("#block_container").BlocksIt({
-				// numOfCol: numOfCol,
-				// offsetX: 4,
-				// offsetY: 1,
-				// blockElement: '.block'
-				// });
-				// $('#block_container').pinterest_grid();
 
 				$(window).resize();
 				$scope.page++;
@@ -72,10 +64,13 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	};
 	$scope.addMore();
 
-	$scope.onImgLoad = function() {
+	$scope.onImgLoad = function(item) {
 		doResize();
+		$scope.$apply(function(){
+			item.isLoaded = true;
+		});
 	};
-
+	
 	$scope.$watch('items', function() {
 		$(window).resize();
 

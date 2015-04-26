@@ -1,10 +1,10 @@
 <div class="container" ng-controller="listController">
 	<div id="block_container" infinite-scroll="addMore()" infinite-scroll-distance="7" infinite-scroll-immediate-check=false align="center" style="position: relative; height:100vh">
-		<div ng-repeat="item in items" class="block" style="position: absolute;">
+		<div ng-repeat="item in items" class="block" style="position: absolute;" ng-show="item.isLoaded">
 			<div class="panel panel-default">
 				
 				<div>
-					<a href="#/detail/{{item.id}}"><img ng-onload="onImgLoad()" class="imgDetail img-responsive clickable" ng-src="https://athere.blob.core.windows.net/item-image-container/{{item.id}}"/></a>
+					<a href="#/detail/{{item.id}}"><img ng-onload="onImgLoad(item)" class="imgDetail img-responsive clickable" ng-src="https://athere.blob.core.windows.net/item-image-container/{{item.id}}"/></a>
 						
 					<div class="container-fluid card-content">
 						<p class="text-left spacing-none">{{item.content}}</p>

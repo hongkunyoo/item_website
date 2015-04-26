@@ -15,10 +15,13 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 			}
 			// $.merge($scope.item.itemImageUrls, imgUrls);
 			$scope.item = result;
-			result.replyList = result.replyList.map(function(reply){
-				reply.rawCreateDateTime = new ItDateTime(reply.rawCreateDateTime).toPrettyDateTime();
-				return reply;
-			});
+			if (result.replyList != null && result.replyList.length > 0) {
+				result.replyList = result.replyList.map(function(reply){
+					reply.rawCreateDateTime = new ItDateTime(reply.rawCreateDateTime).toPrettyDateTime();
+					return reply;
+				});	
+			}
+			
 			$scope.item.itemImageUrls = imgUrls;
 			
 			
@@ -29,7 +32,7 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 	});	
 	
 	$scope.onImgLoad = function() {
-		$('#carousel_inner_id div:first').addClass('active');
+		// $('#carousel_inner_id div:first').addClass('active');
 		$("#carousel_inner_id").css("height", $("#carousel_inner_id div:first img").css("height"));
 	};
 }); 
