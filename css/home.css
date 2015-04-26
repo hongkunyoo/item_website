@@ -6,7 +6,7 @@
 
 .count-text {
 	color: #CFD8DC;
-	font-size: 12px;
+	font-size: 10px;
 	padding: 2px;
 	font-weight: 200;
 	line-height: 0px;
@@ -21,6 +21,7 @@
 
 #nickname-text {
 	color: #263238;
+	font-size: 11px;
 	padding-left: 5px;
 }
 
@@ -52,6 +53,6 @@
 	font-weight: bold;
 }
 
-.img-inlineblock {
-	display: inline-block;
+.img-inline {
+	display: inline;
 }
