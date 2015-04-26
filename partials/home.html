@@ -2,13 +2,13 @@
 <div infinite-scroll="addMore()" infinite-scroll-distance="3" infinite-scroll-immediate-check=false ng-controller="homeController" align="center" id="block_container" style="position: relative;">
 	<div ng-repeat="item in items" class="block">
 		<div class="panel panel-default">
-			<div class="card-title">
+			<!-- <div class="card-title">
 				<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)">
 					<img ng-src={{item.uploaderImg}} class="item_profile img-circle"/>
 					{{item.whoMade}}
 				</a>
 				<div style="clear:both;"></div>
-			</div>
+			</div> -->
 			<div>
 				<a ng-click="showDetails(item)"><img class="img-responsive clickable _img-rounded" ng-src="{{item.imageUrl}}"/></a>
 				<div class="card-content">
@@ -25,7 +25,6 @@
 					<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_it_ic.png" class='clickable' width=21 height=28/><span>{{item.likeItCount}}</span></a>
 					<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_comment_ic.png" class='clickable' width=21 height=28/><span>{{item.replyCount}}</span></a>
 				</div>
-
 			</div>
 
 			<div class="panel-footer" ng-show="item.replyShowValue">

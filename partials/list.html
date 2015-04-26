@@ -1,64 +1,38 @@
 <div class="container" ng-controller="listController">
-	<!-- <div class="row">
-	<div class="col-md-3 hidden-xs hidden-sm">
-	<div class="affix col-md-2">
-	<div class="input-group" style="padding-bottom:10px;"></div>
-
-	<ul class="nav nav-pills nav-stacked">
-	<li role="presentation" ng-class="{active: list_active=='list.home'}">
-	<a ui-sref=".home" class="clickable" ui-sref-active="active">Home</a>
-	</li>
-	<li role="presentation">
-	<a ui-sref=".users({user_id:user.id})" class="clickable" ui-sref-active="active">Users</a>
-	</li>
-	<li role="presentation">
-	<a ui-sref=".add_products" class="clickable" ui-sref-active="active">Add Products</a>
-	</li>
-	<li role="presentation">
-	<a ui-sref=".settings" class="clickable" ui-sref-active="active">Settings</a>
-	</li>
-	<li role="presentation">
-	<a ng-click="logout()" class="clickable" ui-sref-active="active">Logout</a>
-	</li>
-	</ul>
-	</div>
-	</div>
-	<div class="col-md-9" align="center">
-	<div class="row" align="center" style="padding:5px;">
-	<div ui-view align="center">
-
-	</div>
-	</div>
-	<div class="add_btn">
-	<input type="image" src="img/feed_upload_btn.png"/>
-	</div>
-	</div>
-	</div> -->
-
 	<div id="block_container" infinite-scroll="addMore()" infinite-scroll-distance="7" infinite-scroll-immediate-check=false align="center" style="position: relative; height:100vh">
-		<div ng-repeat="item in items" class="block" style="position: absolute;">
+		<div ng-repeat="item in items" class="block" style="position: absolute;" ng-show="item.isLoaded">
 			<div class="panel panel-default">
-				<div class="card-title">
-					<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)"> <img ng-src={{item.uploaderImg}} class="item_profile img-circle"/> {{item.whoMade}} </a>
-					<div style="clear:both;"></div>
-				</div>
+				
 				<div>
-					<a ng-click="showDetails(item)"><img ng-onload="onImgLoad()" class="img-responsive clickable _img-rounded" ng-src="https://athere.blob.core.windows.net/item-image-container/{{item.id}}"/></a>
-					<div class="card-content">
-						<p>
-							{{item.content}}
-						</p>
+					<a href="#/detail/{{item.id}}"><img ng-onload="onImgLoad(item)" class="imgDetail img-responsive clickable" ng-src="https://athere.blob.core.windows.net/item-image-container/{{item.id}}"/></a>
+						
+					<div class="container-fluid card-content">
+						<p class="text-left spacing-none">{{item.content}}</p>
+						
+						<div class="row">
+							<div class="col-md-12 text-left">
+								<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_card_num_like_ic.png" class='clickable'/><span class="count-text">{{item.likeItCount}}</span></a>
+								<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_card_num_comment_ic.png" class='clickable'/><span class="count-text">{{item.replyCount}}</span></a>
+							</div>
+						</div>
+						
+						<div class="row card-btn">
+							<div class="col-md-6 col-xs-4 text-left">
+								<div class="btn-disabled">
+									<a data-toggle="modal" data-target="#_myModal" class="clickable" ng-click="likeIt(item)"> <img ng-src="{{item.likeImage}}" class="img-responsive"/></a>
+								</div>
+							</div>
+							<div class="col-md-6 col-xs-8 text-right">
+								<div id="label-btn-bg" class="btn-disabled clickable"><img src="img/feed_card_label_ic_disabled.png" class="img-responsive img-inlineblock"/><span id="get-text">GET</span></div>
+							</div>
+						</div>
 					</div>
 
-					<div class="col-md-3">
-						<a data-toggle="modal" data-target="#_myModal" class="clickable" ng-click="likeIt(item)"> <img ng-src="{{item.likeImage}}" class="img-responsive"> </a>
-					</div>
-
-					<div class="col-md-3">
-						<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_it_ic.png" class='clickable' width=21 height=28/><span>{{item.likeItCount}}</span></a>
-						<a target="new_blank" ng-click="showReply(item)" class="clickable"><img src="img/feed_comment_ic.png" class='clickable' width=21 height=28/><span>{{item.replyCount}}</span></a>
-					</div>
-
+					<div class="card-title">
+						<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)">
+							<img ng-src={{item.uploaderImg}} class="item_profile img-circle"/>	<span id="nickname-text" class="text-bold">{{item.whoMade}}</span></a>
+						<div style="clear:both;"></div>
+					</div>					
 				</div>
 
 				<div class="panel-footer" ng-show="item.replyShowValue">
@@ -89,13 +63,20 @@
 					</ul>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<div align="center" ng-hide="itemEmpty()">
-		<span class="fa-stack fa-lg" style="font-size:30px;"> <i class="fa fa-circle fa-stack-2x" style="color:white;"></i> <i class="fa fa-spinner fa-pulse fa-stack-1x"></i> <!-- <i class="fa fa-square-o fa-stack-2x"></i> --> <!-- <i class="fa fa-twitter fa-stack-1x"></i> --> </span>
+		<span class="fa-stack fa-lg" style="font-size:30px;">
+			<i class="fa fa-circle fa-stack-2x" style="color:white;"></i> 
+			<i class="fa fa-spinner fa-pulse fa-stack-1x"></i>
+			<!-- <i class="fa fa-square-o fa-stack-2x"></i> --> 
+			<!-- <i class="fa fa-twitter fa-stack-1x"></i> --> 
+		</span>
 		<!-- <i class="fa fa-circle" style="font-size: 55px;">
 		<i style="font-size: 44px;" class="fa fa-spinner fa-pulse"></i>
 		</i> -->
 	</div>
 </div>
+
 

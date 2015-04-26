@@ -23,7 +23,7 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
 	// redirectTo : '/login'
 	// });
 
-	$urlRouterProvider.otherwise('/list');
+	// $urlRouterProvider.otherwise('/list');
 
 	$stateProvider
 		// .state('login', {
@@ -46,11 +46,34 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/list',
             templateUrl: 'partials/list.html'
         })
-
         .state('detail', {
-            url: '/detail',
+            url: '/detail/:itemId',
             templateUrl: 'partials/detail.html'
         })
+        // .state('list.home', {
+            // url: '/home',
+            // templateUrl: 'partials/home.html'
+        // })
+        // .state('list.detail', {
+            // url: '/detail',
+            // templateUrl: 'partials/detail.html'
+        // })
+        // .state('list.users', {
+            // url: '/users/:user_id',
+            // templateUrl: 'partials/users.html'   
+        // })
+        // .state('list.users.myitem', {
+            // url: '/myitem',
+            // templateUrl: 'partials/myitem.html'   
+        // })
+        // .state('list.users.ititem', {
+            // url: '/ititem',
+            // templateUrl: 'partials/ititem.html'   
+        // })
+        // .state('list.settings', {
+            // url: '/settings',
+            // templateUrl: 'partials/settings.html'   
+		// })
         // .state('list.home', {
             // url: '/home',
             // templateUrl: 'partials/home.html'
