@@ -51,7 +51,7 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 	});	
 	
 
-	$('#loginDialog').modal();
+	// $('#loginDialog').modal();
 
 	$rootScope.logout = function() {
 		// $localStorage.$reset("session");
