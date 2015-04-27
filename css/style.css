@@ -302,8 +302,9 @@ body {
 }
 
 .card-content {
-	padding: 10px 15px;
+	padding: 10px 10px;
 	border-top: 1px solid #eceff1;
 	color: #263238;
+	font-size: 12px;
 	word-spacing: -1px;
 }

@@ -7,20 +7,11 @@
 .count-text {
 	color: #CFD8DC;
 	font-size: 12px;
-	padding: 2px;
-	font-weight: 200;
-	line-height: 0px;
-}
-
-#get-text {
-	color: #cfD8dc;
-	font-size: 13px;
-	padding-left: 5px;
-	line-height: 0px;
 }
 
 #nickname-text {
 	color: #263238;
+	font-size: 11px;
 	padding-left: 5px;
 }
 
@@ -41,17 +32,40 @@
 	opacity: 1.0;
 }
 
-#label-btn-bg {
-	padding:2px 8px 2px 5px;
-	background-color: #f5f5f5;
-	border-radius: 6px;
+.label-btn-bg {
+	padding-left: 5px;
+	padding-right: 5px;
 	display: inline-block;
+	height: 24px;
+	color: #e2e6e8;
+	font-size: 13px;
+	word-spacing: 1px;
+	font-weight: bold;
 }
 
 .text-bold {
 	font-weight: bold;
 }
 
-.img-inlineblock {
-	display: inline-block;
+.img-inline {
+	display: inline;
+}
+
+.btn-like {
+	padding-right: 0px;
+}
+
+.btn-get {
+	padding-left: 0px;
+}
+
+.count-glyphicon {
+	color:#CFD8DC; 
+	padding-right: 3px; 
+	font-size:11px;
+}
+
+.like-glyphicon {
+	color: #e2e6e8;
+	font-size: 24px;
 }
