@@ -71,21 +71,12 @@
 }
 
 .get-the-app-bg {
-	width: 100px;
+	padding-left: 3px;
+	padding-right: 5px;
 	height: 50px;
-	font-size: 12px;
-	color: #263238;
-	padding: 8px 12px;
-	background-color: #FFFFFF;
+	background-color: #263238;
+	border-radius: 6px;
 	margin-top: 10px;
 	margin-right: 10px;
 	float: right;
-}
-
-.get-the-app-img {
-	float: right;
-	width: 50px;
-	height: 50px;
-	margin-top: 10px;
-	background-color: #FFFFFF;
 }
