@@ -39,7 +39,9 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 		// $("#carousel_inner_id").css("height", $("#carousel_inner_id div:first img").css("height"));
 		$('.your-class').slick({
 			accessibility: true,
-			arrows: true
+			arrows: false,
+			dots: true
+			
 		});
 	};
 	
