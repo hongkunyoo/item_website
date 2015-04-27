@@ -88,8 +88,17 @@
 			};
 
 		</script>
+		
+		<div id="item_banner" style="background-image: url('img/download_bg.png'); height:70px;">
+			<div class="clearfix pull-right">
+				<a class="left op-tracking-target" href="" target="_blank" data-ga-action="click" data-ga-category="download" data-ga-label="top_banner" data-ga-value="1"> <img alt="Get it on Google Play" src="img/download_btn.png" width="150px" height="50px"> </a>
+			</div>
+		</div>
+		
+		
 		<!-- NavBar -->
-		<nav class="navbar navbar-custom navbar-fixed-top" ng-show="isLogin()">
+		<!-- navbar-fixed-top -->
+		<nav id="mynavbar" class="navbar navbar-custom" ng-show="isLogin()">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
@@ -126,7 +135,7 @@
 		</nav>
 
 		<!-- <section ui-view style="padding-top:60px;" ng-class="isLoginClass()"> -->
-		<section ui-view style="padding-top:60px;">
+		<section ui-view id="mysection">
 
 		</section>
 		<div class="modal" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
