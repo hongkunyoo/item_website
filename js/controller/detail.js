@@ -1,9 +1,6 @@
 itemApp.controller('detailController', function($rootScope, $scope, $location, $filter, $state, $stateParams, itService) {
 	var itemId = $stateParams.itemId;
 	
-	// $("#itemCarousel").carousel();
-	
-	
 	itService.aimHelper.getItem({id : itemId}, "userId", {
 		success: function(result) {
 			var imgUrls = [];
@@ -26,8 +23,6 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 			}
 			
 			$scope.item.itemImageUrls = imgUrls;
-			
-			
 			
 		}, error: function(err) {
 			console.log(err);
