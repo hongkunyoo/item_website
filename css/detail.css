@@ -2,7 +2,6 @@
 	position: relative;
 }
 
-
 #itemCarousel.carousel .carousel-indicators{
 	bottom: 10px;
 }
@@ -24,11 +23,29 @@
 	background-image: none;
 }
 
-.item-info{
-	padding-top: 16px;
-	padding-bottom: 16px;
-	border-radius: 1em;
-	background-color: #FFFFFF;
+@media only screen and (min-width : 992px) {
+	.detail-box{
+		padding-top: 16px;
+		margin-left: 16px;
+		background-color: #FFFFFF;
+		border-radius: 1em;
+	}
+	.item-thumbnail{
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}
+
+
+ @media only screen and (min-width : 320px) {
+	.detail-box{
+		padding-top: 16px;
+		background-color: #FFFFFF;
+	}
+	.item-thumbnail{
+		padding-left: 0px;
+		padding-right: 0px;
+	}
 }
 
 .item-info > p {
@@ -43,8 +60,6 @@
 .item-action{
 	padding: 16px 16px 16px 16px;
 	border-top: solid 1px #78909C; 
-	border-radius: 1em;
-	background-color: #FFFFFF;
 	height: auto;
 }
 
@@ -52,8 +67,6 @@
 	margin-top: 16px;
 	padding-top: 16px;
 	padding-bottom: 16px;
-	border-radius: 1em;
-	background-color: #FFFFFF;
 }
 
 .comment-font > p{
@@ -99,13 +112,27 @@
     color: #aaa;
 }
 
-.comment-btn{
-	color: #263238;
-	font-size:13px;
-	font-weight: bold;
-	padding-left: 6px;
-	padding-right: 6px;
-	
+.btn-sunny {
+	color: #FFFFFF;
+	background-color: #f4ad49;
+	text-align: center;
+	font-size: 13px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.btn-sunny:hover, .btn-sunny:focus, .open>.dropdown-toggle.btn-sunny {
+	color: #FFFFFF;
+	background-color: #f5b75f;
+	border-bottom:2px solid #c4924c;
+	outline: none;
+}
+
+
+.btn-sunny:active, .btn-sunny.active {
+	color: #FFFFFF;
+	background-color: #d69840;
+	margin-top: 2px;
 }
 
 .item-editor{
@@ -113,8 +140,9 @@
 	padding-top: 16px;
 	padding-left: 32px;
 	padding-bottom: 16px;
-	border-radius: 1em;
-	background-color: #FFFFFF;
 	height: auto;
-	
+}
+
+.editor-text{
+	font-size: 15px;
 }
