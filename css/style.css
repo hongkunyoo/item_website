@@ -308,3 +308,8 @@ body {
 	font-size: 12px;
 	word-spacing: -1px;
 }
+
+.slick-dots li.slick-active button:before {
+	opacity: .75;
+	color: rgb(219, 219, 219) !important;
+}
