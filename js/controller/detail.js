@@ -35,4 +35,44 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 		// $('#carousel_inner_id div:first').addClass('active');
 		$("#carousel_inner_id").css("height", $("#carousel_inner_id div:first img").css("height"));
 	};
+	
+	$scope.addReply = function() {
+		$('#loginDialog').modal();
+		
+		var content = $scope.replyContent;
+		if (content == "")
+			return;
+			
+		
+		// var myUser = itService.prefHelper.get("ItUser");
+		// var data = {
+			// content : content,
+			// refId : item.id,
+			// whoMade : myUser.nickName,
+			// whoMadeId : myUser.id
+		// };
+// 
+		// item.replyContent = "";
+		// var noti = {
+			// whoMade : myUser.nickName,
+			// whoMadeId : myUser.id,
+			// refId : item.id,
+			// refWhoMade : item.whoMade,
+			// refWhoMadeId : item.whoMadeId,
+			// content : content,
+			// type : "Reply",
+			// imageWidth : item.imageWidth,
+			// imageHeight : item.imageHeight,
+		// };
+		// itService.aimHelper.add('Reply', data, noti, {
+			// success : function(results) {
+				// if (item.replys == null || item.replys == undefined)
+					// item.replys = [];
+				// item.replys.push(results.result);
+			// },
+			// error : function(err) {
+				// itService.viewService.showError(err);
+			// }
+		// });
+	};
 }); 

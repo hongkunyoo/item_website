@@ -63,9 +63,9 @@
 					</ul>
 
 					<div class="comment-write col-md-10 col-xs-10">
-						<input type="text" class="form-control" placeholder="댓글 남기기">
+						<input type="text" class="form-control" placeholder="댓글 남기기" ng-model="replyContent">
 					</div>
-					<button class="col-md-2 col-xs-2 btn btn-default comment-btn text-">
+					<button class="col-md-2 col-xs-2 btn btn-default comment-btn text-" ng-click="addReply()">
 						ADD
 					</button>
 
