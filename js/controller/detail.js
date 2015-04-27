@@ -1,7 +1,8 @@
 itemApp.controller('detailController', function($rootScope, $scope, $location, $filter, $state, $stateParams, itService) {
 	var itemId = $stateParams.itemId;
 	
-	$("#itemCarousel").carousel();
+	// $("#itemCarousel").carousel();
+	
 	
 	itService.aimHelper.getItem({id : itemId}, "userId", {
 		success: function(result) {
@@ -35,7 +36,11 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 	
 	$scope.onImgLoad = function() {
 		// $('#carousel_inner_id div:first').addClass('active');
-		$("#carousel_inner_id").css("height", $("#carousel_inner_id div:first img").css("height"));
+		// $("#carousel_inner_id").css("height", $("#carousel_inner_id div:first img").css("height"));
+		$('.your-class').slick({
+			accessibility: true,
+			arrows: true
+		});
 	};
 	
 	$scope.addReply = function() {

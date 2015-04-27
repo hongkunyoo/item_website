@@ -1,7 +1,7 @@
 <div class="container" ng-controller="detailController">
 	<div class="row">
 		<div class="item-thumbnail col-md-5 col-md-offset-2 col-xs-12" style="margin-bottom: 10px;">
-			<div id="itemCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+			<!-- <div id="itemCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 				<ol class="carousel-indicators">
 					<li ng-repeat="itemImageUrl in item.itemImageUrls" data-target="#itemCarousel" data-slide-to="{{$index}}"></li>
 				</ol>
@@ -12,9 +12,18 @@
 					</div>
 				</div>
 
-				<a class="left  carousel-control" data-target="#itemCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> </a>
+				<!-- <a class="left  carousel-control" data-target="#itemCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> </a>
 				<a class="right carousel-control" data-target="#itemCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </a>
+			</div> -->
+			<!-- <button type="button" class="slick-prev">Previous</button> -->
+			<div class="your-class">
+				
+			  	<div ng-repeat="itemImageUrl in item.itemImageUrls" class="item" ng-class="{active: $index==0}">
+					<img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />
+				</div>
+				
 			</div>
+			<!-- <button type="button" class="slick-next">Next</button> -->
 		</div>
 
 		<div class="item-detail col-md-3 col-xs-12">
