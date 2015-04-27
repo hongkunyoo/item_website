@@ -69,3 +69,21 @@
 	color: #e2e6e8;
 	font-size: 24px;
 }
+
+.get-the-app-bg {
+	width: 120px;
+	height: 70px;
+	font-size: 13px;
+	color: #263238;
+	padding: 15px 12px;
+	background-color: #eceff1;
+	float: right;
+}
+
+.get-the-app-img {
+	float: right;
+	width: 70px;
+	height: 70px;
+	padding: 5px;
+	background-color: #ECEFF1;
+}
