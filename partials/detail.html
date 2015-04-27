@@ -1,9 +1,12 @@
 <div class="container" ng-controller="detailController">
 	<div class="row">
-		<div class="item-thumbnail col-md-5 col-md-offset-2 col-xs-12" style="margin-bottom: 10px;">
+		<div class="item-thumbnail col-md-5 col-md-offset-2 col-xs-12">
 			<div id="itemCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 				<ol class="carousel-indicators">
-					<li ng-repeat="itemImageUrl in item.itemImageUrls" data-target="#itemCarousel" data-slide-to="{{$index}}"></li>
+					<li ng-repeat="itemImageUrl in item.itemImageUrls" data-target="#itemCarousel" data-slide-to="{{$index}}">
+						<!--indicator thumbnail
+						<img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />-->
+					</li>
 				</ol>
 
 				<div class="carousel-inner" id="carousel_inner_id">
@@ -19,13 +22,13 @@
 
 		<div class="item-detail col-md-3 col-xs-12">
 			<div class="row">
-				<div class="item-info col-md-12">
+				<div class="detail-box col-md-12 col-xs-12">
 					<p class="text-left">
 						{{item.content}}
 					</p>
 				</div>
 
-				<div class="item-action col-md-12 col-xs-12">
+				<div class="detail-box item-action col-md-12 col-xs-12">
 					<div class="like-action col-md-6 col-xs-6">
 						<div class="btn-disabled">
 							<a data-toggle="modal" data-target="#_myModal" class="clickable"> <img ng-src="img/feed_card_like_ic_off.png" class="img-responsive" src="img/feed_card_like_ic_off.png"> </a>
@@ -38,7 +41,7 @@
 					</div>
 				</div>
 
-				<div class="item-comment col-md-12 col-xs-12">
+				<div class="detail-box item-comment col-md-12 col-xs-12">
 					<div class="col-md-2 col-xs-2">
 						<img src="img/feed_comment_ic.png" class="clickable">
 					</div>
@@ -62,17 +65,20 @@
 						</li>
 					</ul>
 
-					<div class="comment-write col-md-10 col-xs-10">
+					<div class="comment-write col-md-9 col-xs-9">
 						<input type="text" class="form-control" placeholder="댓글 남기기">
 					</div>
-					<button class="col-md-2 col-xs-2 btn btn-default comment-btn text-">
-						ADD
+					<button class="col-md-3 col-xs-3 btn btn-sunny">
+						SUBMIT
 					</button>
 
 				</div>
 
-				<div class="item-editor col-md-12 col-xs-12">
-					<a class="pull-left clickable branch-color"> <img ng-src="https://athere.blob.core.windows.net/item-user-profile/{{item.whoMadeId}}" class="item_profile img-circle"> <span id="nickname-text" class="text-bold ng-binding">{{item.whoMade}}</span> </a>
+				<div class="detail-box item-editor col-md-12 col-xs-12">
+					<a class="pull-left clickable branch-color"> 
+						<img ng-src="https://athere.blob.core.windows.net/item-user-profile/{{item.whoMadeId}}" class="item_profile img-circle"> 
+						<span id="editor-text" class="text-bold ng-binding">{{item.whoMade}}</span> 
+					</a>
 				</div>
 			</div>
 		</div>
