@@ -173,50 +173,51 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	};
 
 	$scope.likeIt = function(item) {
-		var prevLikeId = item.prevLikeId;
-		if (prevLikeId == null) {
-			var myUser = itService.prefHelper.get("ItUser");
-			var data = {
-				refId : item.id,
-				whoMade : myUser.nickName,
-				whoMadeId : myUser.id
-			};
-			var noti = {
-				whoMade : myUser.nickName,
-				whoMadeId : myUser.id,
-				refId : item.id,
-				refWhoMade : item.whoMade,
-				refWhoMadeId : item.whoMadeId,
-				content : "",
-				type : "LikeIt",
-				imageWidth : item.imageWidth,
-				imageHeight : item.imageHeight,
-			};
-			itService.aimHelper.add('LikeIt', data, noti, {
-				success : function(result) {
-					item.prevLikeId = result.result.id;
-					item.likeItCount++;
-					item.likeImage = "img/general_it_highlight_btn.png";
-				},
-				error : function(err) {
-					itService.viewService.showError(err);
-				}
-			});
-		} else {
-			var data = {
-				id : prevLikeId
-			};
-			itService.aimHelper.del('LikeIt', data, {
-				success : function(result) {
-					item.prevLikeId = null;
-					item.likeItCount--;
-					item.likeImage = "img/general_it_btn.png";
-				},
-				error : function(err) {
-					itService.viewService.showError(err);
-				}
-			});
-		}
+		$('#loginDialog').modal();
+		// var prevLikeId = item.prevLikeId;
+		// if (prevLikeId == null) {
+			// var myUser = itService.prefHelper.get("ItUser");
+			// var data = {
+				// refId : item.id,
+				// whoMade : myUser.nickName,
+				// whoMadeId : myUser.id
+			// };
+			// var noti = {
+				// whoMade : myUser.nickName,
+				// whoMadeId : myUser.id,
+				// refId : item.id,
+				// refWhoMade : item.whoMade,
+				// refWhoMadeId : item.whoMadeId,
+				// content : "",
+				// type : "LikeIt",
+				// imageWidth : item.imageWidth,
+				// imageHeight : item.imageHeight,
+			// };
+			// itService.aimHelper.add('LikeIt', data, noti, {
+				// success : function(result) {
+					// item.prevLikeId = result.result.id;
+					// item.likeItCount++;
+					// item.likeImage = "img/general_it_highlight_btn.png";
+				// },
+				// error : function(err) {
+					// itService.viewService.showError(err);
+				// }
+			// });
+		// } else {
+			// var data = {
+				// id : prevLikeId
+			// };
+			// itService.aimHelper.del('LikeIt', data, {
+				// success : function(result) {
+					// item.prevLikeId = null;
+					// item.likeItCount--;
+					// item.likeImage = "img/general_it_btn.png";
+				// },
+				// error : function(err) {
+					// itService.viewService.showError(err);
+				// }
+			// });
+		// }
 	};
 
 	$scope.gotoWhomade = function(whoMadeId) {
