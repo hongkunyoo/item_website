@@ -2,12 +2,12 @@
 	<div class="row">
 		<div class="item-thumbnail col-md-5 col-md-offset-2 col-xs-12">
 			<div id="itemCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-				<ol class="carousel-indicators">
+				<!--<ol class="carousel-indicators">
 					<li ng-repeat="itemImageUrl in item.itemImageUrls" data-target="#itemCarousel" data-slide-to="{{$index}}">
-						<!--indicator thumbnail
-						<img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />-->
+						
+						indicator thumbnail <img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />
 					</li>
-				</ol>
+				</ol>-->
 				<div class="carousel-inner" id="carousel_inner_id">
 					<div ng-repeat="itemImageUrl in item.itemImageUrls" class="item" ng-class="{active: $index==0}">
 						<img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />

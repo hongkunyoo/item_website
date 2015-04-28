@@ -1,7 +1,7 @@
 .item-detail{
 	position: relative;
 }
-
+/*
 #itemCarousel.carousel .carousel-indicators{
 	bottom: 10px;
 }
@@ -9,7 +9,7 @@
 #itemCarousel.carousel .carousel-indicators > li{
 	background-color: #e84a64;
 	border: none;
-}
+}*/
 
 .carousel-inner > .item > img, 
 .carousel-inner > .item > a > img{
