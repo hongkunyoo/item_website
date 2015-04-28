@@ -40,6 +40,10 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 		});
 	};
 	
+	$scope.likeIt = function() {
+		$('#loginDialog').modal();
+	};
+	
 	$scope.addReply = function() {
 		$('#loginDialog').modal();
 		

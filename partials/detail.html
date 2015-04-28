@@ -36,7 +36,9 @@
 				<div class="detail-box item-action col-md-12 col-xs-12">
 					<div class="like-action col-md-6 col-xs-6">
 						<div class="btn-disabled">
-							<a data-toggle="modal" data-target="#_myModal" class="clickable"> <img ng-src="img/feed_card_like_ic_off.png" class="img-responsive" src="img/feed_card_like_ic_off.png"> </a>
+							<a data-toggle="modal" data-target="#_myModal" class="clickable"> 
+								<img ng-src="img/feed_card_like_ic_off.png" class="img-responsive" ng-click="likeIt()"> 
+							</a>
 						</div>
 					</div>
 					<div class="get-action col-md-6 col-xs-6 text-right">
@@ -73,7 +75,7 @@
 					<div class="comment-write col-md-9 col-xs-9">
 						<input type="text" class="form-control" placeholder="댓글 남기기">
 					</div>
-					<button class="col-md-3 col-xs-3 btn btn-sunny">
+					<button class="col-md-3 col-xs-3 btn btn-sunny" ng-click="addReply()">
 						SUBMIT
 
 					</button>
