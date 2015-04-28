@@ -172,7 +172,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 		});
 	};
 
-	$scope.likeIt = function(item) {
+	$scope.like = function(item) {
 		$('#loginDialog').modal();
 		// var prevLikeId = item.prevLikeId;
 		// if (prevLikeId == null) {

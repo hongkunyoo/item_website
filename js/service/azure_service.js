@@ -1,13 +1,16 @@
 itemApp.factory("azureService", function($rootScope) {
-	var real_url = "https://it-em.azure-mobile.net/";
-	var real_key = "TnmDvNkgfghvrcXjoQhRjEdcyFCEzd99";
-
-	var test_url = "https://it-em-test.azure-mobile.net/";
-	var test_key = "jidjLSdrpbivsOXwsQStSSHGIKxhKa66";
+	var real_url = "https://ptc-item.azure-mobile.net/";
+	var real_key = "jThOaSNNMAcOhFJZmkRQSWLtgbZjzF34";
+	var test_url = "https://ptc-item-test.azure-mobile.net/";
+	var test_key = "GDjfJuqepoEfWkCTEqOcnGMfXPwIHk67";
 
 	var realClient = new WindowsAzure.MobileServiceClient(real_url, real_key);
 	var testClient = new WindowsAzure.MobileServiceClient(test_url, test_key);
 	var mobileClient = realClient;
+
+	var CONTAINER_REAL_USER_PROFILE = "item-user-profile";
+	var SESSION_HELPER = "aim_add";
+	var GET_SAS_QUERY = "aim_add_item";
 
 	return {
 		getMobileClient : function() {
@@ -25,7 +28,7 @@ itemApp.factory("azureService", function($rootScope) {
 			}
 		},
 		sessionHelper : function(action, session, callback) {
-			mobileClient.invokeApi("session_helper", {
+			mobileClient.invokeApi(SESSION_HELPER, {
 				body : {
 					session : session,
 					action : action
@@ -44,11 +47,11 @@ itemApp.factory("azureService", function($rootScope) {
 			});
 		},
 		getSasQuery : function(fileName, callback) {
-			mobileClient.invokeApi("get_sas_query", {
+			mobileClient.invokeApi(GET_SAS_QUERY, {
 				method : "post",
 				body : {
 					fileName : fileName,
-					containerName : "item-user-profile"
+					containerName : CONTAINER_REAL_USER_PROFILE
 				}
 			}).done(function(results) {
 				if (callback.success != undefined) {

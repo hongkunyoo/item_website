@@ -1,29 +1,31 @@
 itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlob) {
-	var USER_PROFILE = "item-user-profile";
-	var ITEM_IMAGE = "item-image-container";
-
+	var CONTAINER_REAL_ITEM_IMAGE = "item-image";
+	var CONTAINER_REAL_USER_PROFILE = "item-user-profile";
+	var CONTAINER_TEST_ITEM_IMAGE = "item-test-image";
+	var CONTAINER_TEST_USER_PROFILE = "item-test-user-profile";
+	
 	return {
 		getHostUrl : function(uri) {
 			if (uri == undefined) {
 				uri = "";
 			}
-			return "https://athere.blob.core.windows.net/" + uri;
+			return "https://item.blob.core.windows.net/" + uri;
 		},
 		getUserProfileHostUrl : function() {
-			return this.getHostUrl(USER_PROFILE);
+			return this.getHostUrl(CONTAINER_REAL_USER_PROFILE);
 		},
 		getUserProfileImgUrl : function(id) {
-			return getHostUrl(USER_PROFILE) + id;
+			return getHostUrl(CONTAINER_REAL_USER_PROFILE) + id;
 		},
 		getItemImgHostUrl : function() {
-			return getHostUrl(ITEM_IMAGE);
+			return getHostUrl(CONTAINER_REAL_ITEM_IMAGE);
 		},
 		getItemImgUrl : function(id) {
-			return getHostUrl(ITEM_IMAGE) + id;
+			return getHostUrl(CONTAINER_REAL_ITEM_IMAGE) + id;
 		},
 		upload : function(container, id, sasQueryString, file, callback) {
 			azureBlob.upload({
-				baseUrl : "http://athere.blob.core.windows.net/" + container + "/" + id + "?",
+				baseUrl : "https://item.blob.core.windows.net/" + container + "/" + id + "?",
 				sasToken : sasQueryString,
 				file : file,
 				// blockSize: $scope.size,
