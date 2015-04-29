@@ -31,7 +31,7 @@ input:required:valid {
 .col-centered {
     display:inline-block;
     float:none;
-    /* reset the text-align */
+    /* reset the text-align */s
     text-align:left;
     /* inline-block space fix */
     margin-right:-4px;
@@ -85,11 +85,6 @@ input:required:valid {
 }
 
 .full-block {
-	/*left: 0;
-	position: absolute;
-	float:left;
-	top: expression(window.scrollTop);*/
-	
 	height: 100%;
 	z-index: 900;
 	background-color: #000;
@@ -108,19 +103,11 @@ input:required:valid {
 	float:right;
     bottom:20px;
     right:5%;
-    /*margin-left:235px;*/
-    /*width:200px;*/
-   
-   
 }
 .add_btn input {
 	width: 80px;
 
 }
-/*.add_btn img {
-	width: 80px;
-
-} */
 
 
 /*facebook button style*/
