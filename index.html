@@ -54,30 +54,10 @@
 
 		<!-- kakao login -->
 		<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		
-		<!-- Google Analytics-->
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		
-		  ga('create', 'UA-53944359-4', 'auto');
-		  ga('send', 'pageview');
-		
-		</script>
-
 	</head>
 	<body ng-controller="indexController" style="background-color: #263238;">
 		<script>
-			(function(d, s, id) {
+			( function(d, s, id) {
 					var js,
 					    fjs = d.getElementsByTagName(s)[0];
 					if (d.getElementById(id))
@@ -99,7 +79,6 @@
 					version : 'v2.1' // use version 2.1
 				});
 			};
-
 		</script>
 
 		<div id="item_banner" style="background-image: url('img/Untitled-1.png'); height:70px;">
@@ -143,7 +122,6 @@
 						<li>
 							<a class="clickable" ng-click="logout()">Logout</a>
 						</li>
-
 					</ul>
 				</div>
 			</div>
@@ -184,7 +162,6 @@
 						<div>
 							로그인 서비스 준비 중입니다.
 						</div>
-
 						<a class="button facebook-primary facebook" ng-click="onFacebookLogin()">Login with <b>Facebook</b></a>
 						<a id="kakao-login-btn"></a>
 					</div>
@@ -192,7 +169,6 @@
 						<div style="padding-right: 3vw; padding-left: 3vw; background-color: #263238; border-radius: 6px;">
 							<a target="_blank" href="https://play.google.com/store/apps/details?id=com.pinthecloud.item"><img class="img-responsive clickable" src="img/google-play-btn.png"/></a>
 						</div>
-
 					</div>
 				</div>
 			</div>
