@@ -7,9 +7,9 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 			for (var i = 0 ; i < result.imageNumber ; i++) {
 				var url = null;
 				if (i == 0) {
-					url = "https://athere.blob.core.windows.net/item-image-container/" + itemId;		
+					url = "https://item.blob.core.windows.net/item-image/" + itemId;		
 				} else {
-					url = "https://athere.blob.core.windows.net/item-image-container/" + itemId + "_" + i;
+					url = "https://item.blob.core.windows.net/item-image/" + itemId + "_" + i;
 				}
 				imgUrls.push(url);	
 			}

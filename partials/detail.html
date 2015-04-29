@@ -60,7 +60,7 @@
 					<ul class="img-comment-list col-md-12 col-xs-12">
 						<li ng-repeat="reply in item.replyList">
 							<div class="comment-img">
-								<img ng-src="https://athere.blob.core.windows.net/item-user-profile/{{reply.whoMadeId}}">
+								<img ng-src="https://item.blob.core.windows.net/item-user-profile/{{reply.whoMadeId}}">
 							</div>
 							<div class="comment-text">
 								<strong><a href="">{{reply.whoMade}}</a></strong>
@@ -84,7 +84,7 @@
 
 				<div class="detail-box item-editor col-md-12 col-xs-12">
 					<a class="pull-left clickable branch-color"> 
-						<img ng-src="https://athere.blob.core.windows.net/item-user-profile/{{item.whoMadeId}}" class="item_profile img-circle"> 
+						<img ng-src="https://item.blob.core.windows.net/item-user-profile/{{item.whoMadeId}}" class="item_profile img-circle"> 
 						<span id="editor-text" class="text-bold ng-binding">{{item.whoMade}}</span> 
 					</a>
 				</div>
