@@ -1,5 +1,22 @@
 itemApp.controller('listController', function($rootScope, $scope, $location, $localStorage, $filter, $state, itService, $stateParams) {
 
+	// Google Analystics
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] ||
+		function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o),
+		m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+	ga('create', 'UA-53944359-4', 'auto');
+	ga('send', 'list');
+
 	// instance variables
 	$scope.page = 0;
 	$scope.addMoreLock = false;
@@ -40,16 +57,10 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 
 				var newItems = (results.map(function(item) {
 						item.isLoaded = false;
-
-						item['uploaderImg'] = itService.imageService.makeUserImage(item.whoMadeId);
-						item['imageUrl'] = itService.imageService.makeItemImage(item.id);
-						item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
-						if (item.prevLikeId == null) {
-							item.likeImage = "img/feed_card_like_ic_off.png";
-						} else {
-							item.likeImage = "img/feed_card_like_ic_on.png";
-						}
-
+						item.userProfileUrl = itService.blobStorageHelper.getUserProfileImgUrl(item.whoMadeId) + itService.imageService.ITEM_THUMBNAIL_IMAGE_POSTFIX;
+						item.itemImageUrl = itService.blobStorageHelper.getItemImgUrl(item.id);
+						item.uploadTime = itService.imageService.makePrettyTime(item.rawCreateDateTime);
+						item.likeImage = (item.prevLikeId == null ? "img/feed_card_like_ic_off.png" : "img/feed_card_like_ic_on.png");
 						return item;
 					})
 				);
@@ -78,7 +89,6 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 
 	$scope.$watch('items', function() {
 		$(window).resize();
-
 	}, true);
 
 	var lastScrollTop = 0;
@@ -110,7 +120,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 		itService.aimHelper.list('Reply', item.id, {
 			success : function(results) {
 				item.replys = results.map(function(reply) {
-					reply.userImg = itService.imageService.makeUserImage(reply.whoMadeId);
+					reply.userImg = itService.blobStorageHelper.getUserProfileImgUrl(reply.whoMadeId) + itService.imageService.ITEM_THUMBNAIL_IMAGE_POSTFIX;
 					reply.dateTime = itService.imageService.makePrettyTime(reply.rawCreateDateTime);
 					return reply;
 				});
@@ -140,11 +150,15 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	};
 
 	$scope.addReply = function(item, entered) {
-		if (!entered)
+		if (!entered) {
 			return;
+		}
+
 		var content = item.replyContent;
-		if (content == "")
+		if (content == "") {
 			return;
+		}
+
 		var myUser = itService.prefHelper.get("ItUser");
 		var data = {
 			content : content,
@@ -165,13 +179,16 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 			imageWidth : item.imageWidth,
 			imageHeight : item.imageHeight,
 		};
+
 		itService.aimHelper.add('Reply', data, noti, {
 			success : function(results) {
-				if (item.replys == null || item.replys == undefined)
+				if (item.replys == null || item.replys == undefined) {
 					item.replys = [];
+				}
 				item.replys.push(results.result);
 			},
 			error : function(err) {
+				console.log(err);
 				itService.viewService.showError(err);
 			}
 		});
@@ -277,8 +294,9 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	}];
 
 	$scope.priceChange = function() {
-		if ($scope.productTag.price == undefined)
+		if ($scope.productTag.price == undefined) {
 			return;
+		}
 		var toNum = $scope.productTag.price.split(",").join("");
 		$scope.productTag.price = $filter('number')(toNum);
 	};
@@ -286,7 +304,6 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 	$scope.validProductTag = function() {
 		var enable = ($scope.productTagForm.category.$dirty && $scope.productTagForm.shopName.$dirty && $scope.productTagForm.webPage.$dirty && $scope.productTagForm.price.$dirty);
 		enable &= !$scope.productTagForm.shopName.$error.required && !$scope.productTagForm.webPage.$error.url && !$scope.productTagForm.webPage.$error.required && !$scope.productTagForm.price.$error.required;
-
 		return !enable;
 	};
 
@@ -317,8 +334,9 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 
 		itService.aimHelper.add('ProductTag', data, noti, {
 			success : function(results) {
-				if ($scope.tags == null || $scope.tags == undefined)
+				if ($scope.tags == null || $scope.tags == undefined) {
 					$scope.tags = [];
+				}
 				$scope.tags.push(results.result);
 				$scope.productTag = {};
 			},
@@ -333,8 +351,9 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 
 		itService.aimHelper.del('ProductTag', tag, {
 			success : function(results) {
-				if ($scope.tags == null || $scope.tags == undefined)
+				if ($scope.tags == null || $scope.tags == undefined) {
 					$scope.tags = [];
+				}
 				$scope.tags = $filter('filter')($scope.tags, {
 					id : "!" + tag.id
 				});
