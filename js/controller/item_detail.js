@@ -1,4 +1,4 @@
-itemApp.controller('detailController', function($rootScope, $scope, $location, $filter, $state, $stateParams, itService) {
+itemApp.controller('itemDetailController', function($rootScope, $scope, $location, $filter, $state, $stateParams, itService) {
 
 	// Google Analystics
 	(function(i, s, o, g, r, a, m) {
@@ -15,7 +15,7 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 	})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
 	ga('create', 'UA-53944359-4', 'auto');
-	ga('send', 'detail');
+	ga('send', 'item_detail');
 
 	var itemId = $stateParams.itemId;
 	itService.aimHelper.getItem({

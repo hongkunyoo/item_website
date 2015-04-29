@@ -45,8 +45,8 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
 	.state('list', {
 		url : '/list',
 		templateUrl : 'partials/list.html'
-	}).state('detail', {
-		url : '/detail/:itemId',
-		templateUrl : 'partials/detail.html'
+	}).state('item_detail', {
+		url : '/item_detail/:itemId',
+		templateUrl : 'partials/item_detail.html'
 	});
 });

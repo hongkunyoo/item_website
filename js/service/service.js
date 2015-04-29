@@ -15,7 +15,6 @@ itemApp.factory("viewService", function($rootScope) {
 	return {
 		showProgress : function() {
 			$('#waiting-overlay').show();
-
 		},
 		hideProgress : function() {
 			$('#waiting-overlay').hide();
