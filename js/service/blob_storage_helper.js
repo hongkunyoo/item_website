@@ -3,16 +3,16 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlo
 	var CONTAINER_REAL_USER_PROFILE = "item-user-profile";
 	var CONTAINER_TEST_ITEM_IMAGE = "item-test-image";
 	var CONTAINER_TEST_USER_PROFILE = "item-test-user-profile";
-	
+
 	return {
+		getHostUrl : function() {
+			return "https://item.blob.core.windows.net/";
+		},
 		getHostUrl : function(uri) {
-			if (uri == undefined) {
-				uri = "";
-			}
-			return "https://item.blob.core.windows.net/" + uri;
+			return getHostUrl() + uri + "/";
 		},
 		getUserProfileHostUrl : function() {
-			return this.getHostUrl(CONTAINER_REAL_USER_PROFILE);
+			return getHostUrl(CONTAINER_REAL_USER_PROFILE);
 		},
 		getUserProfileImgUrl : function(id) {
 			return getHostUrl(CONTAINER_REAL_USER_PROFILE) + id;
@@ -25,7 +25,7 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlo
 		},
 		upload : function(container, id, sasQueryString, file, callback) {
 			azureBlob.upload({
-				baseUrl : "https://item.blob.core.windows.net/" + container + "/" + id + "?",
+				baseUrl : getHostUrl() + container + "/" + id + "?",
 				sasToken : sasQueryString,
 				file : file,
 				// blockSize: $scope.size,

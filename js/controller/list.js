@@ -33,22 +33,27 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 					});
 					return;
 				}
-				
-				if ($scope.items == null || $scope.items == undefined) $scope.items = [];
-				var newItems = (results.map(function(item){
-					item['uploaderImg']	= itService.imageService.makeUserImage(item.whoMadeId);
-					item['imageUrl']	= itService.imageService.makeItemImage(item.id);
-					item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
-					item.isLoaded = false;
-					if (item.prevLikeId == null) {
-						item.likeImage = "img/feed_card_like_ic_off.png";
-					} else {
-						item.likeImage = "img/feed_card_like_ic_on.png";
-					}
-					// item.mainImageHeight
-					return item;
-				}));
-				$scope.$apply(function(){
+
+				if ($scope.items == null || $scope.items == undefined) {
+					$scope.items = [];
+				}
+
+				var newItems = (results.map(function(item) {
+						item.isLoaded = false;
+
+						item['uploaderImg'] = itService.imageService.makeUserImage(item.whoMadeId);
+						item['imageUrl'] = itService.imageService.makeItemImage(item.id);
+						item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
+						if (item.likeCount > 0) {
+							item.likeImage = "img/feed_card_like_ic_on.png";
+						} else {
+							item.likeImage = "img/feed_card_like_ic_off.png";
+						}
+
+						return item;
+					})
+				);
+				$scope.$apply(function() {
 					$.merge($scope.items, results);
 				});
 
@@ -66,18 +71,17 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 
 	$scope.onImgLoad = function(item) {
 		doResize();
-		$scope.$apply(function(){
+		$scope.$apply(function() {
 			item.isLoaded = true;
 		});
 	};
-	
+
 	$scope.$watch('items', function() {
 		$(window).resize();
 
 	}, true);
 
 	var lastScrollTop = 0;
-
 	$(window).scroll(function() {
 		if ($scope.itemEmpty())
 			return;
@@ -88,6 +92,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 		lastScrollTop = st;
 
 	});
+
 	var resize_finish;
 	function doResize() {
 		clearTimeout(resize_finish);
@@ -176,47 +181,47 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 		$('#loginDialog').modal();
 		// var prevLikeId = item.prevLikeId;
 		// if (prevLikeId == null) {
-			// var myUser = itService.prefHelper.get("ItUser");
-			// var data = {
-				// refId : item.id,
-				// whoMade : myUser.nickName,
-				// whoMadeId : myUser.id
-			// };
-			// var noti = {
-				// whoMade : myUser.nickName,
-				// whoMadeId : myUser.id,
-				// refId : item.id,
-				// refWhoMade : item.whoMade,
-				// refWhoMadeId : item.whoMadeId,
-				// content : "",
-				// type : "LikeIt",
-				// imageWidth : item.imageWidth,
-				// imageHeight : item.imageHeight,
-			// };
-			// itService.aimHelper.add('LikeIt', data, noti, {
-				// success : function(result) {
-					// item.prevLikeId = result.result.id;
-					// item.likeItCount++;
-					// item.likeImage = "img/general_it_highlight_btn.png";
-				// },
-				// error : function(err) {
-					// itService.viewService.showError(err);
-				// }
-			// });
+		// var myUser = itService.prefHelper.get("ItUser");
+		// var data = {
+		// refId : item.id,
+		// whoMade : myUser.nickName,
+		// whoMadeId : myUser.id
+		// };
+		// var noti = {
+		// whoMade : myUser.nickName,
+		// whoMadeId : myUser.id,
+		// refId : item.id,
+		// refWhoMade : item.whoMade,
+		// refWhoMadeId : item.whoMadeId,
+		// content : "",
+		// type : "LikeIt",
+		// imageWidth : item.imageWidth,
+		// imageHeight : item.imageHeight,
+		// };
+		// itService.aimHelper.add('LikeIt', data, noti, {
+		// success : function(result) {
+		// item.prevLikeId = result.result.id;
+		// item.likeItCount++;
+		// item.likeImage = "img/general_it_highlight_btn.png";
+		// },
+		// error : function(err) {
+		// itService.viewService.showError(err);
+		// }
+		// });
 		// } else {
-			// var data = {
-				// id : prevLikeId
-			// };
-			// itService.aimHelper.del('LikeIt', data, {
-				// success : function(result) {
-					// item.prevLikeId = null;
-					// item.likeItCount--;
-					// item.likeImage = "img/general_it_btn.png";
-				// },
-				// error : function(err) {
-					// itService.viewService.showError(err);
-				// }
-			// });
+		// var data = {
+		// id : prevLikeId
+		// };
+		// itService.aimHelper.del('LikeIt', data, {
+		// success : function(result) {
+		// item.prevLikeId = null;
+		// item.likeItCount--;
+		// item.likeImage = "img/general_it_btn.png";
+		// },
+		// error : function(err) {
+		// itService.viewService.showError(err);
+		// }
+		// });
 		// }
 	};
 

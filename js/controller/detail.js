@@ -13,7 +13,7 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 				}
 				imgUrls.push(url);	
 			}
-			// $.merge($scope.item.itemImageUrls, imgUrls);
+
 			$scope.item = result;
 			if (result.replyList != null && result.replyList.length > 0) {
 				result.replyList = result.replyList.map(function(reply){
