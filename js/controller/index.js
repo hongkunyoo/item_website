@@ -21,9 +21,35 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 	} else {
 		numOfCol = 4;
 	}
-	itService.prefHelper.put({
-		numOfCol : numOfCol
+	itService.prefHelper.put("numOfCol",numOfCol);
+	
+	var bannerHeight = $('#item_banner').height();
+	var padding_top_val = ($("#mynavbar").height()+parseInt($("#mynavbar").css('margin-bottom')));
+	var state = 0;
+	$(window).scroll(function() {
+		if (state == 0) {
+			if ($(this).scrollTop() > bannerHeight) {
+				$("#mynavbar").addClass("navbar-fixed-top");
+				$("#mysection").css('padding-top', padding_top_val);
+				state = 1;
+			}	
+		}
+		else {
+			if ($(this).scrollTop() < bannerHeight) {
+				$("#mynavbar").removeClass("navbar-fixed-top");
+				$("#mysection").css('padding-top', '');
+				state = 0;
+			}	
+		}
+		
 	});
+		
+		
+	
+	$('#item_banner').on('hide', function() {
+      console.log('#foo is hidden');
+	});	
+	
 
 	// $('#loginDialog').modal();
 

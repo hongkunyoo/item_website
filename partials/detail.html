@@ -1,94 +1,95 @@
 <div class="container" ng-controller="detailController">
 	<div class="row">
-		<div class="container">
-	<div class="btn-group" role="group" aria-label="...">
-		<button type="button" class="btn btn-default">
-			1
-		</button>
-		<button type="button" class="btn btn-default">
-			2
-		</button>
-
-		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				Dropdown
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu">
-				<li>
-					<a href="#">Dropdown link</a>
-				</li>
-				<li>
-					<a href="#">Dropdown link</a>
-				</li>
-			</ul>
+		<div class="item-thumbnail col-md-5 col-md-offset-2 col-xs-12">
+			<!--<div id="itemCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+				<ol class="carousel-indicators">
+					<li ng-repeat="itemImageUrl in item.itemImageUrls" data-target="#itemCarousel" data-slide-to="{{$index}}">
+						
+					thumbnail	<img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />
+					</li>
+				</ol>
+				<div class="carousel-inner" id="carousel_inner_id">
+					<div ng-repeat="itemImageUrl in item.itemImageUrls" class="item" ng-class="{active: $index==0}">
+						<img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />
+					</div>
+				</div>
+				<a class="left  carousel-control" data-target="#itemCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> </a>
+				<a class="right carousel-control" data-target="#itemCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> </a>
+			-->	
+			<!--<button type="button" class="slick-prev">Previous</button>-->
+			<div class="your-class">
+			  		<div ng-repeat="itemImageUrl in item.itemImageUrls" class="item" ng-class="{active: $index==0}">
+						<img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />
+					</div>
+			</div>
+			<!--<button type="button" class="slick-next">Next</button>-->
+			<!--</div>-->
 		</div>
-	</div>
-	</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 ">
-			<div class="panel panel-default">
-				<div class="container-fluid">
-					<div class="card-title">
-						<a href="#" class="pull-left"><img ng-src={{item.uploader_img}} class="item_profile img-rounded"/></a>
-						<div>
-							<h4><a href="#">{{item.uploader}}</a></h4>
+		<div class="item-detail col-md-3 col-xs-12">
+			<div class="row">
+				<div class="detail-box col-md-12 col-xs-12">
+					<p class="text-left">
+						{{item.content}}
+					</p>
+				</div>
+
+				<div class="detail-box item-action col-md-12 col-xs-12">
+					<div class="like-action col-md-6 col-xs-6">
+						<div class="btn-disabled">
+							<a data-toggle="modal" data-target="#_myModal" class="clickable"> 
+								<img ng-src="img/feed_card_like_ic_off.png" class="img-responsive" ng-click="like()"> 
+							</a>
 						</div>
-						<div>
-							{{item.upload_time}}
+					</div>
+					<div class="get-action col-md-6 col-xs-6 text-right">
+						<div id="label-btn-bg" class="btn-disabled clickable">
+							<div class="btn-disabled clickable label-btn-bg">GET</div>
 						</div>
 					</div>
 				</div>
-				<div class="card panel-body">
-					<div class="card-image" align="center">
-						<a href="#/detail/{{item.id}}"><img class="img-responsive" ng-src="{{item.imageUrl}}"/></a>
+
+				<div class="detail-box item-comment col-md-12 col-xs-12">
+					<div class="col-md-2 col-xs-2">
+						<img src="img/feed_comment_ic.png" class="clickable">
 					</div>
-					<div class="card-content">
+					<div class="col-md-10 col-xs-10 comment-font">
 						<p>
-							{{item.content}}
+							댓글<a href=""> ({{item.replyCount}}) </a>
 						</p>
 					</div>
-
-					<div class="card-action">
-						<!-- <a href="#" target="new_blank">Likes</a> -->
-						<a target="new_blank" ng-click="showReply(item)">{{item.replyCount}} Comments</a>
-						<a target="new_blank" ng-click="showReply(item)">{{item.itCount}} IT</a>
-						<!-- <a href="#" target="new_blank">Link</a>
-						<a href="#" target="new_blank">Link</a>
-						<a href="#" target="new_blank">Link</a> -->
-					</div>
-				</div>
-
-				<div class="panel-footer" ng-show="item.replyShowValue">
-					<div class="input-group fill">
-						<input type="text" class="form-control" placeholder="Add comments" aria-describedby="basic-addon2">
-						<span class="input-group-addon">Add</span>
-					</div>
-					<ul class="list-group">
-						<li class="list-group-item">
-							Cras justo odio
-						</li>
-						<li class="list-group-item">
-							Dapibus ac facilisis in
-						</li>
-						<li class="list-group-item">
-							Morbi leo risus
-						</li>
-						<li class="list-group-item">
-							Porta ac consectetur ac
-						</li>
-						<li class="list-group-item">
-							Vestibulum at eros
+					<ul class="img-comment-list col-md-12 col-xs-12">
+						<li ng-repeat="reply in item.replyList">
+							<div class="comment-img">
+								<img ng-src="https://item.blob.core.windows.net/item-user-profile/{{reply.whoMadeId}}">
+							</div>
+							<div class="comment-text">
+								<strong><a href="">{{reply.whoMade}}</a></strong>
+								<p>
+									{{reply.content}}
+								</p>
+								<span class="date sub-text">{{reply.rawCreateDateTime}}</span>
+							</div>
 						</li>
 					</ul>
+
+					<div class="comment-write col-md-9 col-xs-9">
+						<input type="text" class="form-control" placeholder="댓글 남기기">
+					</div>
+					<button class="col-md-3 col-xs-3 btn btn-sunny" ng-click="addReply()">
+						SUBMIT
+
+					</button>
+
+				</div>
+
+				<div class="detail-box item-editor col-md-12 col-xs-12">
+					<a class="pull-left clickable branch-color"> 
+						<img ng-src="https://item.blob.core.windows.net/item-user-profile/{{item.whoMadeId}}" class="item_profile img-circle"> 
+						<span id="editor-text" class="text-bold ng-binding">{{item.whoMade}}</span> 
+					</a>
 				</div>
 			</div>
 		</div>
-		<div class=" col-md-4">
-			<div class="well">
-				here is the tag panel
-			</div>
-		</div>
+		<div class="col-md-2"></div>
 	</div>
 </div>

@@ -1,8 +1,8 @@
-itemApp.factory("prefHelper", function($rootScope, $localStorage) {
+itemApp.factory("prefHelper", function($localStorage) {
 
 	return {
-		put : function(obj) {
-			$localStorage.$default(obj);
+		put : function(key, value) {
+			$localStorage[key] = value;
 		},
 		get : function(key) {
 			return $localStorage[key];

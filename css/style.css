@@ -39,6 +39,7 @@ input:required:valid {
 
 .panel {
 	margin-bottom: 6px;
+	border: none;
 }
 
 .item_profile {
@@ -294,11 +295,21 @@ body {
 /*card view css*/
 
 .card-title {
-	padding:8px;
+	padding:8px 10px;
 	font-size: 13px;
+	border-top: 1px solid #eceff1;
 	/*max-width: 20vw;*/
 }
 
 .card-content {
-	padding: 10px;
+	padding: 10px 10px;
+	border-top: 1px solid #eceff1;
+	color: #263238;
+	font-size: 12px;
+	word-spacing: -1px;
+}
+
+.slick-dots li.slick-active button:before {
+	opacity: .75;
+	color: rgb(219, 219, 219) !important;
 }

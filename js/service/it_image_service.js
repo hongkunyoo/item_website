@@ -132,10 +132,10 @@ ItImageService.prototype = function() {
 			return b64toBlob(parsed.base64, parsed.type);
 		},
 		makeUserImage : function(id) {
-			return "https://athere.blob.core.windows.net/item-user-profile/" + id;
+			return "https://item.blob.core.windows.net/item-user-profile/" + id;
 		},
 		makeItemImage : function(id) {
-			return "https://athere.blob.core.windows.net/item-image-container/" + id;
+			return "https://item.blob.core.windows.net/item-image/" + id;
 		},
 		makePrettyTime : function(datetime) {
 			return new ItDateTime(datetime).toPrettyDateTime();
