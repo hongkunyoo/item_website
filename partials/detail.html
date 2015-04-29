@@ -5,7 +5,7 @@
 				<ol class="carousel-indicators">
 					<li ng-repeat="itemImageUrl in item.itemImageUrls" data-target="#itemCarousel" data-slide-to="{{$index}}">
 						
-					thumbnail	<img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />
+					<img ng-onload="onImgLoad()" class="img-responsive" ng-src="{{itemImageUrl}}" />
 					</li>
 				</ol>
 				<div class="carousel-inner" id="carousel_inner_id">
