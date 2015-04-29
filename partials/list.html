@@ -4,7 +4,7 @@
 			<div class="panel panel-default">
 				
 				<div>
-					<a href="#/detail/{{item.id}}"><img ng-onload="onImgLoad(item)" class="imgDetail img-responsive clickable" ng-src="https://item.blob.core.windows.net/item-image/{{item.id}}"/></a>
+					<a href="#/detail/{{item.id}}"><img ng-onload="onImgLoad(item)" class="imgDetail img-responsive clickable" ng-src="{{item.itemImageUrl}}"/></a>
 						
 					<div class="container-fluid card-content">
 						<p class="text-left spacing-none">{{item.content}}</p>
@@ -30,7 +30,7 @@
 
 					<div class="card-title">
 						<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)">
-							<img ng-src={{item.uploaderImg}} class="item_profile img-circle"/>	<span id="nickname-text" class="text-bold">{{item.whoMade}}</span></a>
+							<img ng-src={{item.userProfileUrl}} class="item_profile img-circle"/>	<span id="nickname-text" class="text-bold">{{item.whoMade}}</span></a>
 						<div style="clear:both;"></div>
 					</div>					
 				</div>

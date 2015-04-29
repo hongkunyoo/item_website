@@ -2,8 +2,11 @@ function ItImageService() {
 }
 
 ItImageService.prototype = function() {
-	var MAX_SIZE = 212;
-	var THUMB_NAIL_SIZE = 75;
+	var PROFILE_IMAGE_SIZE = 212;
+	var PROFILE_THUMBNAIL_IMAGE_SIZE = 75;
+	
+	var ITEM_PREVIEW_IMAGE_POSTFIX = "_preview";
+	var ITEM_THUMBNAIL_IMAGE_POSTFIX = "_thumbnail";
 
 	function reSize(MAX, width, height) {
 		var small,
@@ -131,17 +134,13 @@ ItImageService.prototype = function() {
 			var parsed = parseString(dataURL);
 			return b64toBlob(parsed.base64, parsed.type);
 		},
-		makeUserImage : function(id) {
-			return "https://item.blob.core.windows.net/item-user-profile/" + id;
-		},
-		makeItemImage : function(id) {
-			return "https://item.blob.core.windows.net/item-image/" + id;
-		},
 		makePrettyTime : function(datetime) {
 			return new ItDateTime(datetime).toPrettyDateTime();
 		},
-		MAX_SIZE : MAX_SIZE,
-		THUMB_NAIL_SIZE : THUMB_NAIL_SIZE
+		PROFILE_IMAGE_SIZE : PROFILE_IMAGE_SIZE,
+		PROFILE_THUMBNAIL_IMAGE_SIZE : PROFILE_THUMBNAIL_IMAGE_SIZE,
+		ITEM_PREVIEW_IMAGE_POSTFIX : ITEM_PREVIEW_IMAGE_POSTFIX,
+		ITEM_THUMBNAIL_IMAGE_POSTFIX : ITEM_THUMBNAIL_IMAGE_POSTFIX
 	};
 
 	function parseString(data) {
