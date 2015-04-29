@@ -44,10 +44,10 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 						item['uploaderImg'] = itService.imageService.makeUserImage(item.whoMadeId);
 						item['imageUrl'] = itService.imageService.makeItemImage(item.id);
 						item['uploadTime'] = itService.imageService.makePrettyTime(item.rawCreateDateTime);
-						if (item.likeCount > 0) {
-							item.likeImage = "img/feed_card_like_ic_on.png";
-						} else {
+						if (item.prevLikeId == null) {
 							item.likeImage = "img/feed_card_like_ic_off.png";
+						} else {
+							item.likeImage = "img/feed_card_like_ic_on.png";
 						}
 
 						return item;
