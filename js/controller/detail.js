@@ -37,7 +37,7 @@ itemApp.controller('detailController', function($rootScope, $scope, $location, $
 			arrows: false,
 			dots: true
 			
-		});
+		}); 
 	};
 	
 	$scope.like = function() {
