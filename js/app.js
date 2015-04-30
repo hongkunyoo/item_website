@@ -25,28 +25,14 @@ itemApp.config(function($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise('/list');
 
-	$stateProvider
-	// .state('login', {
-	// url: '/login',
-	// templateUrl: 'partials/login.html'
-	// })
-	// .state('signup', {
-	// url: '/signup',
-	// templateUrl: 'partials/signup.html'
-	// })
-	// .state('signup-with-key', {
-	// url: '/signup/:inviteKey',
-	// templateUrl: 'partials/signup.html'
-	// })
-	// .state('invite', {
-	// url: '/invite',
-	// templateUrl: 'partials/invite.html'
-	// })
-	.state('list', {
+	$stateProvider.state('list', {
 		url : '/list',
 		templateUrl : 'partials/list.html'
 	}).state('item_detail', {
 		url : '/item_detail/:itemId',
 		templateUrl : 'partials/item_detail.html'
+	}).state('home', {
+		url : '/home',
+		templateUrl : 'partials/home.html'
 	});
 });

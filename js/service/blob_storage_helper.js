@@ -4,6 +4,8 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlo
 	var CONTAINER_TEST_ITEM_IMAGE = "item-test-image";
 	var CONTAINER_TEST_USER_PROFILE = "item-test-user-profile";
 
+	var GET_SAS_QUERY = "aim_add_item";
+
 	return {
 		getHostUrl : function() {
 			return "https://item.blob.core.windows.net/";
@@ -12,13 +14,13 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlo
 			return this.getHostUrl() + container + "/";
 		},
 		getUserProfileHostUrl : function() {
-			return this.getHostContainerUrl(CONTAINER_REAL_USER_PROFILE);
+			return this.getHostContainerUrl(CONTAINER_TEST_USER_PROFILE);
 		},
 		getUserProfileImgUrl : function(id) {
 			return this.getUserProfileHostUrl() + id;
 		},
 		getItemImgHostUrl : function() {
-			return this.getHostContainerUrl(CONTAINER_REAL_ITEM_IMAGE);
+			return this.getHostContainerUrl(CONTAINER_TEST_ITEM_IMAGE);
 		},
 		getItemImgUrl : function(id) {
 			return this.getItemImgHostUrl() + id;
@@ -40,6 +42,25 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlo
 					if (callback.error != undefined) {
 						callback.error(err);
 					}
+				}
+			});
+		},
+		getSasQuery : function(fileName, callback) {
+			mobileClient.invokeApi(GET_SAS_QUERY, {
+				method : "post",
+				body : {
+					fileName : fileName,
+					containerName : CONTAINER_REAL_USER_PROFILE
+				}
+			}).done(function(results) {
+				if (callback.success != undefined) {
+					$rootScope.$apply(function() {
+						callback.success(results.result.sasQueryString);
+					});
+				}
+			}, function(err) {
+				if (callback.error != undefined) {
+					callback.error(err);
 				}
 			});
 		}

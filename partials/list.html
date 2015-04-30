@@ -2,20 +2,22 @@
 	<div id="block_container" infinite-scroll="addMore()" infinite-scroll-distance="7" infinite-scroll-immediate-check=false align="center" style="position: relative; height:100vh">
 		<div ng-repeat="item in items" class="block" style="position: absolute;" ng-show="item.isLoaded">
 			<div class="panel panel-default">
-				
+
 				<div>
 					<a href="#/item_detail/{{item.id}}"><img ng-onload="onImgLoad(item)" class="imgDetail img-responsive clickable" ng-src="{{item.itemImageUrl}}"/></a>
-						
+
 					<div class="container-fluid card-content">
-						<p class="text-left spacing-none">{{item.content}}</p>
-						
+						<p class="text-left spacing-none">
+							{{item.content}}
+						</p>
+
 						<div class="row">
 							<div class="col-md-12 text-left">
 								<a target="new_blank" class="clickable"><span class="glyphicon glyphicon-heart count-glyphicon" aria-hidden="true"></span><span class="count-text">{{item.likeCount}}</span></a>
 								<a target="new_blank" class="clickable"><span class="glyphicon glyphicon-comment count-glyphicon" aria-hidden="true" style="padding-left: 6px;"></span><span class="count-text">{{item.replyCount}}</span></a>
 							</div>
 						</div>
-						
+
 						<div class="row card-btn">
 							<div class="col-md-6 col-xs-4 text-left btn-like">
 								<div class="btn-disabled">
@@ -23,16 +25,17 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-xs-8 text-right btn-get">
-								<div class="btn-disabled clickable label-btn-bg">GET</div>
+								<div class="btn-disabled clickable label-btn-bg">
+									GET
+								</div>
 							</div>
 						</div>
 					</div>
 
 					<div class="card-title">
-						<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)">
-							<img ng-src={{item.userProfileUrl}} class="item_profile img-circle"/>	<span id="nickname-text" class="text-bold">{{item.whoMade}}</span></a>
+						<a class="pull-left clickable branch-color" ng-click="gotoWhomade(item.whoMadeId)"> <img ng-src={{item.userProfileUrl}} class="item_profile img-circle"/> <span id="nickname-text" class="text-bold">{{item.whoMade}}</span></a>
 						<div style="clear:both;"></div>
-					</div>					
+					</div>
 				</div>
 
 				<div class="panel-footer" ng-show="item.replyShowValue">
@@ -63,20 +66,6 @@
 					</ul>
 				</div>
 			</div>
-
 		</div>
 	</div>
-	<div align="center" ng-hide="itemEmpty()">
-		<span class="fa-stack fa-lg" style="font-size:30px;">
-			<i class="fa fa-circle fa-stack-2x" style="color:white;"></i> 
-			<i class="fa fa-spinner fa-pulse fa-stack-1x"></i>
-			<!-- <i class="fa fa-square-o fa-stack-2x"></i> --> 
-			<!-- <i class="fa fa-twitter fa-stack-1x"></i> --> 
-		</span>
-		<!-- <i class="fa fa-circle" style="font-size: 55px;">
-		<i style="font-size: 44px;" class="fa fa-spinner fa-pulse"></i>
-		</i> -->
-	</div>
 </div>
-
-
