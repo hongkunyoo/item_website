@@ -27,7 +27,7 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlo
 		},
 		upload : function(container, id, sasQueryString, file, callback) {
 			azureBlob.upload({
-				baseUrl : getHostContainerUrl(container) + id + "?",
+				baseUrl : this.getHostContainerUrl(container) + id + "?",
 				sasToken : sasQueryString,
 				file : file,
 				// blockSize: $scope.size,
