@@ -49,7 +49,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 
 				var newItems = (results.map(function(item) {
 						item.isLoaded = false;
-						item.userProfileUrl = itService.blobStorageHelper.getUserProfileImgUrl(item.whoMadeId) + itService.imageService.ITEM_THUMBNAIL_IMAGE_POSTFIX;
+						item.userProfileUrl = itService.blobStorageHelper.getUserProfileImgUrl(item.whoMadeId + itService.imageService.ITEM_THUMBNAIL_IMAGE_POSTFIX);
 						item.itemImageUrl = itService.blobStorageHelper.getItemImgUrl(item.id);
 						item.uploadTime = itService.imageService.makePrettyTime(item.rawCreateDateTime);
 						item.likeImage = (item.prevLikeId == null ? "img/feed_card_like_ic_off.png" : "img/feed_card_like_ic_on.png");
@@ -106,7 +106,7 @@ itemApp.controller('listController', function($rootScope, $scope, $location, $lo
 		itService.aimHelper.list('Reply', item.id, {
 			success : function(results) {
 				item.replys = results.map(function(reply) {
-					reply.userImg = itService.blobStorageHelper.getUserProfileImgUrl(reply.whoMadeId) + itService.imageService.ITEM_THUMBNAIL_IMAGE_POSTFIX;
+					reply.userProfileUrl = itService.blobStorageHelper.getUserProfileImgUrl(reply.whoMadeId + itService.imageService.ITEM_THUMBNAIL_IMAGE_POSTFIX);
 					reply.dateTime = itService.imageService.makePrettyTime(reply.rawCreateDateTime);
 					return reply;
 				});

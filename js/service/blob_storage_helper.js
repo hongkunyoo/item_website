@@ -1,10 +1,10 @@
-itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlob) {
+itemApp.factory("blobStorageHelper", function($rootScope, azureBlob, imageService) {
 	var CONTAINER_REAL_ITEM_IMAGE = "item-image";
 	var CONTAINER_REAL_USER_PROFILE = "item-user-profile";
 	var CONTAINER_TEST_ITEM_IMAGE = "item-test-image";
 	var CONTAINER_TEST_USER_PROFILE = "item-test-user-profile";
 
-	var GET_SAS_QUERY = "aim_add_item";
+	var GET_SAS_QUERY = "get_sas_query";
 
 	return {
 		getHostUrl : function() {
@@ -17,13 +17,13 @@ itemApp.factory("blobStorageHelper", function($rootScope, azureService, azureBlo
 			return this.getHostContainerUrl(CONTAINER_REAL_USER_PROFILE);
 		},
 		getUserProfileImgUrl : function(id) {
-			return this.getUserProfileHostUrl() + id;
+			return this.getUserProfileHostUrl() + id + imageService.JPG;
 		},
 		getItemImgHostUrl : function() {
 			return this.getHostContainerUrl(CONTAINER_REAL_ITEM_IMAGE);
 		},
 		getItemImgUrl : function(id) {
-			return this.getItemImgHostUrl() + id;
+			return this.getItemImgHostUrl() + id + imageService.JPG;
 		},
 		upload : function(container, id, sasQueryString, file, callback) {
 			azureBlob.upload({

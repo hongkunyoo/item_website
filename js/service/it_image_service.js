@@ -2,11 +2,14 @@ function ItImageService() {
 }
 
 ItImageService.prototype = function() {
+
 	var PROFILE_IMAGE_SIZE = 212;
 	var PROFILE_THUMBNAIL_IMAGE_SIZE = 75;
-	
+
 	var ITEM_PREVIEW_IMAGE_POSTFIX = "_preview";
 	var ITEM_THUMBNAIL_IMAGE_POSTFIX = "_thumbnail";
+
+	var JPG = ".jpg";
 
 	function reSize(MAX, width, height) {
 		var small,
@@ -140,7 +143,8 @@ ItImageService.prototype = function() {
 		PROFILE_IMAGE_SIZE : PROFILE_IMAGE_SIZE,
 		PROFILE_THUMBNAIL_IMAGE_SIZE : PROFILE_THUMBNAIL_IMAGE_SIZE,
 		ITEM_PREVIEW_IMAGE_POSTFIX : ITEM_PREVIEW_IMAGE_POSTFIX,
-		ITEM_THUMBNAIL_IMAGE_POSTFIX : ITEM_THUMBNAIL_IMAGE_POSTFIX
+		ITEM_THUMBNAIL_IMAGE_POSTFIX : ITEM_THUMBNAIL_IMAGE_POSTFIX,
+		JPG : JPG
 	};
 
 	function parseString(data) {
@@ -183,4 +187,4 @@ ItImageService.prototype = function() {
 		return blob;
 	}
 
-}(); 
+}();

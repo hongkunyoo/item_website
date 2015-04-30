@@ -8,8 +8,7 @@
 	azureBlobUpload.factory('azureBlob', ['$log', '$http', azureBlob]);
 
 	function azureBlob($log, $http) {
-		var DefaultBlockSize = 1024 * 32;
-		// Default to 32KB
+		var DefaultBlockSize = 1024 * 32; // Default to 32KB
 
 		/* config: {
 		 baseUrl: // baseUrl for blob file uri (i.e. http://<accountName>.blob.core.windows.net/<container>/<blobname>),
@@ -49,8 +48,9 @@
 						$log.log(data);
 						$log.log(status);
 
-						if (state.error)
+						if (state.error){
 							state.error(data, status, headers, config);
+						}
 					});
 				}
 			};

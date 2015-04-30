@@ -37,7 +37,6 @@ itemApp.controller('indexController', function($rootScope, $location, $rootScope
 				state = 0;
 			}
 		}
-
 	});
 
 	$('#item_banner').on('hide', function() {

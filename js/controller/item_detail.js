@@ -18,9 +18,15 @@ itemApp.controller('itemDetailController', function($rootScope, $scope, $locatio
 	ga('send', 'item_detail');
 
 	var itemId = $stateParams.itemId;
+	var user = itService.prefHelper.get('ItUser');
+	var userId = "default";
+	if (user != null && user != undefined) {
+		userId = user.id;
+	}
+
 	itService.aimHelper.getItem({
 		id : itemId
-	}, "userId", {
+	}, userId, {
 		success : function(result) {
 			var imgUrls = [];
 			for (var i = 0; i < result.imageNumber; i++) {
@@ -32,13 +38,13 @@ itemApp.controller('itemDetailController', function($rootScope, $scope, $locatio
 			if (result.replyList != null && result.replyList.length > 0) {
 				result.replyList = result.replyList.map(function(reply) {
 					reply.rawCreateDateTime = new ItDateTime(reply.rawCreateDateTime).toPrettyDateTime();
-					reply.userProfileUrl = itService.blobStorageHelper.getUserProfileImgUrl(reply.whoMadeId) + itService.imageService.ITEM_THUMBNAIL_IMAGE_POSTFIX;
+					reply.userProfileUrl = itService.blobStorageHelper.getUserProfileImgUrl(reply.whoMadeId + itService.imageService.ITEM_THUMBNAIL_IMAGE_POSTFIX);
 					return reply;
 				});
 			}
 
 			result.itemImageUrls = imgUrls;
-			result.userProfileUrl = itService.blobStorageHelper.getUserProfileImgUrl(result.whoMadeId) + itService.imageService.ITEM_THUMBNAIL_IMAGE_POSTFIX;
+			result.userProfileUrl = itService.blobStorageHelper.getUserProfileImgUrl(result.whoMadeId + itService.imageService.ITEM_THUMBNAIL_IMAGE_POSTFIX);
 			$scope.item = result;
 		},
 		error : function(err) {
