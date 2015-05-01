@@ -67,7 +67,8 @@
 					// js.src = "//connect.facebook.net/ko_KR/sdk.js";
 					js.src = "//connect.facebook.net/ko_KR/all.js";
 					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
+				}(document, 'script', 'facebook-jssdk')
+			);
 
 			window.fbAsyncInit = function() {
 				FB.init({
@@ -96,12 +97,6 @@
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<!-- <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="margin-left:10px;">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					</button> -->
 					<a class="navbar-brand" href="#/list"> <img class="img-responsive" width="70%" height="70%" alt="Brand" src="img/launcher.png" /> </a>
 				</div>
 
@@ -131,6 +126,7 @@
 		<section ui-view id="mysection">
 
 		</section>
+
 		<div class="modal" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-sm progress-modal-dialog">
 				<div class="modal-content">
@@ -168,6 +164,58 @@
 					<div class="modal-footer">
 						<div style="padding-right: 3vw; padding-left: 3vw; background-color: #263238; border-radius: 6px;">
 							<a target="_blank" href="https://play.google.com/store/apps/details?id=com.pinthecloud.item"><img class="img-responsive clickable" src="img/google-play-btn.png"/></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal" id="productTagDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog _modal-lg" ng-init="productTag={}">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							x
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Product Tagging</h4>
+					</div>
+					<div class="modal-body">
+						<div class="col-md-12 col-centered">
+							<div class="_container">
+								<div class="row">
+									<div class="col-sm-12">
+										<h4>List</h4>
+										<div class="row col-xs-12 table-responsive">
+											<table class="table preview-table">
+												<thead>
+													<tr>
+														<th>Category</th>
+														<th>Name</th>
+														<th>Web</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="tag in tags">
+														<td>{{productTagOpts[tag.category].kor}}</td>
+														<td>{{tag.shopName}}</td>
+														<td><a href="{{tag.webPage}}" target="_blank">{{tag.webPage}}</a></td>
+														<td>{{tag.price | number }}</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="modal-footer">
+							<div class="text-right pull-right col-md-3">
+								<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+									Done
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>

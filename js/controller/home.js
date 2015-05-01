@@ -200,12 +200,12 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $lo
 		$location.path("/list/users/" + whoMadeId);
 	};
 
-	$scope.showProductTagDialog = function(item) {
+	$scope.showProductTagAddDialog = function(item) {
 		$scope.selected = item;
 		itService.aimHelper.list('ProductTag', item.id, {
-			success : function(results) {
-				$scope.tags = results;
-				$('#productTagDialog').modal('show');
+			success : function(addedTags) {
+				$scope.addedTags = addedTags;
+				$('#productTagAddDialog').modal('show');
 			},
 			error : function(err) {
 				console.log(err);
@@ -213,53 +213,6 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $lo
 			}
 		});
 	};
-
-	$scope.productTagOpts = [{
-		val : 0,
-		kor : "아우터"
-	}, {
-		val : 1,
-		kor : "셔츠"
-	}, {
-		val : 2,
-		kor : "니트"
-	}, {
-		val : 3,
-		kor : "맨투맨"
-	}, {
-		val : 4,
-		kor : "후드"
-	}, {
-		val : 5,
-		kor : "티셔츠"
-	}, {
-		val : 6,
-		kor : "팬츠"
-	}, {
-		val : 7,
-		kor : "원피스"
-	}, {
-		val : 8,
-		kor : "스커트"
-	}, {
-		val : 9,
-		kor : "신발"
-	}, {
-		val : 10,
-		kor : "양말"
-	}, {
-		val : 11,
-		kor : "가방"
-	}, {
-		val : 12,
-		kor : "악세사리"
-	}, {
-		val : 13,
-		kor : "모자"
-	}, {
-		val : 14,
-		kor : "아이템"
-	}];
 
 	$scope.priceChange = function() {
 		if ($scope.productTag.price == undefined) {
@@ -306,10 +259,7 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $lo
 
 		itService.aimHelper.add('ProductTag', data, noti, {
 			success : function(addedTag) {
-				if ($scope.tags == null || $scope.tags == undefined) {
-					$scope.tags = [];
-				}
-				$scope.tags.push(addedTag);
+				$scope.addedTags.push(addedTag);
 				$scope.productTag = {};
 			},
 			error : function(err) {
@@ -322,10 +272,7 @@ itemApp.controller('homeController', function($rootScope, $scope, $location, $lo
 	$scope.deleteProductTag = function(tag) {
 		itService.aimHelper.del('ProductTag', tag, {
 			success : function(results) {
-				if ($scope.tags == null || $scope.tags == undefined) {
-					$scope.tags = [];
-				}
-				$scope.tags = $filter('filter')($scope.tags, {
+				$scope.addedTags = $filter('filter')($scope.addedTags, {
 					id : "!" + tag.id
 				});
 			},

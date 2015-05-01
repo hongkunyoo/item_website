@@ -4,7 +4,7 @@
 			<div class="panel panel-default">
 
 				<div>
-					<a ng-click="showProductTagDialog(item)"><img ng-onload="onImgLoad(item)" class="imgDetail img-responsive clickable" ng-src="{{item.itemImageUrl}}"/></a>
+					<a ng-click="showProductTagAddDialog(item)"><img ng-onload="onImgLoad(item)" class="imgDetail img-responsive clickable" ng-src="{{item.itemImageUrl}}"/></a>
 
 					<div class="container-fluid card-content">
 						<p class="text-left spacing-none">
@@ -25,9 +25,9 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-xs-8 text-right btn-get">
-								<div class="btn-disabled clickable label-btn-bg">
+								<button type="button" class="btn btn-default preview-add-button" ng-click="showProductTagDialog(item)" ng-disabled="!item.hasProductTag">
 									GET
-								</div>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -69,12 +69,12 @@
 		</div>
 	</div>
 
-	<div class="modal" id="productTagDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal" id="productTagAddDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog _modal-lg" ng-init="productTag = {}">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						<i class="text-danger fa fa-times">x</i>
+						x
 					</button>
 					<h4 class="modal-title" id="myModalLabel">Product Tagging</h4>
 				</div>
@@ -136,32 +136,28 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<h4>List</h4>
-									<div class="row">
-										<div class="col-xs-12">
-											<div class="table-responsive">
-												<table class="table preview-table">
-													<thead>
-														<tr>
-															<th>Category</th>
-															<th>Name</th>
-															<th>Web</th>
-															<th>Price</th>
-															<th style="text-align: center;">Delete</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr ng-repeat="tag in tags">
-															<td>{{productTagOpts[tag.category].kor}}</td>
-															<td>{{tag.shopName}}</td>
-															<td><a href="{{tag.webPage}}" target="_blank">{{tag.webPage}}</a></td>
-															<td>{{tag.price | number }}</td>
-															<td align="center"><span class="glyphicon glyphicon-remove has-feedback text-danger clickable" ng-click="deleteProductTag(tag)" ng-show="isMineProductTag(tag)"></span></td>
-														</tr>
-													</tbody>
-													<!-- preview content goes here-->
-												</table>
-											</div>
-										</div>
+									<div class="row col-xs-12 table-responsive">
+										<table class="table preview-table">
+											<thead>
+												<tr>
+													<th>Category</th>
+													<th>Name</th>
+													<th>Web</th>
+													<th>Price</th>
+													<th style="text-align: center;">Delete</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="tag in addedTags">
+													<td>{{productTagOpts[tag.category].kor}}</td>
+													<td>{{tag.shopName}}</td>
+													<td><a href="{{tag.webPage}}" target="_blank">{{tag.webPage}}</a></td>
+													<td>{{tag.price | number }}</td>
+													<td align="center"><span class="glyphicon glyphicon-remove has-feedback text-danger clickable" ng-click="deleteProductTag(tag)" ng-show="isMineProductTag(tag)"></span></td>
+												</tr>
+											</tbody>
+											<!-- preview content goes here-->
+										</table>
 									</div>
 									<!-- <div class="row text-right">
 									<div class="col-xs-12">

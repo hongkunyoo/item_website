@@ -135,17 +135,17 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 			});
 		},
 		getItem : function(item, userId, callback) {
-			
+
 			// var cachedItem = mListItems.filter(function(_item){
-				// return item.id == _item.id;
+			// return item.id == _item.id;
 			// });
 			// if (cachedItem.length == 1) {
-				// console.log('in cached');
-				// callback.success(cachedItem[0]);
-				// return;
+			// console.log('in cached');
+			// callback.success(cachedItem[0]);
+			// return;
 			// }
 			// console.log('get from server');
-			
+
 			mClient.invokeApi(AIM_GET_ITEM, {
 				body : {
 					item : {
@@ -177,7 +177,9 @@ itemApp.factory("aimHelper", function($rootScope, azureService) {
 				method : "post"
 			}).done(function(items) {
 				if (callback.success != undefined) {
-					callback.success(items.result);
+					$rootScope.$apply(function() {
+						callback.success(items.result);
+					});
 				}
 			}, function(err) {
 				if (callback.error != undefined) {

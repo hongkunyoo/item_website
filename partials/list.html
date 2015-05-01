@@ -20,14 +20,14 @@
 
 						<div class="row card-btn">
 							<div class="col-md-6 col-xs-4 text-left btn-like">
-								<div class="btn-disabled">
-									<a data-toggle="modal" data-target="#_myModal" class="clickable" ng-click="like(item)"><span class="glyphicon glyphicon-heart like-glyphicon" aria-hidden="true"></span></a>
+								<div class="btn-disabled clickable">
+									<a data-toggle="modal" data-target="#_myModal" ng-click="like(item)"><span class="glyphicon glyphicon-heart like-glyphicon" aria-hidden="true"></span></a>
 								</div>
 							</div>
 							<div class="col-md-6 col-xs-8 text-right btn-get">
-								<div class="btn-disabled clickable label-btn-bg">
+								<button type="button" class="btn btn-default preview-add-button" ng-click="showProductTagDialog(item)" ng-disabled="!item.hasProductTag">
 									GET
-								</div>
+								</button>
 							</div>
 						</div>
 					</div>
